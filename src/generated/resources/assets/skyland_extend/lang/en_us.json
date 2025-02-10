@@ -1,6 +1,6 @@
 {
   "block.skyland_extend.amethyst_anvil": "Amethyst Anvil",
-  "item.skyland_extend.amethyst_anvil_hammer": "Amethyst Anvil Hammer",
-  "itemGroup.skyland_extend.block": "AnvilCraft-Skyland-Extend: Block",
-  "itemGroup.skyland_extend.item": "AnvilCraft-Skyland-Extend: Item"
+  "item.skyland_extend.amethyst_hammer": "Amethyst Hammer",
+  "itemGroup.skyland_extend.block": "Skyland-Extend: Block",
+  "itemGroup.skyland_extend.item": "Skyland Extend: Item"
 }

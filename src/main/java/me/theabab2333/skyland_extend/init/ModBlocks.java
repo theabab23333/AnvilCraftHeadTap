@@ -2,9 +2,7 @@ package me.theabab2333.skyland_extend.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.dubhe.anvilcraft.init.ModBlockTags;
-import dev.dubhe.anvilcraft.item.AnvilHammerItem;
 import me.theabab2333.skyland_extend.Skyland_extend;
 import me.theabab2333.skyland_extend.block.AmethystAnvilBlock;
 import net.minecraft.data.recipes.RecipeCategory;
