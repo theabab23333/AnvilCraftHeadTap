@@ -1,0 +1,11 @@
+dependencies {
+    // AnvilCraft Skyland
+    implementation "dev.anvilcraft.skyland:AnvilCraft-Skyland:${anvilcraft_skyland_version}"
+
+    // AnvilLib
+    implementation "dev.anvilcraft.lib:anvillib-neoforge-1.21.1:${anvillib_version}"
+
+    implementation("dev.dubhe:anvilcraft-neoforge-1.21.1:${anvilcraft_version}"){
+        transitive = false
+    }
+}
