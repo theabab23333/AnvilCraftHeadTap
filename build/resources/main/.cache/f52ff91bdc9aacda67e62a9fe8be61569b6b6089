@@ -1,0 +1,16 @@
+// 1.21.1	2025-02-24T09:47:06.1687919	Registrate Provider for skyland_extend [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+1e32df2aa5def4217d1dd39d2bb240c7ef56e460 assets/skyland_extend/lang/en_ud.json
+9782db2797b3dfe2eabb309e30d436d8a9730464 assets/skyland_extend/lang/en_us.json
+69f229af030f1ae9fb2394dd938a03b60f9783a5 assets/skyland_extend/models/item/amethyst_anvil.json
+7e9161b7273e22307181425e8a950c56b2409430 data/anvilcraft/tags/block/hammer_removable.json
+0385e31bc6995c480568b57bbbb24e55e8987d58 data/anvilcraft/tags/item/tools/anvil_hammer.json
+7e9161b7273e22307181425e8a950c56b2409430 data/minecraft/tags/block/anvil.json
+7e9161b7273e22307181425e8a950c56b2409430 data/minecraft/tags/block/mineable/pickaxe.json
+7e9161b7273e22307181425e8a950c56b2409430 data/minecraft/tags/block/needs_stone_tool.json
+7e9161b7273e22307181425e8a950c56b2409430 data/minecraft/tags/item/anvil.json
+0385e31bc6995c480568b57bbbb24e55e8987d58 data/minecraft/tags/item/enchantable/mace.json
+60eb9b703c6413be7b87a387a39e0b93034abdb4 data/skyland_extend/advancement/recipes/misc/amethyst_anvil.json
+c27c75541fbb3cd7709be2a8ff3940bc6e2a87eb data/skyland_extend/advancement/recipes/tools/amethyst_hammer.json
+54055d9ed245984798c286ecd7437dd2d0186c63 data/skyland_extend/loot_table/blocks/amethyst_anvil.json
+c4ec29b9ae6fb3034ac2333c9ba385b57d0fd712 data/skyland_extend/recipe/amethyst_anvil.json
+293a7c55f7e307d3b9ad47b0108ec8cc0e7a9705 data/skyland_extend/recipe/amethyst_hammer.json

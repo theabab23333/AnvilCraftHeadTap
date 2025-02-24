@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "skyland_extend:block/amethyst_anvil",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "skyland_extend:block/amethyst_anvil",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "skyland_extend:block/amethyst_anvil"
+    },
+    "facing=west": {
+      "model": "skyland_extend:block/amethyst_anvil",
+      "y": 90
+    }
+  }
+}

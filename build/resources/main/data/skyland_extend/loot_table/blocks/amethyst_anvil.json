@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "skyland_extend:amethyst_anvil"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "skyland_extend:blocks/amethyst_anvil"
+}
