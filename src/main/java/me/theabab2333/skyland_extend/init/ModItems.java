@@ -3,7 +3,7 @@ package me.theabab2333.skyland_extend.init;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.dubhe.anvilcraft.init.ModItemTags;
-import me.theabab2333.skyland_extend.item.AmethystHammer;
+import me.theabab2333.skyland_extend.item.AmethystAnvilHammer;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.ItemTags;
@@ -18,8 +18,8 @@ public class ModItems {
         REGISTRATE.defaultCreativeTab(ModItemGroups.SKYLAND_EXTEND_ITEM.getKey());
     }
 
-    public static final ItemEntry<AmethystHammer> AMETHYST_HAMMER = REGISTRATE
-            .item("amethyst_hammer", AmethystHammer::new)
+    public static final ItemEntry<AmethystAnvilHammer> AMETHYST_HAMMER = REGISTRATE
+            .item("amethyst_hammer", AmethystAnvilHammer::new)
             .properties(properties -> properties.durability(10))
             .tag(ItemTags.MACE_ENCHANTABLE, ModItemTags.bind("tools/anvil_hammer"))
             .properties(properties -> properties.durability(15))
