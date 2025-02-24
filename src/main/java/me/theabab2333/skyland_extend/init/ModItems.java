@@ -20,9 +20,8 @@ public class ModItems {
 
     public static final ItemEntry<AmethystAnvilHammer> AMETHYST_HAMMER = REGISTRATE
             .item("amethyst_hammer", AmethystAnvilHammer::new)
-            .properties(properties -> properties.durability(10))
             .tag(ItemTags.MACE_ENCHANTABLE, ModItemTags.bind("tools/anvil_hammer"))
-            .properties(properties -> properties.durability(15))
+            .properties(properties -> properties.durability(30))
             .model((ctx, provider) -> {
             })
             .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(
