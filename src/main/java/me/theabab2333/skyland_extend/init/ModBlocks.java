@@ -2,16 +2,27 @@ package me.theabab2333.skyland_extend.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.dubhe.anvilcraft.AnvilCraft;
+import dev.dubhe.anvilcraft.block.RoyalAnvilBlock;
+import dev.dubhe.anvilcraft.block.StampingPlatformBlock;
+import dev.dubhe.anvilcraft.data.AnvilCraftDatagen;
 import dev.dubhe.anvilcraft.init.ModBlockTags;
+import dev.dubhe.anvilcraft.init.ModItemTags;
+import dev.dubhe.anvilcraft.init.ModItems;
+import dev.dubhe.anvilcraft.util.DangerUtil;
 import me.theabab2333.skyland_extend.Skyland_extend;
 import me.theabab2333.skyland_extend.block.AmethystAnvilBlock;
+import me.theabab2333.skyland_extend.block.AnvilTickerBlock;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SmithingTransformRecipeBuilder;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 
 import static me.theabab2333.skyland_extend.Skyland_extend.REGISTRATE;
 
@@ -47,5 +58,14 @@ public class ModBlocks {
                     BlockTags.MINEABLE_WITH_PICKAXE,
                     BlockTags.NEEDS_STONE_TOOL)
             .register();
+
+    public static final BlockEntry<? extends Block> ANVIL_TICKER = REGISTRATE
+            .block("anvil_ticker", AnvilTickerBlock::new)
+            .blockstate((ctx, provider) -> {
+            })
+            .simpleItem()
+            .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+            .register();
+
     public static void register() {}
 }
