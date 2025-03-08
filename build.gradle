@@ -88,26 +88,6 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 sourceSets.main.resources.srcDir generateModMetadata
 neoForge.ideSyncTask generateModMetadata
 
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        def MAVEN_URL = System.getenv("MAVEN_URL")
-        if (MAVEN_URL != null) {
-            maven {
-                url MAVEN_URL
-                credentials {
-                    username System.getenv("MAVEN_USERNAME")
-                    password System.getenv("MAVEN_PASSWORD")
-                }
-            }
-        }
-    }
-}
-
 idea {
     module {
         downloadSources = true
