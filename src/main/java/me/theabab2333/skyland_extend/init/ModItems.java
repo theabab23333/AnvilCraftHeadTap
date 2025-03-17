@@ -3,6 +3,7 @@ package me.theabab2333.skyland_extend.init;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.dubhe.anvilcraft.init.ModItemTags;
+import me.theabab2333.skyland_extend.Skyland_extend;
 import me.theabab2333.skyland_extend.item.AmethystAnvilHammer;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
