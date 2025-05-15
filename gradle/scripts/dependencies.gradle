@@ -4,6 +4,9 @@ dependencies {
         transitive = false
     }
 
-    //Registrate
+    // Registrate
     compileOnly("com.tterrag.registrate:Registrate:${registrate_version}")
+
+    // Curios API
+    implementation("top.theillusivec4.curios:curios-neoforge:${curios_version}")
 }

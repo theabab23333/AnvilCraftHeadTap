@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "skyland_extend:anvil_ticker"
+          "name": "head_tap:stone_generator"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "skyland_extend:blocks/anvil_ticker"
+  "random_sequence": "head_tap:blocks/stone_generator"
 }

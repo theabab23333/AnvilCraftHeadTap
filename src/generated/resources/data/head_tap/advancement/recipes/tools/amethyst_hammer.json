@@ -1,6 +1,16 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
+    "has_amethyst_anvil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "head_tap:amethyst_anvil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_amethyst_block": {
       "conditions": {
         "items": [
@@ -11,11 +21,11 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_amethyst_shard": {
+    "has_iron_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:amethyst_shard"
+            "items": "minecraft:iron_ingot"
           }
         ]
       },
@@ -23,7 +33,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "skyland_extend:amethyst_anvil"
+        "recipe": "head_tap:amethyst_hammer"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,13 +41,14 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_amethyst_shard",
+      "has_amethyst_anvil",
+      "has_iron_ingot",
       "has_amethyst_block"
     ]
   ],
   "rewards": {
     "recipes": [
-      "skyland_extend:amethyst_anvil"
+      "head_tap:amethyst_hammer"
     ]
   }
 }

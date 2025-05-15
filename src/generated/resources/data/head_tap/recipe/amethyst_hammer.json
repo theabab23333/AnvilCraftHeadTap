@@ -3,7 +3,7 @@
   "category": "equipment",
   "key": {
     "A": {
-      "item": "skyland_extend:amethyst_anvil"
+      "item": "head_tap:amethyst_anvil"
     },
     "B": {
       "item": "minecraft:iron_ingot"
@@ -19,6 +19,6 @@
   ],
   "result": {
     "count": 1,
-    "id": "skyland_extend:amethyst_hammer"
+    "id": "head_tap:amethyst_hammer"
   }
 }

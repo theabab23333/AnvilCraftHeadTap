@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "skyland_extend:amethyst_anvil"
+          "name": "head_tap:amethyst_anvil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "skyland_extend:blocks/amethyst_anvil"
+  "random_sequence": "head_tap:blocks/amethyst_anvil"
 }

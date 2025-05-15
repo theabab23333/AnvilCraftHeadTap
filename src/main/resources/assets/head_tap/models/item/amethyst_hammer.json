@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "skyland_extend:item/amethyst_hammer"
+    "layer0": "head_tap:item/amethyst_hammer"
   }
 }

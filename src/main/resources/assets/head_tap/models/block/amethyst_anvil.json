@@ -3,8 +3,8 @@
 	"render_type": "minecraft:translucent",
 	"parent": "block/block",
 	"textures": {
-		"png": "skyland_extend:block/amethyst_anvil",
-		"particle":"skyland_extend:block/amethyst_anvil"
+		"png": "head_tap:block/amethyst_anvil",
+		"particle":"head_tap:block/amethyst_anvil"
 	},
 	"elements": [
 		{
