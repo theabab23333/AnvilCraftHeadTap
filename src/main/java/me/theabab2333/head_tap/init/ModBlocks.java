@@ -1,0 +1,51 @@
+package me.theabab2333.head_tap.init;
+
+import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.dubhe.anvilcraft.init.ModBlockTags;
+import me.theabab2333.head_tap.Head_tap;
+import me.theabab2333.head_tap.block.AmethystAnvilBlock;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+
+import static me.theabab2333.head_tap.Head_tap.REGISTRATE;
+
+@SuppressWarnings("unused")
+public class ModBlocks {
+
+    static {
+        REGISTRATE.defaultCreativeTab(ModItemGroups.ANVILCRAFT_HEAD_TAP.getKey());
+    }
+
+    public static final BlockEntry<? extends Block> AMETHYST_ANVIL = Head_tap.REGISTRATE
+            .block("amethyst_anvil", AmethystAnvilBlock::new)
+            .recipe((c, p) ->
+                    ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get())
+                            .pattern("AAA")
+                            .pattern(" B ")
+                            .pattern("BBB")
+                            .define('A', Items.AMETHYST_BLOCK)
+                            .define('B', Items.AMETHYST_SHARD)
+                            .unlockedBy("has_amethyst_shard", RegistrateRecipeProvider.has(Items.AMETHYST_SHARD))
+                            .unlockedBy("has_amethyst_block", RegistrateRecipeProvider.has(Items.AMETHYST_BLOCK))
+                            .save(p)
+            )
+            .initialProperties(() -> Blocks.ANVIL)
+            .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+            .blockstate((c, p) -> {
+            })
+            .item()
+            .tag(ItemTags.ANVIL)
+            .build()
+            .tag(BlockTags.ANVIL,
+                    ModBlockTags.HAMMER_REMOVABLE,
+                    BlockTags.MINEABLE_WITH_PICKAXE,
+                    BlockTags.NEEDS_STONE_TOOL)
+            .register();
+    public static void register() {}
+}

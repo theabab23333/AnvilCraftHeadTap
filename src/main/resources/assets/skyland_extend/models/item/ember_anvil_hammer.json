@@ -1,7 +1,0 @@
-{
-	"parent": "anvilcraft:item/anvil_hammer",
-	"textures": {
-		"hammer": "skyland_extend:item/amethyst_anvil_hammer",
-		"particle": "skyland_extend:item/amethyst_anvil_hammer"
-	}
-}

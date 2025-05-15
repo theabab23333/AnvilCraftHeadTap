@@ -1,17 +1,9 @@
 dependencies {
-    //Rolling Gate
-    implementation "dev.anvilcraft.rg:RollingGate:${rolling_gate_version}"
-
-    // AnvilCraft Skyland
-    implementation("dev.anvilcraft.skyland:AnvilCraft-Skyland:${anvilcraft_skyland_version}"){
-        transitive = true
-    }
-
-    // AnvilLib
-    implementation "dev.anvilcraft.lib:anvillib-neoforge-1.21.1:${anvillib_version}"
-
     // AnvilCraft
     implementation("dev.dubhe:anvilcraft-neoforge-1.21.1:${anvilcraft_version}"){
         transitive = false
     }
+
+    //Registrate
+    compileOnly("com.tterrag.registrate:Registrate:${registrate_version}")
 }
