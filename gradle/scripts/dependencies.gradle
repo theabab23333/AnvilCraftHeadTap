@@ -9,4 +9,9 @@ dependencies {
 
     // Curios API
     implementation("top.theillusivec4.curios:curios-neoforge:${curios_version}")
+
+    // Jade and JEI
+    runtimeOnly("maven.modrinth:jade:15.10.0+neoforge")
+    runtimeOnly("maven.modrinth:jei:19.21.0.247-neoforge")
+    runtimeOnly("maven.modrinth:patchouli:1.21-87-neoforge")
 }

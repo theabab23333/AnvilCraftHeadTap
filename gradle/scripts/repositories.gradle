@@ -1,40 +1,17 @@
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { // Modrinth File, LazyDFU, Jade
+    maven { // Modrinth File, Jade
         name = "Modrinth Maven"
         url = "https://api.modrinth.com/maven"
-        content {
-            includeGroup "maven.modrinth"
-        }
     }
-    maven { // AnvilLib、AnvilCraft
+    maven { // AnvilCraft
         name = "Cjsah Maven"
         url = "https://server.cjsah.net:1002/maven/"
     }
-    maven { // Mod Menu, EMI
-        name = "TerraformersMC Maven"
-        url = "https://maven.terraformersmc.com/releases/"
-    }
-    maven { // Registrate Fork
+    maven { // Registrate
         name = "Devos Maven"
         url = "https://mvn.devos.one/snapshots"
-    }
-    maven { // JEI
-        name = "ModMaven"
-        url = "https://modmaven.dev"
-    }
-    maven { // Patchouli
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    }
-    maven { // KubeJS, Rhino
-        name = "Saps Maven"
-        url = "https://maven.saps.dev/minecraft"
-        content {
-            includeGroup "dev.latvian.mods"
-            includeGroup "dev.latvian.apps"
-        }
     }
     maven { // Curios API
         name = "OctoStudios Maven"

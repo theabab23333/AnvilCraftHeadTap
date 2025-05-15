@@ -39,6 +39,8 @@ public class ModBlocks {
             )
             .initialProperties(() -> Blocks.ANVIL)
             .initialProperties(() -> Blocks.AMETHYST_BLOCK)
+            .properties(p -> p.lightLevel(p_152632_ -> 5))
+            .properties(p -> p.sound(SoundType.AMETHYST))
             .blockstate((c, p) -> {
             })
             .item()
