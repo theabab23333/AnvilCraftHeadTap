@@ -3,7 +3,6 @@ package me.theabab2333.head_tap.init;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.dubhe.anvilcraft.init.ModBlockTags;
-import me.theabab2333.head_tap.Head_tap;
 import me.theabab2333.head_tap.block.AmethystAnvilBlock;
 import me.theabab2333.head_tap.block.StoneGeneratorBlock;
 import net.minecraft.data.recipes.RecipeCategory;

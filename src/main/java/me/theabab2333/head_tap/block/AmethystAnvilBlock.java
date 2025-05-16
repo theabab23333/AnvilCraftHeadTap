@@ -74,7 +74,7 @@ public class AmethystAnvilBlock extends FallingBlock {
     public void appendHoverText(
             ItemStack pStack, Item.TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
-        pTooltipComponents.add(Component.translatable("Stone anvil quality, pretty and pleasing to the ear")
+        pTooltipComponents.add(Component.translatable("Pretty and pleasing to the ear")
                 .withStyle(ChatFormatting.GRAY));
     }
 
