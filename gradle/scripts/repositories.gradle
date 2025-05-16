@@ -17,4 +17,8 @@ repositories {
         name = "OctoStudios Maven"
         url = uri("https://maven.octo-studios.com/releases")
     }
+    maven { // Registrate Fork
+        name = "Ithundxr Maven"
+        url = "https://maven.ithundxr.dev/snapshots"
+    }
 }

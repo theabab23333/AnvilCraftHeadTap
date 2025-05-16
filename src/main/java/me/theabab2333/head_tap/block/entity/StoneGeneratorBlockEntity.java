@@ -5,10 +5,14 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 import net.neoforged.neoforge.items.ItemStackHandler;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -37,5 +41,20 @@ public class StoneGeneratorBlockEntity extends BlockEntity implements IItemHandl
 
     public IItemHandler getItemHandler() {
         return itemHandler;
+    }
+
+    public Item GetStoneType(){
+        //暂时是用一个写定的圆石，后面可以再改
+        return Items.COBBLESTONE;
+    }
+
+    public boolean TryGenerateStone(Item stoneType, int count) {
+        ItemStack item = new ItemStack(stoneType, count);
+        ItemStack remaining = ItemHandlerHelper.insertItem(itemHandler, item, false);
+        return !remaining.isEmpty();
+    }
+
+    public boolean TryGenerateStone(int count) {
+        return this.TryGenerateStone(GetStoneType(), count);
     }
 }
