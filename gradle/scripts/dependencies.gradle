@@ -6,10 +6,9 @@ dependencies {
 
     // Registrate
     api("com.tterrag.registrate:Registrate:${registrate_version}")
-    jarJar("com.tterrag.registrate:Registrate:${registrate_version}")
 
     // Curios API
-    implementation("top.theillusivec4.curios:curios-neoforge:${curios_version}")
+    api("top.theillusivec4.curios:curios-neoforge:${curios_version}")
 
     // Jade and JEI
     runtimeOnly("maven.modrinth:jade:15.10.0+neoforge")
