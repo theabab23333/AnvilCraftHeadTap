@@ -1,8 +1,6 @@
 package me.theabab2333.head_tap.block;
 
 import com.mojang.serialization.MapCodec;
-import dev.dubhe.anvilcraft.api.hammer.HammerRotateBehavior;
-import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.block.better.BetterBaseEntityBlock;
 import me.theabab2333.head_tap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.head_tap.init.ModBlockEntities;
@@ -22,7 +20,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.IItemHandler;
@@ -32,7 +29,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class StoneGeneratorBlock extends BetterBaseEntityBlock implements HammerRotateBehavior, IHammerRemovable {
+public class StoneGeneratorBlock extends BetterBaseEntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 

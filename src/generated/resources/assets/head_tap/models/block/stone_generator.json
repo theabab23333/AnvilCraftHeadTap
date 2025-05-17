@@ -4,7 +4,7 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "0": "head_tap:block/stone_generator",
-    "particle": "head_tap:block/stone_generator"
+    "particle": "minecraft:block/copper_block"
   },
 	"elements": [
 		{

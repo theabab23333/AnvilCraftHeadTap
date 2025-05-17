@@ -1,20 +1,22 @@
-// 1.21.1	2025-05-16T00:11:53.8120245	Registrate Provider for head_tap [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-05-17T17:48:19.2147423	Registrate Provider for head_tap [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 52ebe593c7c20f7a870a4e5f4aa5cea99c03ebe3 assets/head_tap/blockstates/stone_generator.json
-cd41c9b6e54f484be7d193e711711d8f982b2832 assets/head_tap/lang/en_ud.json
-61a8fb201116e3d5b3b9b9ae2caf933c22ed2acc assets/head_tap/lang/en_us.json
+67b964620d36644b51b93f280c5c942e741e8db9 assets/head_tap/lang/en_ud.json
+a1b0d480dd5d9ebcb4c5d5ee5f69045f9c785443 assets/head_tap/lang/en_us.json
 d0d78e42290a358c2de3acaa0e1a355b2feb0d0f assets/head_tap/models/block/stone_generator.json
 0abb6cd324befa25593616137cd6cfc05e98d5ef assets/head_tap/models/item/amethyst_anvil.json
 23fb82ef7d1b69f86be8c304250a422001a8bad0 assets/head_tap/models/item/stone_generator.json
-b0714a3dedd87a7bfb2acf9b33545bced4414ca3 data/anvilcraft/tags/block/hammer_removable.json
+ccc553b385adb281366706fc6c86e874d3c0c2f4 data/anvilcraft/tags/block/hammer_changeable.json
+ccc553b385adb281366706fc6c86e874d3c0c2f4 data/anvilcraft/tags/block/hammer_removable.json
 5923e25c22e1c812b2049cf5ebac73ad76b8ded1 data/anvilcraft/tags/item/tools/anvil_hammer.json
 7edc415da14383d55454b8dabb955eb831f5bc21 data/head_tap/advancement/recipes/misc/amethyst_anvil.json
+b451083015c0c14b8fbc908cb7152b14117d04f5 data/head_tap/advancement/recipes/misc/stone_generator.json
 480865dab7bdb0502eb720041175ef5959c2f0b4 data/head_tap/advancement/recipes/tools/amethyst_hammer.json
 cbab1471bdf872064e43c280ac9b0eaf0148ea10 data/head_tap/loot_table/blocks/amethyst_anvil.json
 07256aa55e5c4cb5f44d837ec7c5376bb24d7cf1 data/head_tap/loot_table/blocks/stone_generator.json
 af69208a89ba32c7a6f20bd2faadca72de21bbe2 data/head_tap/recipe/amethyst_anvil.json
 db8c5313e1d6a726be826805250cd87e05bd2170 data/head_tap/recipe/amethyst_hammer.json
+51a27f4b3aaba981c781034ba99b7f265391af76 data/head_tap/recipe/stone_generator.json
 b0714a3dedd87a7bfb2acf9b33545bced4414ca3 data/minecraft/tags/block/anvil.json
-b0714a3dedd87a7bfb2acf9b33545bced4414ca3 data/minecraft/tags/block/mineable/pickaxe.json
-b0714a3dedd87a7bfb2acf9b33545bced4414ca3 data/minecraft/tags/block/needs_stone_tool.json
-b0714a3dedd87a7bfb2acf9b33545bced4414ca3 data/minecraft/tags/item/anvil.json
+ccc553b385adb281366706fc6c86e874d3c0c2f4 data/minecraft/tags/block/mineable/pickaxe.json
+ccc553b385adb281366706fc6c86e874d3c0c2f4 data/minecraft/tags/block/needs_stone_tool.json
 5923e25c22e1c812b2049cf5ebac73ad76b8ded1 data/minecraft/tags/item/enchantable/mace.json

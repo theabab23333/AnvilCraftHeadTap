@@ -17,7 +17,7 @@ public class ModItemGroups {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ANVILCRAFT_HEAD_TAP =
             ET.register("block", () -> CreativeModeTab.builder()
                     .icon(ModBlocks.AMETHYST_ANVIL::asStack)
-                    .title(REGISTRATE.addLang("itemGroup", Head_tap.of("block"), "ANVILCRAFT: HEAD TAP"))
+                    .title(REGISTRATE.addLang("itemGroup", Head_tap.of("block"), "AnvilCraft: HeadTap"))
                     .build());
     public static void register(IEventBus modEventBus) {
         ET.register(modEventBus);

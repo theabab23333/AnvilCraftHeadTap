@@ -8,7 +8,6 @@ import me.theabab2333.head_tap.block.StoneGeneratorBlock;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -43,16 +42,38 @@ public class ModBlocks {
             .blockstate((c, p) -> {
             })
             .item()
-            .tag(ItemTags.ANVIL)
             .build()
-            .tag(BlockTags.ANVIL,
+            .tag(
+                    ModBlockTags.HAMMER_CHANGEABLE,
                     ModBlockTags.HAMMER_REMOVABLE,
+                    BlockTags.ANVIL,
                     BlockTags.MINEABLE_WITH_PICKAXE,
                     BlockTags.NEEDS_STONE_TOOL)
             .register();
     public static final BlockEntry<StoneGeneratorBlock> STONE_GENERATOR = REGISTRATE
             .block("stone_generator", StoneGeneratorBlock::new)
-            .properties(p -> p.sound(SoundType.SCAFFOLDING).strength(3))
+            .recipe((c, p) ->
+                    ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get())
+                            .pattern("ABA")
+                            .pattern("C C")
+                            .pattern("ADA")
+                            .define('A', Items.COPPER_INGOT)
+                            .define('B', Items.AMETHYST_SHARD)
+                            .define('C', Blocks.GLASS)
+                            .define('D', Blocks.STONECUTTER)
+                            .unlockedBy("has_copper_ingot", RegistrateRecipeProvider.has(Items.COPPER_INGOT))
+                            .unlockedBy("has_amethyst_shard", RegistrateRecipeProvider.has(Items.AMETHYST_SHARD))
+                            .unlockedBy("has_glass", RegistrateRecipeProvider.has(Blocks.GLASS))
+                            .unlockedBy("has_stonecutter", RegistrateRecipeProvider.has(Blocks.STONECUTTER))
+                            .save(p)
+                    )
+            .properties(p -> p.sound(SoundType.COPPER).strength(3))
+            .tag(
+                    ModBlockTags.HAMMER_REMOVABLE,
+                    ModBlockTags.HAMMER_CHANGEABLE,
+                    BlockTags.MINEABLE_WITH_PICKAXE,
+                    BlockTags.NEEDS_STONE_TOOL
+            )
             .item()
             .build()
             .register();
