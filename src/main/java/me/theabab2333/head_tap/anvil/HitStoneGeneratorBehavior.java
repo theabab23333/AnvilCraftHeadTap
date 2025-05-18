@@ -21,6 +21,6 @@ public class HitStoneGeneratorBehavior implements IAnvilBehavior {
         if (blockEntity == null) return false;
         int count = (int) fallDistance + 1;
         count = count <= 0 ? 1 : count;
-        return blockEntity.TryGenerateStone(count);
+        return blockEntity.getBehavior(count);
     }
 }
