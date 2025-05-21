@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.items.IItemHandler;
-import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -38,23 +37,18 @@ public class StoneGeneratorBlock extends BetterBaseEntityBlock {
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 
-    @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
         return simpleCodec(StoneGeneratorBlock::new);
     }
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new StoneGeneratorBlockEntity(ModBlockEntities.STONE_GENERATOR.get(), pos, state);
+    public BlockEntity newBlockEntity(BlockPos blockpos, BlockState blockstate) {
+        return new StoneGeneratorBlockEntity(ModBlockEntities.STONE_GENERATOR.get(), blockpos, blockstate);
     }
 
-    @Override
     public BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
@@ -64,7 +58,6 @@ public class StoneGeneratorBlock extends BetterBaseEntityBlock {
                 .setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
@@ -88,7 +81,6 @@ public class StoneGeneratorBlock extends BetterBaseEntityBlock {
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
 
-    @Override
     public InteractionResult use(
             BlockState state,
             Level level,
@@ -115,7 +107,6 @@ public class StoneGeneratorBlock extends BetterBaseEntityBlock {
         return InteractionResult.SUCCESS;
     }
 
-    @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }

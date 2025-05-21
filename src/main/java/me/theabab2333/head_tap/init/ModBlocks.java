@@ -4,6 +4,7 @@ import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.dubhe.anvilcraft.init.ModBlockTags;
 import me.theabab2333.head_tap.block.AmethystAnvilBlock;
+import me.theabab2333.head_tap.block.ExcavatorBlock;
 import me.theabab2333.head_tap.block.StoneGeneratorBlock;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -74,6 +75,11 @@ public class ModBlocks {
                     BlockTags.MINEABLE_WITH_PICKAXE,
                     BlockTags.NEEDS_STONE_TOOL
             )
+            .item()
+            .build()
+            .register();
+    public static final BlockEntry<ExcavatorBlock> EXCAVATOR = REGISTRATE
+            .block("excavator", ExcavatorBlock::new)
             .item()
             .build()
             .register();

@@ -7,6 +7,8 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,24 +23,22 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class StoneGeneratorBlockEntity extends BlockEntity implements IItemHandlerHolder {
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(1);
-    private int behavior = 0;
+    private static int behavior = 0;
 
     public StoneGeneratorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 
-    @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
         tag.put("Inventory", itemHandler.serializeNBT(provider));
-        tag.putInt("Behavior", this.behavior);
+        tag.putInt("Behavior", behavior);
     }
 
-    @Override
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
         itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
-        tag.putInt("Behavior", this.behavior);
+        tag.putInt("Behavior", behavior);
     }
 
     public IItemHandler getItemHandler() {
@@ -53,6 +53,18 @@ public class StoneGeneratorBlockEntity extends BlockEntity implements IItemHandl
         } else {
             return crush(count);
         }
+    }
+
+    public int checkBehavior(
+            Level level,
+            BlockPos pos
+    ) {
+        BlockPos left = pos.west();
+        BlockPos right = pos.east();
+        if (level.getBlockState(left).getBlock() == Blocks.LAVA && level.getBlockState(right).getBlock() == Blocks.WATER) {
+            return behavior = 0;
+        }
+        return behavior = 1;
     }
 
     private boolean generateStone(int count) {
