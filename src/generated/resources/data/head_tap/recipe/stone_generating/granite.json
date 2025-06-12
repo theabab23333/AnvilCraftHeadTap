@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft:stone_generating",
+  "inputBlocks": [
+    "minecraft:blue_ice"
+  ],
+  "inputFluids": [
+    {
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "priority": 4,
+  "result": {
+    "count": 1,
+    "id": "minecraft:granite"
+  }
+}

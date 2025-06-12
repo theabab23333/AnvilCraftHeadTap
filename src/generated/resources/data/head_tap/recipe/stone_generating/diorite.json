@@ -1,0 +1,16 @@
+{
+  "type": "anvilcraft:stone_generating",
+  "inputBlocks": [
+    "minecraft:packed_ice"
+  ],
+  "inputFluids": [
+    {
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "priority": 3,
+  "result": {
+    "count": 1,
+    "id": "minecraft:diorite"
+  }
+}

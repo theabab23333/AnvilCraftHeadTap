@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-19T02:10:28.9641442	Registrate Provider for head_tap [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-06-11T20:34:41.5261085	Registrate Provider for head_tap [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 b021e4d5b94714f25c407e058dfa634a61d8ab87 assets/head_tap/blockstates/excavator.json
 52ebe593c7c20f7a870a4e5f4aa5cea99c03ebe3 assets/head_tap/blockstates/stone_generator.json
 d2cf1bfc4a0f70c20a8ba05404513d8700c3d65a assets/head_tap/lang/en_ud.json
@@ -14,11 +14,21 @@ ccc553b385adb281366706fc6c86e874d3c0c2f4 data/anvilcraft/tags/block/hammer_remov
 7edc415da14383d55454b8dabb955eb831f5bc21 data/head_tap/advancement/recipes/misc/amethyst_anvil.json
 b451083015c0c14b8fbc908cb7152b14117d04f5 data/head_tap/advancement/recipes/misc/stone_generator.json
 480865dab7bdb0502eb720041175ef5959c2f0b4 data/head_tap/advancement/recipes/tools/amethyst_hammer.json
+b02296a640825f8c2f119907b2f01a3ca00da59d data/head_tap/advancement/recipe/stone_generating/andesite.json
+0180b89e0ae5dcab29e1e1f94d36854e733cfaa8 data/head_tap/advancement/recipe/stone_generating/cobblestone.json
+cf5aa3c630e7b26c29a6783a6dff82ec43b4c847 data/head_tap/advancement/recipe/stone_generating/diorite.json
+d6308ffbf133e6fab6e22ed368855f73291829b4 data/head_tap/advancement/recipe/stone_generating/granite.json
+c819a5671f7a1a078018cdc4cb4b99a3d09c9cc1 data/head_tap/advancement/recipe/stone_generating/stone.json
 cbab1471bdf872064e43c280ac9b0eaf0148ea10 data/head_tap/loot_table/blocks/amethyst_anvil.json
 a0507b5947d101cf9716f7c9769b64ea8f6ce7f4 data/head_tap/loot_table/blocks/excavator.json
 07256aa55e5c4cb5f44d837ec7c5376bb24d7cf1 data/head_tap/loot_table/blocks/stone_generator.json
 af69208a89ba32c7a6f20bd2faadca72de21bbe2 data/head_tap/recipe/amethyst_anvil.json
 db8c5313e1d6a726be826805250cd87e05bd2170 data/head_tap/recipe/amethyst_hammer.json
+c96f21bfe55fe15f66a598a5f12345b0afd6f373 data/head_tap/recipe/stone_generating/andesite.json
+53ee749810e397e702002469d1903eba6442156b data/head_tap/recipe/stone_generating/cobblestone.json
+75943b10c427b89272552562fccd5f0787540c21 data/head_tap/recipe/stone_generating/diorite.json
+5c3e7da8e141ec207f9d01d80b77d20876ba9baa data/head_tap/recipe/stone_generating/granite.json
+9435fe9dc94e6b7f41e464602f82a75b496d6ca8 data/head_tap/recipe/stone_generating/stone.json
 51a27f4b3aaba981c781034ba99b7f265391af76 data/head_tap/recipe/stone_generator.json
 b0714a3dedd87a7bfb2acf9b33545bced4414ca3 data/minecraft/tags/block/anvil.json
 ccc553b385adb281366706fc6c86e874d3c0c2f4 data/minecraft/tags/block/mineable/pickaxe.json

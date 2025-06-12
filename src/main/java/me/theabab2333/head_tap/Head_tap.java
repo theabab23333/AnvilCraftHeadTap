@@ -1,10 +1,12 @@
 package me.theabab2333.head_tap;
 
 import com.tterrag.registrate.Registrate;
+import me.theabab2333.head_tap.data.HeadTapDataGen;
 import me.theabab2333.head_tap.init.ModBlockEntities;
 import me.theabab2333.head_tap.init.ModBlocks;
 import me.theabab2333.head_tap.init.ModItemGroups;
 import me.theabab2333.head_tap.init.ModItems;
+import me.theabab2333.head_tap.init.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -20,6 +22,9 @@ public class Head_tap {
         ModBlocks.register();
         ModItems.register();
         ModBlockEntities.register();
+        ModRecipeTypes.register(modEventBus);
+
+        HeadTapDataGen.init();
     }
 
     public static @NotNull ResourceLocation of(String path) {
