@@ -2,6 +2,7 @@ package me.theabab2333.head_tap.data;
 
 import com.tterrag.registrate.providers.ProviderType;
 
+import me.theabab2333.head_tap.data.lang.LangHandler;
 import me.theabab2333.head_tap.Head_tap;
 import me.theabab2333.head_tap.data.recipe.RecipeHandler;
 import net.minecraft.core.HolderLookup;
@@ -31,5 +32,6 @@ public class HeadTapDataGen {
 
     public static void init() {
         REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeHandler::init);
+        REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);
     }
 }

@@ -2,10 +2,15 @@ package me.theabab2333.head_tap.item;
 
 import dev.dubhe.anvilcraft.item.AnvilHammerItem;
 import me.theabab2333.head_tap.init.ModBlocks;
+import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.List;
 
 
 @ParametersAreNonnullByDefault
@@ -20,6 +25,13 @@ public class AmethystAnvilHammer extends AnvilHammerItem {
         super(properties);
     }
 
+    public void appendHoverText(
+        ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+        pTooltipComponents.add(Component.translatable("item.head_tap.amethyst_hammer.tooltip")
+            .withStyle(ChatFormatting.GRAY));
+    }
+
     @Override
     protected float getAttackDamageModifierAmount() {
         return 3;
@@ -31,6 +43,6 @@ public class AmethystAnvilHammer extends AnvilHammerItem {
 
     @Override
     protected float calculateFallDamageBonus(float fallDistance) {
-        return Math.min(20, fallDistance * 4);
+        return Math.min(40, fallDistance * 4);
     }
 }

@@ -1,8 +1,8 @@
-// 1.21.1	2025-06-12T13:34:42.4735809	Registrate Provider for head_tap [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2025-06-12T23:28:02.5645561	Registrate Provider for head_tap [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (enchantments), Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 b021e4d5b94714f25c407e058dfa634a61d8ab87 assets/head_tap/blockstates/excavator.json
 52ebe593c7c20f7a870a4e5f4aa5cea99c03ebe3 assets/head_tap/blockstates/stone_generator.json
-d2cf1bfc4a0f70c20a8ba05404513d8700c3d65a assets/head_tap/lang/en_ud.json
-456122699e450bc8302fbe1db7227fee1b1e6600 assets/head_tap/lang/en_us.json
+5e41ea9237e5f1e376d216da7f7ce2e84b404319 assets/head_tap/lang/en_ud.json
+d4c503ed813afcda19313d5b5090b7c9ce5bfd9d assets/head_tap/lang/en_us.json
 7ef7c67513a48c4383129a5c0e0c56191d76d8df assets/head_tap/models/block/excavator.json
 d0d78e42290a358c2de3acaa0e1a355b2feb0d0f assets/head_tap/models/block/stone_generator.json
 0abb6cd324befa25593616137cd6cfc05e98d5ef assets/head_tap/models/item/amethyst_anvil.json

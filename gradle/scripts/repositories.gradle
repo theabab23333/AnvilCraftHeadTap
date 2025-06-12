@@ -17,9 +17,8 @@ repositories {
         name = "OctoStudios Maven"
         url = uri("https://maven.octo-studios.com/releases")
     }
-// 这个换成Devos Maven了
-//    maven { // Registrate Fork
-//        name = "Ithundxr Maven"
-//        url = "https://maven.ithundxr.dev/snapshots"
-//    }
+    maven { // JEI
+        name = "Jared's maven"
+        url = "https://maven.blamejared.com/"
+    }
 }
