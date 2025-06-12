@@ -1,8 +1,15 @@
 {
   "type": "anvilcraft:stone_generating",
   "inputBlocks": [],
-  "inputFluids": [],
-  "priority": 0,
+  "inputFluids": [
+    {
+      "fluid": "minecraft:water"
+    },
+    {
+      "fluid": "minecraft:lava"
+    }
+  ],
+  "priority": 1,
   "result": {
     "count": 1,
     "id": "minecraft:cobblestone"

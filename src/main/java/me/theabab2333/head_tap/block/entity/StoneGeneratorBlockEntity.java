@@ -81,10 +81,7 @@ public class StoneGeneratorBlockEntity extends BlockEntity implements IItemHandl
             //其实只用类型，数量是由铁砧高度决定的
             return currentRecipe.result.getItem();
         }
-        //默认状态：拿不到满足的配方时，石头种类为圆石
-        if (testAvailableInventory(Items.COBBLESTONE))
-            return Items.COBBLESTONE;
-        //不满足任何配方且填了别的东西的时候不生成
+        //不满足任何配方的时候不生成
         return Items.AIR;
     }
 

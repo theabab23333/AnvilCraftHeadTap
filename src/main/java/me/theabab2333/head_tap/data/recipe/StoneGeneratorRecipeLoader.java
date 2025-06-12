@@ -9,13 +9,9 @@ import net.minecraft.world.level.material.Fluids;
 public class StoneGeneratorRecipeLoader {
     public static void init(RegistrateRecipeProvider provider) {
         StoneGeneratorRecipe.builder()
-            .result(Items.COBBLESTONE)
-            .priority(0)
-            .save(provider);
-        StoneGeneratorRecipe.builder()
             .requires(Fluids.WATER)
             .requires(Fluids.LAVA)
-            .result(Items.STONE)
+            .result(Items.COBBLESTONE)
             .priority(1).save(provider);
         StoneGeneratorRecipe.builder()
             .requires(Blocks.ICE)
