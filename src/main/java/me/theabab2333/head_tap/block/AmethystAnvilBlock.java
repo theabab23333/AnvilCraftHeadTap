@@ -47,13 +47,11 @@ public class AmethystAnvilBlock extends BetterAnvilBlock {
         if (!fallingBlock.isSilent()) {
             level.levelEvent(1031, pos, 0);
         }
-
     }
 
     public void onBrokenAfterFall(Level level, BlockPos pos, FallingBlockEntity fallingBlock) {
         if (!fallingBlock.isSilent()) {
             level.levelEvent(1029, pos, 0);
         }
-
     }
 }
