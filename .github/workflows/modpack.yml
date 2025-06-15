@@ -1,17 +1,24 @@
-name: Upload Release Asset
+name: CI fot Modpack
 on:
   workflow_dispatch:
-  release:
-    types: [ published ]
+  push:
+    branches:
+      - releases/**
+    paths:
+      - src/**
+      - common/**
+      - fabric/**
+      - forge/**
+      - build.gradle
+      - gradle.properties
+      - settings.gradle
 
 jobs:
   build:
-    permissions: write-all
     runs-on: ubuntu-latest
     env:
-      CI_BUILD: false
+      CI_BUILD: true
       PR_BUILD: false
-      VERSION_TYPE: ${{ github.event.release.prerelease && 'beta' || 'release' }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -24,7 +31,7 @@ jobs:
         uses: christian-draeger/read-properties@1.1.1
         with:
           path: gradle.properties
-          properties: 'mod_id mod_name java_version rolling_gate_version anvilcraft_version'
+          properties: 'mod_id mod_name java_version rolling_gate_version'
 
       - name: Setup Java ${{ steps.properties.outputs.java_version }}
         uses: actions/setup-java@v3.6.0
@@ -54,20 +61,6 @@ jobs:
           name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
           path: build/libs/${{ steps.properties.outputs.mod_name }}-neoforge-1.21.1-${{ steps.version.outputs.version }}.jar
 
-      - name: Publish to maven
-        run: ./gradlew publish
-        env:
-          MAVEN_URL: ${{ secrets.MAVEN_URL }}
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USER }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASS }}
-        continue-on-error: true
-
-      - name: Upload Release Jar
-        uses: softprops/action-gh-release@v0.1.15
-        with:
-          files: |
-            build/libs/${{ steps.properties.outputs.mod_name }}-neoforge-1.21.1-${{ steps.version.outputs.version }}.jar
-
 #      - name: publish neoforge mc mod
 #        uses: Kir-Antipov/mc-publish@v3.3
 #        continue-on-error: true
@@ -75,10 +68,9 @@ jobs:
 #          name: "${{ steps.properties.outputs.mod_name }} For NeoForge v${{ steps.version.outputs.version }}"
 #          version: ${{ steps.version.outputs.version }}
 #          game-versions: 1.21.1
-#          version-type: ${{ env.VERSION_TYPE }}
+#          version-type: "alpha"
 #          java: 21
 #          fail-mode: skip
-#          changelog: ${{ github.event.release.body }}
 #          dependencies: |
 #            rolling_gate@${{ steps.properties.outputs.rolling_gate_version }}(optional){modrinth:HXsmHiKu}{curseforge:1194894}
 #            anvilcraft@1.4.2+pre-release.1(optional){modrinth:vuISAWPc}{curseforge:986251}
@@ -93,3 +85,4 @@ jobs:
 #          files: |
 #            build/libs/${{ steps.properties.outputs.mod_name }}-neoforge-1.21.1-${{ steps.version.outputs.version }}.jar
 #            build/libs/${{ steps.properties.outputs.mod_name }}-neoforge-1.21.1-${{ steps.version.outputs.version }}-sources.jar
+

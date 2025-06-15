@@ -1,4 +1,4 @@
-name: CI for Mod
+name: CI for Main
 on:
   workflow_dispatch:
   push:
@@ -61,13 +61,6 @@ jobs:
           name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
           path: build/libs/${{ steps.properties.outputs.mod_name }}-neoforge-1.21.1-${{ steps.version.outputs.version }}.jar
 
-      - name: Publish to maven
-        run: ./gradlew publish
-        env:
-          MAVEN_URL: ${{ secrets.MAVEN_URL }}
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USER }}
-          MAVEN_PASSWORD: ${{ secrets.MAVEN_PASS }}
-        continue-on-error: true
 
 #      - name: publish neoforge mc mod
 #        uses: Kir-Antipov/mc-publish@v3.3
