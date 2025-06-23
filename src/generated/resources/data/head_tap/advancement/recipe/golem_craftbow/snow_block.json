@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "anvilcraft:golem_craftbow/snow_block"
+        "recipe": "head_tap:golem_craftbow/snow_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "anvilcraft:golem_craftbow/snow_block"
+      "head_tap:golem_craftbow/snow_block"
     ]
   }
 }

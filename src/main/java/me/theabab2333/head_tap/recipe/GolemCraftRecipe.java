@@ -3,11 +3,11 @@ package me.theabab2333.head_tap.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.dubhe.anvilcraft.AnvilCraft;
 import dev.dubhe.anvilcraft.recipe.anvil.builder.AbstractRecipeBuilder;
 import dev.dubhe.anvilcraft.recipe.transform.TagModification;
 import dev.dubhe.anvilcraft.util.CodecUtil;
 import dev.dubhe.anvilcraft.util.Util;
+import me.theabab2333.head_tap.Head_tap;
 import me.theabab2333.head_tap.init.ModRecipeTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
@@ -236,7 +236,7 @@ public class GolemCraftRecipe implements Recipe<GolemCraftRecipe.Input> {
         public void save(RecipeOutput recipeOutput) {
             save(
                 recipeOutput,
-                AnvilCraft.of(BuiltInRegistries.ITEM.getKey(itemInput.getItem()).getPath())
+                Head_tap.of(BuiltInRegistries.ITEM.getKey(itemInput.getItem()).getPath())
                     .withPrefix(getType() + "/")
             );
         }
