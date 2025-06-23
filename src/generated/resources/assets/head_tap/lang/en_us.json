@@ -5,5 +5,8 @@
   "gui.head_tap.category.stone_generator": "Stone Generator",
   "item.head_tap.amethyst_hammer": "Amethyst Hammer",
   "item.head_tap.amethyst_hammer.tooltip": "Fragile crystal, deals more damage.",
+  "item.head_tap.golem_craftbow": "Golem Craftbow",
+  "item.head_tap.golem_craftbow.golem_fail": "Don't have enough materials to craft a golem.",
+  "item.head_tap.golem_craftbow.tooltip": "Right click to heal nearby Iron Golems with Iron Ingots. \n Shift + Right click to summon golems with material blocks.",
   "itemGroup.head_tap.block": "AnvilCraft: HeadTap"
 }

@@ -1,6 +1,7 @@
 package me.theabab2333.head_tap.init;
 
 import dev.dubhe.anvilcraft.AnvilCraft;
+import me.theabab2333.head_tap.recipe.GolemCraftRecipe;
 import me.theabab2333.head_tap.recipe.StoneGeneratorRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
@@ -19,6 +20,9 @@ public class ModRecipeTypes {
     public static final DeferredHolder<RecipeType<?>, RecipeType<StoneGeneratorRecipe>> STONE_GENERATING = registerType("stone_generating");
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<StoneGeneratorRecipe>> STONE_GENERATING_SERIALIZER =
         RECIPE_SERIALIZERS.register("stone_generating", StoneGeneratorRecipe.Serializer::new);
+    public static final DeferredHolder<RecipeType<?>, RecipeType<GolemCraftRecipe>> GOLEM_CRAFTBOW = registerType("golem_craftbow");
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<GolemCraftRecipe>> GOLEM_CRAFTBOW_SERIALIZER =
+        RECIPE_SERIALIZERS.register("golem_craftbow", GolemCraftRecipe.Serializer::new);
 
     private static <T extends Recipe<?>> DeferredHolder<RecipeType<?>, RecipeType<T>> registerType(String name) {
         return RECIPE_TYPES.register(name, () -> new RecipeType<>() {
