@@ -86,7 +86,7 @@ public class ModBlocks {
             .build()
             .register();
 
-    public static BlockEntry<LiquidBlock> RESIN_FLUID = AnvilCraft.REGISTRATE
+    public static BlockEntry<LiquidBlock> RESIN_FLUID = REGISTRATE
         .block("resin_fluid", p -> new LiquidBlock(ModFluids.RESIN_FLUID.get(), p))
         .properties(it -> it
             .mapColor(MapColor.EMERALD)

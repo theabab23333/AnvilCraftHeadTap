@@ -50,7 +50,8 @@ public class ModFluids {
     public static final BaseFlowingFluid.Properties RESIN_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(RESIN_FLUID_TYPE, RESIN_FLUID, FLOWING_RESIN_FLUID)
         .block(ModBlocks.RESIN_FLUID)
         .bucket(ModItems.RESIN_FLUID_BUCKET)
-        .tickRate(20)
+        .tickRate(32)
+        .levelDecreasePerBlock(2)
         .explosionResistance(100);
 
     public static void register(IEventBus eventBus) {
