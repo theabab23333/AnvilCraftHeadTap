@@ -35,10 +35,9 @@ public class ModFluids {
             .adjacentPathType(null)
             .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL_LAVA)
             .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
-            .lightLevel(15)
             .density(3000)
-            .viscosity(6000)
-            .temperature(1300)
+            .viscosity(8000)
+            .temperature(20)
         ));
     public static final DeferredHolder<Fluid, BaseFlowingFluid> RESIN_FLUID = FLUIDS.register(
         "resin_fluid",
@@ -63,8 +62,8 @@ public class ModFluids {
         e.registerFluidType(new ModClientFluidTypeExtensionImpl(
             HeadTap.of("block/resin_fluid"),
             HeadTap.of("block/resin_fluid_flow"),
-            0xB7EEDE,
-            2.0f
+            0xFFF8DE,
+            12.0f
         ), RESIN_FLUID_TYPE);
     }
 }
