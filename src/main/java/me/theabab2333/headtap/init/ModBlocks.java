@@ -120,7 +120,7 @@ public class ModBlocks {
         .block("variable_fluid_tank", VariableFluidTankBlock::new)
         .loot(FlexibleMultiPartBlock::loot)
         .properties(
-            p -> p.noOcclusion().strength(4.0F).sound(GiantAnvilBlock.SOUND_TYPE).explosionResistance(1200))
+            p -> p.noOcclusion().strength(4.0F).sound(SoundType.COPPER).explosionResistance(1200))
         .item(FlexibleMultiPartBlockItem<DirectionCube3x3PartHalf, DirectionProperty, Direction>::new)
         .build()
         .blockstate(DataGenUtil::noExtraModelOrState)

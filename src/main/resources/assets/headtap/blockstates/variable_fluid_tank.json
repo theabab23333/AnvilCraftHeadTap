@@ -1,9 +1,9 @@
 {
   "variants": {
-    "switch=on,half=mid_center": {
+    "half=mid_center,overload=false": {
       "model": "headtap:block/variable_fluid_tank"
     },
-    "switch=off,half=mid_center": {
+    "half=mid_center,overload=true": {
       "model": "headtap:block/variable_fluid_tank_off"
     },
     "half=bottom_center": {
