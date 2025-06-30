@@ -6,17 +6,31 @@ import dev.dubhe.anvilcraft.api.power.PowerGrid;
 import dev.dubhe.anvilcraft.block.state.DirectionCube3x3PartHalf;
 import me.theabab2333.headtap.block.VariableFluidTankBlock;
 import me.theabab2333.headtap.init.ModBlockEntities;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.fluids.capability.IFluidHandler;
+import net.neoforged.neoforge.fluids.capability.templates.FluidTank;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerConsumer {
     private PowerGrid grid;
+    public FluidTank tank = new FluidTank(4000) {
+        protected void onContentsChanged() {
+            setChanged();
+        }
+    };
 
     public VariableFluidTankBlockEntity(BlockPos pos, BlockState blockState) {
         super(ModBlockEntities.VARIABLE_FLUID_TANK.get(), pos, blockState);
@@ -28,6 +42,20 @@ public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerC
 
     public static VariableFluidTankBlockEntity createBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         return new VariableFluidTankBlockEntity(type, pos, state);
+    }
+
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
+        tank.writeToNBT(provider, tag);
+    }
+
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+        tank.readFromNBT(provider, tag);
+    }
+
+    public IFluidHandler getFluidHandler() {
+        return tank;
     }
 
     @Override
