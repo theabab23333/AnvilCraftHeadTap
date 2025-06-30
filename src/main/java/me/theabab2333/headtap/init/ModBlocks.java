@@ -118,13 +118,10 @@ public class ModBlocks {
 
     public static final BlockEntry<VariableFluidTankBlock> VARIABLE_FLUID_TANK = REGISTRATE
         .block("variable_fluid_tank", VariableFluidTankBlock::new)
-        .loot(FlexibleMultiPartBlock::loot)
-        .properties(
-            p -> p.noOcclusion().strength(4.0F).sound(SoundType.COPPER).explosionResistance(1200))
-        .item(FlexibleMultiPartBlockItem<DirectionCube3x3PartHalf, DirectionProperty, Direction>::new)
-        .build()
         .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
     public static final BlockEntry<ResinFluidCauldronBlock> RESIN_FLUID_CAULDRON = REGISTRATE
