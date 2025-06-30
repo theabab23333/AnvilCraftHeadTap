@@ -1,17 +1,16 @@
 package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.power.IPowerConsumer;
-import dev.dubhe.anvilcraft.api.power.PowerComponentType;
 import dev.dubhe.anvilcraft.api.power.PowerGrid;
-import dev.dubhe.anvilcraft.block.state.DirectionCube3x3PartHalf;
-import me.theabab2333.headtap.block.VariableFluidTankBlock;
+import dev.dubhe.anvilcraft.init.ModBlocks;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -21,83 +20,92 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashMap;
+import java.util.Map;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerConsumer {
+    public int power = 16;
     private PowerGrid grid;
-    public FluidTank tank = new FluidTank(4000) {
-        protected void onContentsChanged() {
-            setChanged();
+    public FluidTank tank = new FluidTank(0);
+
+    public static final Map<Block, Integer> MULTIPLICATION = new HashMap<>();
+
+    static {
+        MULTIPLICATION.put(Blocks.IRON_BLOCK, 1);
+        MULTIPLICATION.put(Blocks.GOLD_BLOCK, 3);
+        MULTIPLICATION.put(Blocks.DIAMOND_BLOCK, 4);
+        MULTIPLICATION.put(ModBlocks.MAGNET_BLOCK.get(), 2);
+        MULTIPLICATION.put(ModBlocks.ROYAL_STEEL_BLOCK.get(), 8);
+        MULTIPLICATION.put(ModBlocks.FROST_METAL_BLOCK.get(), 16);
+        MULTIPLICATION.put(ModBlocks.EMBER_METAL_BLOCK.get(), 32);
+        MULTIPLICATION.put(ModBlocks.TRANSCENDIUM_BLOCK.get(), 128);
+
+        MULTIPLICATION.put(ModBlocks.MULTIPHASE_MATTER_BLOCK.get(), 0);
+    }
+
+    public void gridTick() {
+        if (level == null || level.isClientSide()) return;
+        int amount = countBlocksInRange();
+        if (!grid.isWorking()) return;
+        power = amount/4 + 16;
+        tank.setCapacity(amount * 1000 * 4);
+    }
+
+    public int countBlocksInRange() {
+        if (level == null || level.isClientSide()) return 0;
+        int blockCount = 0;
+        int multiplication = 0;
+        for (int i = -1; i <= 1; i++) {
+            for (int j = -1; j <= 1; j++) {
+                for (int k = -1; k <= 1; k++) {
+                    BlockPos thisPos = this.getBlockPos();
+                    BlockPos otherPos = new BlockPos(thisPos.getX() + i, thisPos.getY() + j, thisPos.getZ() + k);
+                    BlockState otherState = level.getBlockState(otherPos);
+                    Integer otherBlock = MULTIPLICATION.get(otherState.getBlock());
+                    if (otherBlock != null) {
+                        blockCount++;
+                        multiplication = multiplication + otherBlock;
+                    }
+                }
+            }
         }
-    };
+        return blockCount * multiplication;
+    }
+
 
     public VariableFluidTankBlockEntity(BlockPos pos, BlockState blockState) {
-        super(ModBlockEntities.VARIABLE_FLUID_TANK.get(), pos, blockState);
+        this(ModBlockEntities.VARIABLE_FLUID_TANK.get(), pos, blockState);
     }
 
     private VariableFluidTankBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 
-    public static VariableFluidTankBlockEntity createBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
-        return new VariableFluidTankBlockEntity(type, pos, state);
+    @NotNull
+    public static VariableFluidTankBlockEntity createBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+        return new VariableFluidTankBlockEntity(type, pos, blockState);
     }
 
-    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.saveAdditional(tag, provider);
-        tank.writeToNBT(provider, tag);
+    @Override
+    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+        super.loadAdditional(tag, registries);
+        this.power = tag.getInt("Power");
     }
 
-    public void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
-        super.loadAdditional(tag, provider);
-        tank.readFromNBT(provider, tag);
+    @Override
+    public void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider registries) {
+        super.loadAdditional(tag, registries);
+        tag.putInt("Power", this.power);
     }
 
     public IFluidHandler getFluidHandler() {
         return tank;
     }
-
     @Override
-    @NotNull
-    public PowerComponentType getComponentType() {
-        if (level == null) return PowerComponentType.INVALID;
-        if (!level.getBlockState(getBlockPos()).hasProperty(VariableFluidTankBlock.HALF)) return PowerComponentType.INVALID;
-        if (level.getBlockState(getBlockPos()).getValue(VariableFluidTankBlock.HALF).equals(DirectionCube3x3PartHalf.MID_CENTER)) return PowerComponentType.CONSUMER;
-        else return PowerComponentType.INVALID;
-    }
-
-    public boolean isWork() {
-        BlockState state = getBlockState();
-        return state.getValue(VariableFluidTankBlock.SWITCH) == Switch.ON && !state.getValue(VariableFluidTankBlock.OVERLOAD);
-    }
-
-    public void tick() {
-        if (level == null) return;
-        BlockState state = getBlockState();
-        if (level.isClientSide) {
-            if (!state.getValue(VariableFluidTankBlock.HALF).equals(DirectionCube3x3PartHalf.MID_CENTER)) return;
-            // 这里先空着 之后可能会用
-            if (isWork()) saveFluid();
-        }
-        if (grid == null) return;
-        if (!state.getValue(VariableFluidTankBlock.HALF).equals(DirectionCube3x3PartHalf.MID_CENTER)) return;
-        if (!(state.getBlock() instanceof VariableFluidTankBlock block)) return;
-        if (grid.isWorking() && state.getValue(VariableFluidTankBlock.OVERLOAD)) {
-            block.updateState(level, getBlockPos(), VariableFluidTankBlock.OVERLOAD, false, 3);
-        } else if (!grid.isWorking() && !state.getValue(VariableFluidTankBlock.OVERLOAD)) {
-            block.updateState(level, getBlockPos(), VariableFluidTankBlock.OVERLOAD, true, 3);
-        }
-        if (!isWork()) return;
-        if (state.getValue(VariableFluidTankBlock.FACING).equals(Direction.UP)) heaterFluids();
-    }
-
-    public void saveFluid() {
-
-    }
-
-    public void heaterFluids() {
-
+    public int getInputPower() {
+        return power;
     }
 
     @Override
@@ -106,19 +114,8 @@ public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerC
     }
 
     @Override
-    @NotNull
-    public BlockPos getPos() {
-        return getBlockPos();
-    }
-
-    @Override
-    public int getInputPower() {
-        return getBlockState().getValue(VariableFluidTankBlock.SWITCH) == Switch.ON ? 256 : 0;
-    }
-
-    @Override
-    public int getRange() {
-        return 1;
+    public @NotNull BlockPos getPos() {
+        return this.getBlockPos();
     }
 
     @Override
@@ -127,7 +124,7 @@ public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerC
     }
 
     @Override
-    public @Nullable PowerGrid getGrid() {
+    public PowerGrid getGrid() {
         return this.grid;
     }
 }
