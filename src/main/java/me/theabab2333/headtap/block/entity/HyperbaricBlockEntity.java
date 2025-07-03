@@ -10,8 +10,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,44 +26,54 @@ import java.util.Map;
 @MethodsReturnNonnullByDefault
 public class HyperbaricBlockEntity extends BlockEntity implements IFilterBlockEntity, IItemHandlerHolder {
     public int hardendLevel = 0;
-    public boolean headend = true;
+    public boolean isHeadend = true;
+    public boolean isHeat = true;
 
-    private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
+    private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(2) {
         public void onContentsChanged(int slot) {
             HyperbaricBlockEntity.this.setChanged();
         }
     };
 
     public static final Map<Block, Integer> HAEDEND_BLOCKS = new HashMap<>();
+    public static final Map<Block, Integer> HEATER_BLOCK = new HashMap<>();
 
     static {
         HAEDEND_BLOCKS.put(ModBlocks.HEAVY_IRON_BLOCK.get(), 1);
+
+        HEATER_BLOCK.put(ModBlocks.EMBER_METAL_BLOCK.get(), 1);
     }
 
     public boolean toHyperbaric(int count) {
         if (this.level == null || this.level.isClientSide()) return false;
+
+        // emmm 我也不知道为什么 但是等于0一定有他的道理
         hardendLevel = 0;
-        if (count >= 4) {
-            BlockPos thisPos = this.getBlockPos();
-            for (Direction direction : Direction.Plane.HORIZONTAL) {
-                BlockPos otherPos = thisPos.relative(direction);
-                BlockPos otherHaedendPos = new BlockPos(otherPos.getX(), otherPos.getY() - 1, otherPos.getZ());
-                BlockState otherHaedendState = level.getBlockState(otherHaedendPos);
-                Integer haedendCount = HAEDEND_BLOCKS.get(otherHaedendState.getBlock());
-                if (haedendCount != null) {
-                    hardendLevel += haedendCount;
-                } else headend = false;
-            }
+
+        BlockPos thisPos = this.getBlockPos();
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            BlockPos otherPos = thisPos.relative(direction);
+            BlockPos otherHaedendPos = new BlockPos(otherPos.getX(), otherPos.getY() - 1, otherPos.getZ());
+            BlockState otherHaedendState = level.getBlockState(otherHaedendPos);
+            Integer haedendCount = HAEDEND_BLOCKS.get(otherHaedendState.getBlock());
+            if (haedendCount != null) {
+                hardendLevel += haedendCount;
+            } else isHeadend = false;
         }
-        System.out.println(hardendLevel);
-        System.out.println(headend);
+
+        BlockPos heaterPos = new BlockPos(thisPos.getX(), thisPos.getY() - 2, thisPos.getZ());
+        BlockState heaterState = level.getBlockState(heaterPos);
+        Integer heaterCount = HEATER_BLOCK.get(heaterState.getBlock());
+        isHeat = heaterCount != null;
+
+        System.out.println(isHeat);
+        System.out.println(isHeadend);
+
+        // 在这时候去尝试检测有什么原料去处理什么物品
+        if (isHeadend && isHeat && hardendLevel >= 4 && count >= 4) {
+
+        }
         return true;
-    }
-
-    public Item craft() {
-        if (level == null) return Items.AIR;
-
-        return Items.AIR;
     }
 
     public HyperbaricBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
