@@ -4,6 +4,7 @@ package me.theabab2333.headtap.event;
 import dev.dubhe.anvilcraft.init.ModBlockEntities;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
+import me.theabab2333.headtap.block.entity.HyperbaricBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
@@ -22,6 +23,7 @@ public class CapabilitiesEventListener {
         StoneGeneratorBlockEntity.registerCapabilities(event);
         ResinExtractorBlockEntity.registerCapabilities(event);
         VariableFluidTankBlockEntity.registerCapabilities(event);
+        HyperbaricBlockEntity.registerCapabilities(event);
 
         // Other
         event.registerBlock(

@@ -2,49 +2,34 @@ package me.theabab2333.headtap.recipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.dubhe.anvilcraft.recipe.anvil.builder.AbstractRecipeBuilder;
-import dev.dubhe.anvilcraft.util.RecipeUtil;
+import dev.dubhe.anvilcraft.recipe.ChanceItemStack;
+import dev.dubhe.anvilcraft.recipe.anvil.AbstractItemProcessRecipe;
+import dev.dubhe.anvilcraft.recipe.anvil.builder.AbstractItemProcessBuilder;
+import dev.dubhe.anvilcraft.util.CodecUtil;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
-import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProviders;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.ArrayList;
+import java.util.List;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class HyperbaricRecipe implements Recipe<HyperbaricRecipe.Input> {
-
-    // 我抄本体过筛的(cv大法)
-
-    public final Ingredient input;
-    public final ItemStack result;
-    public final NumberProvider resultAmount;
-
-    public HyperbaricRecipe(Ingredient input, ItemStack result, NumberProvider resultAmount) {
-        this.input = input;
-        this.result = result;
-        this.resultAmount = resultAmount;
+public class HyperbaricRecipe extends AbstractItemProcessRecipe {
+    public HyperbaricRecipe(NonNullList<Ingredient> ingredients, List<ChanceItemStack> result) {
+        super(ingredients, result);
     }
 
-    public HyperbaricRecipe(Ingredient input, ItemStack result) {
-        this(input, result, ConstantValue.exactly(1));
-    }
-
-    public static Builder builder() {
+    @Contract(" -> new")
+    public static @NotNull Builder builder() {
         return new Builder();
     }
 
@@ -58,57 +43,16 @@ public class HyperbaricRecipe implements Recipe<HyperbaricRecipe.Input> {
         return ModRecipeTypes.HYPERBARIC_SERIALIZER.get();
     }
 
-    @Override
-    public boolean canCraftInDimensions(int pWidth, int pHeight) {
-        return true;
-    }
-
-    @Override
-    public ItemStack getResultItem(HolderLookup.Provider pRegistries) {
-        return result;
-    }
-
-    @Override
-    public boolean matches(Input pInput, Level pLevel) {
-        return input.test(pInput.itemStack);
-    }
-
-    @Override
-    public ItemStack assemble(Input pInput, HolderLookup.Provider pRegistries) {
-        return ItemStack.EMPTY;
-    }
-
-    public record Input(ItemStack itemStack) implements RecipeInput {
-        @Override
-        public ItemStack getItem(int pIndex) {
-            return itemStack;
-        }
-
-        @Override
-        public int size() {
-            return 1;
-        }
-    }
-
-    @Override
-    public boolean isSpecial() {
-        return true;
-    }
-
     public static class Serializer implements RecipeSerializer<HyperbaricRecipe> {
-        private static final MapCodec<HyperbaricRecipe> CODEC = RecordCodecBuilder.mapCodec(ins ->
-            ins.group(Ingredient.CODEC_NONEMPTY.fieldOf("input").forGetter(HyperbaricRecipe::getInput),
-                ItemStack.CODEC.fieldOf("result").forGetter(HyperbaricRecipe::getResult),
-                NumberProviders.CODEC.fieldOf("result_amount").forGetter(HyperbaricRecipe::getResultAmount)).apply(ins, HyperbaricRecipe::new));
+        private static final MapCodec<HyperbaricRecipe> CODEC = RecordCodecBuilder.mapCodec(
+            ins -> ins.group(
+                CodecUtil.createIngredientListCodec("ingredients", 9, "item_crush")
+                    .forGetter(HyperbaricRecipe::getIngredients),
+                ChanceItemStack.CODEC.listOf().fieldOf("results").forGetter(HyperbaricRecipe::getResults))
+                .apply(ins, HyperbaricRecipe::new));
 
-        private static final StreamCodec<RegistryFriendlyByteBuf, HyperbaricRecipe> STREAM_CODEC = StreamCodec.composite(
-            Ingredient.CONTENTS_STREAM_CODEC,
-            HyperbaricRecipe::getInput,
-            ItemStack.STREAM_CODEC,
-            HyperbaricRecipe::getResult,
-            RecipeUtil.NUMBER_PROVIDER_STREAM_CODEC,
-            HyperbaricRecipe::getResultAmount,
-            HyperbaricRecipe::new);
+        private static final StreamCodec<RegistryFriendlyByteBuf, HyperbaricRecipe> STREAM_CODEC =
+            StreamCodec.of(Serializer::encode, Serializer::decode);
 
         @Override
         public MapCodec<HyperbaricRecipe> codec() {
@@ -119,65 +63,40 @@ public class HyperbaricRecipe implements Recipe<HyperbaricRecipe.Input> {
         public StreamCodec<RegistryFriendlyByteBuf, HyperbaricRecipe> streamCodec() {
             return STREAM_CODEC;
         }
-    }
 
-    public static class Builder extends AbstractRecipeBuilder<HyperbaricRecipe> {
-        private Ingredient input;
-        private ItemStack result;
-        private NumberProvider resultAmount;
+        private static HyperbaricRecipe decode(RegistryFriendlyByteBuf buf) {
+            List<ChanceItemStack> results = new ArrayList<>();
+            int size = buf.readVarInt();
+            for (int i = 0; i < size; i++) {
+                results.add(ChanceItemStack.STREAM_CODEC.decode(buf));
+            }
+            size = buf.readVarInt();
+            NonNullList<Ingredient> ingredients = NonNullList.withSize(size, Ingredient.EMPTY);
+            ingredients.replaceAll(i -> Ingredient.CONTENTS_STREAM_CODEC.decode(buf));
+            return new HyperbaricRecipe(ingredients, results);
+        }
 
-        @Override
-        public HyperbaricRecipe buildRecipe() {
-            if (resultAmount == null) {
-                return new HyperbaricRecipe(input, result);
-            } else {
-                return new HyperbaricRecipe(input, result, resultAmount);
+        private static void encode(RegistryFriendlyByteBuf buf, HyperbaricRecipe recipe) {
+            buf.writeVarInt(recipe.results.size());
+            for (ChanceItemStack stack : recipe.results) {
+                ChanceItemStack.STREAM_CODEC.encode(buf, stack);
+            }
+            buf.writeVarInt(recipe.ingredients.size());
+            for (Ingredient ingredient : recipe.ingredients) {
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buf, ingredient);
             }
         }
+    }
 
+    public static class Builder extends AbstractItemProcessBuilder<HyperbaricRecipe> {
         @Override
-        public void validate(ResourceLocation pId) {
-            if (input == null)
-                throw new IllegalArgumentException("Input cannot be null, RecipeId: " + pId);
-            if (result.isEmpty())
-                throw new IllegalArgumentException("Result cannot be empty, RecipeId: " + pId);
-        }
-
-        @Override
-        public Item getResult() {
-            return result.getItem();
+        public HyperbaricRecipe buildRecipe() {
+            return new HyperbaricRecipe(ingredients, results);
         }
 
         @Override
         public String getType() {
             return "hyperbaric";
         }
-
-        public HyperbaricRecipe.Builder input(final Ingredient input) {
-            this.input = input;
-            return this;
-        }
-
-        public HyperbaricRecipe.Builder result(final ItemStack result) {
-            this.result = result;
-            return this;
-        }
-
-        public HyperbaricRecipe.Builder resultAmount(final NumberProvider resultAmount) {
-            this.resultAmount = resultAmount;
-            return this;
-        }
-    }
-
-    public Ingredient getInput() {
-        return this.input;
-    }
-
-    public ItemStack getResult() {
-        return this.result;
-    }
-
-    public NumberProvider getResultAmount() {
-        return this.resultAmount;
     }
 }

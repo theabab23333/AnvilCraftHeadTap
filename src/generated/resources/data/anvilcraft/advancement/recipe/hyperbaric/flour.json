@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "headtap:hyperbaric/iron_ingot/stone"
+        "recipe": "anvilcraft:hyperbaric/flour"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -15,7 +15,7 @@
   ],
   "rewards": {
     "recipes": [
-      "headtap:hyperbaric/iron_ingot/stone"
+      "anvilcraft:hyperbaric/flour"
     ]
   }
 }

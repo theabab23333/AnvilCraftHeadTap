@@ -2,24 +2,18 @@ package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import dev.dubhe.anvilcraft.block.GiantAnvilBlock;
-import dev.dubhe.anvilcraft.block.multipart.FlexibleMultiPartBlock;
-import dev.dubhe.anvilcraft.block.multipart.SimpleMultiPartBlock;
-import dev.dubhe.anvilcraft.block.state.Cube3x3PartHalf;
-import dev.dubhe.anvilcraft.block.state.DirectionCube3x3PartHalf;
 import dev.dubhe.anvilcraft.data.AnvilCraftDatagen;
 import dev.dubhe.anvilcraft.init.ModItems;
-import dev.dubhe.anvilcraft.item.FlexibleMultiPartBlockItem;
-import dev.dubhe.anvilcraft.item.SimpleMultiPartBlockItem;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
+import me.theabab2333.headtap.block.DensityCoreBlock;
+import me.theabab2333.headtap.block.HyperbaricBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
 import me.theabab2333.headtap.block.VariableFluidTankBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.tags.BlockTags;
@@ -32,7 +26,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
@@ -118,6 +111,25 @@ public class ModBlocks {
 
     public static final BlockEntry<VariableFluidTankBlock> VARIABLE_FLUID_TANK = REGISTRATE
         .block("variable_fluid_tank", VariableFluidTankBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<HyperbaricBlock> HYPERBARIC = REGISTRATE
+        .block("hyperbaric", HyperbaricBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE
+        .block("density_core", DensityCoreBlock::new)
+        .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+        .properties(p -> p.lightLevel(p_152632_ -> 5))
+        .properties(p -> p.noOcclusion().strength(5.0f, 1200f))
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)

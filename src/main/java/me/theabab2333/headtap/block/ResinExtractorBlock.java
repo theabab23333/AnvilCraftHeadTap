@@ -53,7 +53,6 @@ public class ResinExtractorBlock extends BetterBaseEntityBlock implements IHamme
         return RenderShape.MODEL;
     }
 
-    @Override
     public VoxelShape getShape(
         BlockState state,
         BlockGetter level,

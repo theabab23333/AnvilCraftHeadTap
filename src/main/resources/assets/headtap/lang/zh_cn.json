@@ -13,5 +13,6 @@
   "block.headtap.resin_fluid": "液态树脂",
   "block.headtap.resin_extractor": "树脂提取器",
   "modmenu.nameTranslation.headtap": "铁砧工艺: 敲你脑袋",
-  "block.headtap.variable_fluid_tank": "可变流体储罐"
+  "block.headtap.variable_fluid_tank": "可变流体储罐",
+  "block.headtap.density_core": "致密核心"
 }

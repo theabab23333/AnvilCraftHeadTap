@@ -4,6 +4,8 @@
     "headtap:stone_generator",
     "headtap:resin_extractor",
     "headtap:variable_fluid_tank",
+    "headtap:hyperbaric",
+    "headtap:density_core",
     "headtap:resin_fluid_cauldron"
   ]
 }
