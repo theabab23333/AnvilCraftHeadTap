@@ -1,5 +1,5 @@
 {
-  "type": "anvilcraft:golem_craftbow",
+  "type": "headtap:golem_craftbow",
   "input": {
     "count": 4,
     "id": "minecraft:iron_block"

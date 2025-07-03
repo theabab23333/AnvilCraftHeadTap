@@ -1,5 +1,5 @@
 {
-  "type": "anvilcraft:stone_generating",
+  "type": "headtap:stone_generating",
   "inputBlocks": [
     "minecraft:blue_ice"
   ],
