@@ -8,7 +8,6 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
 import me.theabab2333.headtap.block.DensityCoreBlock;
-import me.theabab2333.headtap.block.HyperbaricBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
@@ -111,14 +110,6 @@ public class ModBlocks {
 
     public static final BlockEntry<VariableFluidTankBlock> VARIABLE_FLUID_TANK = REGISTRATE
         .block("variable_fluid_tank", VariableFluidTankBlock::new)
-        .blockstate(DataGenUtil::noExtraModelOrState)
-        .simpleItem()
-        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-        .properties(p -> p.sound(SoundType.COPPER))
-        .register();
-
-    public static final BlockEntry<HyperbaricBlock> HYPERBARIC = REGISTRATE
-        .block("hyperbaric", HyperbaricBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)

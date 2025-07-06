@@ -24,7 +24,7 @@ public class ModItems {
 
     public static final ItemEntry<AmethystAnvilHammer> AMETHYST_HAMMER = REGISTRATE
         .item("amethyst_hammer", AmethystAnvilHammer::new)
-        .tag(ItemTags.MACE_ENCHANTABLE, ModItemTags.bind("tools/anvil_hammer"))
+        .tag(ItemTags.MACE_ENCHANTABLE)
         .properties(properties -> properties.durability(30))
         .model((ctx, provider) -> {
         })
