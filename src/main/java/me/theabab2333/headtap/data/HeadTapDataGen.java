@@ -5,6 +5,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.data.lang.LangHandler;
 import me.theabab2333.headtap.data.recipe.RecipeHandler;
+import me.theabab2333.headtap.data.tags.TagsHandler;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -31,6 +32,8 @@ public class HeadTapDataGen {
     }
 
     public static void init() {
+        REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, TagsHandler::initItem);
+
         REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeHandler::init);
         REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);
     }

@@ -1,11 +1,11 @@
 package me.theabab2333.headtap.block;
 
 import com.mojang.serialization.MapCodec;
+import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class DensityCoreBlock extends Block {
+public class DensityCoreBlock extends Block implements IHammerRemovable {
     public DensityCoreBlock(Properties properties) {
         super(properties);
     }
@@ -32,9 +32,5 @@ public class DensityCoreBlock extends Block {
         BlockPos pos,
         CollisionContext context) {
         return SHAPE;
-    }
-
-    protected boolean isPathfindable(BlockState state, PathComputationType pathComputationType) {
-        return false;
     }
 }
