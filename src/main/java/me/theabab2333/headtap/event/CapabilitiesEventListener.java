@@ -17,6 +17,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 public class CapabilitiesEventListener {
 
     // 从Create那边学的 个人感觉好看
+
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         StoneGeneratorBlockEntity.registerCapabilities(event);

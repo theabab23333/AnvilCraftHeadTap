@@ -7,13 +7,10 @@ import me.theabab2333.headtap.anvil.HitStoneGeneratorBehavior;
 import net.neoforged.neoforge.common.Tags;
 
 public class ModAnvilBehaviors {
-    public static void register(){
+    public static void register() {
         IAnvilBehavior.registerBehavior(ModBlocks.STONE_GENERATOR.get(), new HitStoneGeneratorBehavior());
         IAnvilBehavior.registerBehavior(ModBlocks.RESIN_EXTRACTOR.get(), new HitResinExtractorBehavior());
 
-        IAnvilBehavior.registerBehavior(
-            state -> state.is(Tags.Blocks.BUDDING_BLOCKS),
-            new HitBuddingBlockBehavior()
-        );
+        IAnvilBehavior.registerBehavior(state -> state.is(Tags.Blocks.BUDDING_BLOCKS), new HitBuddingBlockBehavior());
     }
 }

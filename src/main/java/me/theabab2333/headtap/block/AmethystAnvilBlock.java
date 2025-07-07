@@ -41,7 +41,7 @@ public class AmethystAnvilBlock extends BetterAnvilBlock implements IHammerRemov
     }
 
     protected void falling(FallingBlockEntity entity) {
-        entity.setHurtsEntities(2.0F, 10);
+        entity.setHurtsEntities(4.0F, 40);
     }
 
     public void onLand(Level level, BlockPos pos, BlockState state, BlockState replaceableState, FallingBlockEntity fallingBlock) {
