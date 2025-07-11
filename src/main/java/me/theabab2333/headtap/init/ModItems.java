@@ -3,6 +3,7 @@ package me.theabab2333.headtap.init;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import dev.dubhe.anvilcraft.init.ModItemTags;
+import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.item.AmethystAnvilHammer;
@@ -26,8 +27,7 @@ public class ModItems {
         .item("amethyst_hammer", AmethystAnvilHammer::new)
         .tag(ItemTags.MACE_ENCHANTABLE)
         .properties(properties -> properties.durability(30))
-        .model((ctx, provider) -> {
-        })
+        .model(DataGenUtil::noExtraModelOrState)
         .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(
             RecipeCategory.TOOLS, ctx.get())
             .pattern("A")
