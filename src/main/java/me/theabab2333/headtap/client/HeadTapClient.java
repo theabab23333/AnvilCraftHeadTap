@@ -1,5 +1,6 @@
 package me.theabab2333.headtap.client;
 
+import me.theabab2333.headtap.client.init.ModModelLayers;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.ModFluids;
 import net.neoforged.api.distmarker.Dist;
@@ -12,6 +13,7 @@ public class HeadTapClient {
 
     public HeadTapClient(IEventBus modBus) {
         modBus.addListener(HeadTapClient::registerClientExtensions);
+        modBus.addListener(ModModelLayers::register);
     }
     public static void registerClientExtensions(RegisterClientExtensionsEvent e) {
         ModFluids.onRegisterFluidType(e);

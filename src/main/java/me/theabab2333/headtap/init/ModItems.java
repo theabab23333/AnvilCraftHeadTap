@@ -7,6 +7,7 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.item.AmethystAnvilHammer;
+import me.theabab2333.headtap.item.BambooJavelinItem;
 import me.theabab2333.headtap.item.GolemCraftbow;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -43,6 +44,7 @@ public class ModItems {
         .register();
     public static final ItemEntry<GolemCraftbow> GOLEM_CRAFTBOW = REGISTRATE
         .item("golem_craftbow", GolemCraftbow::new)
+        .tag(ItemTags.DURABILITY_ENCHANTABLE)
         .properties(properties -> properties.durability(529))
         .model((ctx, provider) -> {
         })
@@ -69,6 +71,24 @@ public class ModItems {
         .model(ModelProviderUtil::bucket)
         .register();
 
+    public static ItemEntry<BambooJavelinItem> BAMBOO_JAVELIN = REGISTRATE
+        .item("bamboo_javelin", BambooJavelinItem::new)
+        .tag(ItemTags.TRIDENT_ENCHANTABLE)
+        .tag(ItemTags.DURABILITY_ENCHANTABLE)
+        .tag(ItemTags.SHARP_WEAPON_ENCHANTABLE)
+        .properties(properties -> properties.durability(61))
+        .model((ctx, provider) -> {
+        })
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(
+                RecipeCategory.COMBAT, ctx.get())
+            .pattern("A ")
+            .pattern("AB")
+            .pattern("A ")
+            .define('A', Items.BAMBOO)
+            .define('B', Items.WOODEN_SWORD)
+            .unlockedBy("has_bamboo", RegistrateRecipeProvider.has(Items.BAMBOO))
+            .save(provider))
+        .register();
 
     public static void register() {}
 }

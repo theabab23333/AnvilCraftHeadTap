@@ -4,6 +4,7 @@ import com.tterrag.registrate.Registrate;
 import me.theabab2333.headtap.data.HeadTapDataGen;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.ModEntities;
 import me.theabab2333.headtap.init.ModFluids;
 import me.theabab2333.headtap.init.ModItemGroups;
 import me.theabab2333.headtap.init.ModItems;
@@ -27,6 +28,7 @@ public class HeadTap {
         ModBlockEntities.register();
         ModRecipeTypes.register(modEventBus);
         ModFluids.register(modEventBus);
+        ModEntities.register();
 
         // datagen
         HeadTapDataGen.init();
