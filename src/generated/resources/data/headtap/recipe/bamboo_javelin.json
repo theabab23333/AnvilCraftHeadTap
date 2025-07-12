@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "A": {
+      "item": "minecraft:bamboo"
+    },
+    "B": {
+      "item": "minecraft:wooden_sword"
+    }
+  },
+  "pattern": [
+    "A ",
+    "AB",
+    "A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "headtap:bamboo_javelin"
+  }
+}
