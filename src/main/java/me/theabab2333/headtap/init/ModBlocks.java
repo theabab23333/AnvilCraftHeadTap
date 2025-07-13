@@ -66,6 +66,7 @@ public class ModBlocks {
     public static final BlockEntry<StoneGeneratorBlock> STONE_GENERATOR = REGISTRATE
         .block("stone_generator", StoneGeneratorBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .properties(p -> p.sound(SoundType.COPPER))
@@ -90,6 +91,7 @@ public class ModBlocks {
     public static final BlockEntry<ResinExtractorBlock> RESIN_EXTRACTOR = REGISTRATE
         .block("resin_extractor", ResinExtractorBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .properties(p -> p.sound(SoundType.COPPER))
@@ -118,7 +120,7 @@ public class ModBlocks {
 
     public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE
         .block("density_core", DensityCoreBlock::new)
-        .initialProperties(() -> Blocks.NETHERITE_BLOCK)
+        .initialProperties(() -> Blocks.COPPER_BLOCK)
         .properties(p -> p.lightLevel(p_152632_ -> 5))
         .properties(p -> p.noOcclusion().strength(5.0f, 1200f))
         .blockstate(DataGenUtil::noExtraModelOrState)
