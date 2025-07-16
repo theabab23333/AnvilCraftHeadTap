@@ -33,15 +33,11 @@ import java.util.Iterator;
 @MethodsReturnNonnullByDefault
 public class AutoRoyalGrindstoneEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
 
-    public static final int GOLD_PER_CURSE = 16;
     public static final Item REPAIR_MATERIAL = Items.GOLD_INGOT;
     public static final Item RESULT_MATERIAL = ModItems.CURSED_GOLD_INGOT.get();
+    public static final int GOLD_PER_CURSE = 16;
 
-    public int usedGold = 0;
-    public int totalRepairCost = 0;
     public int totalCurseCount = 0;
-    public int removedRepairCost = 0;
-    public int removedCurseCount = 0;
 
     public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
 
@@ -78,25 +74,16 @@ public class AutoRoyalGrindstoneEntity extends BlockEntity implements IItemHandl
         }
     };
 
-    public ItemStack createResult() {
+    public boolean createResult() {
         assert level != null;
+        int hasGold = itemHandler.getStackInSlot(0).getCount();
         ItemStack repairItem = itemHandler.getStackInSlot(1);
-        ItemStack repairMaterials = itemHandler.getStackInSlot(0);
-        if (repairItem.isEmpty() || repairMaterials.isEmpty()) return ItemStack.EMPTY;
+        if (hasGold == 0 || repairItem.isEmpty()) return false;
         ItemStack result = repairItem.copy();
         int repairCost = repairItem.getOrDefault(DataComponents.REPAIR_COST, 0);
-        this.totalRepairCost = repairCost;
         int goldUsed = 0;
-        int goldUsable = Math.min(repairMaterials.getCount(),
-            RESULT_MATERIAL.getDefaultMaxStackSize() - itemHandler.getStackInSlot(2).getCount());
-        int removedRepairCost = Math.min(repairCost, goldUsable);
-        goldUsed += removedRepairCost;
-        goldUsable -= removedRepairCost;
-        int remainRepairCost = repairCost - removedRepairCost;
-        result.set(DataComponents.REPAIR_COST, remainRepairCost);
-        int removedCurseCount = 0;
-        DataComponentType<ItemEnchantments> enchantmentComponent =
-            result.is(Items.ENCHANTED_BOOK) ? DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS;
+        goldUsed += repairCost;
+        DataComponentType<ItemEnchantments> enchantmentComponent = result.is(Items.ENCHANTED_BOOK) ? DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS;
         ItemEnchantments enchantments = result.get(enchantmentComponent);
         this.totalCurseCount = 0;
         if (enchantments != null) {
@@ -106,23 +93,26 @@ public class AutoRoyalGrindstoneEntity extends BlockEntity implements IItemHandl
                 .count();
             ItemEnchantments.Mutable mutEnch = new ItemEnchantments.Mutable(enchantments);
             Iterator<Holder<Enchantment>> iterator = mutEnch.keySet().iterator();
-            while (iterator.hasNext() && goldUsable >= GOLD_PER_CURSE) {
+            while (iterator.hasNext() && hasGold >= GOLD_PER_CURSE) {
                 Holder<Enchantment> curseEnchantment = iterator.next();
                 if (!curseEnchantment.is(EnchantmentTags.CURSE)) continue;
                 iterator.remove();
                 goldUsed += GOLD_PER_CURSE;
-                goldUsable -= GOLD_PER_CURSE;
-                removedCurseCount += 1;
             }
             result.set(enchantmentComponent, mutEnch.toImmutable());
         }
         if (result.is(Items.ENCHANTED_BOOK) && !EnchantmentHelper.hasAnyEnchantments(result)) {
             result = result.transmuteCopy(Items.BOOK);
         }
-        this.usedGold = goldUsed;
-        this.removedCurseCount = removedCurseCount;
-        this.removedRepairCost = removedRepairCost;
-        return result;
+        if (hasGold >= goldUsed) {
+            result.set(DataComponents.REPAIR_COST, 0);
+            itemHandler.getStackInSlot(0).setCount(hasGold - goldUsed);
+            itemHandler.getStackInSlot(1).setCount(0);
+            int count = itemHandler.getStackInSlot(2).getCount() + goldUsed;
+            itemHandler.setStackInSlot(2, new ItemStack(ModItems.CURSED_GOLD_INGOT.get(), count));
+            itemHandler.setStackInSlot(3, result);
+        }
+        return true;
     }
 
     public AutoRoyalGrindstoneEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
