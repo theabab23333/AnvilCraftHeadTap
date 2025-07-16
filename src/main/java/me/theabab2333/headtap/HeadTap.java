@@ -15,13 +15,17 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Mod(HeadTap.MODID)
+@Mod(HeadTap.MOD_ID)
 public class HeadTap {
-    public static final String MODID = "headtap";
-    public static final Registrate REGISTRATE = Registrate.create(MODID);
+    public static final String MOD_ID = "headtap";
+    public static IEventBus MOD_BUS = null;
+    public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
 
     public HeadTap(IEventBus modEventBus) {
+        MOD_BUS = modEventBus;
         ModItemGroups.register(modEventBus);
         ModBlocks.register();
         ModItems.register();
@@ -41,7 +45,7 @@ public class HeadTap {
     }
 
     public static @NotNull ResourceLocation of(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, path);
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
     public static void loadComplete(@NotNull FMLLoadCompleteEvent event) {

@@ -20,6 +20,3 @@ type = "required"
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
-[modproperties."${mod_id}".anvillib.integrations]
-rolling_gate = ["dev.anvilcraft.skyland.integration.rg.RollingGateIntegration"]
-anvilcraft = ["dev.anvilcraft.skyland.integration.anvilcraft.AnvilCraftIntegration"]

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-@EventBusSubscriber(modid = HeadTap.MODID)
+@EventBusSubscriber(modid = HeadTap.MOD_ID)
 public class AnvilEventListener {
     private static boolean behaviorRegistered = false;
     @SubscribeEvent

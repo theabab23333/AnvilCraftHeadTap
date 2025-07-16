@@ -12,7 +12,7 @@ import static me.theabab2333.headtap.HeadTap.REGISTRATE;
 @SuppressWarnings("unused")
 public class ModItemGroups {
     private static final DeferredRegister<CreativeModeTab> HT =
-        DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HeadTap.MODID);
+        DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HeadTap.MOD_ID);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ANVILCRAFT_HEAD_TAP =
         HT.register("block", () -> CreativeModeTab.builder()

@@ -13,9 +13,9 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModRecipeTypes {
     private static final DeferredRegister<RecipeType<?>> RECIPE_TYPES =
-        DeferredRegister.create(Registries.RECIPE_TYPE, HeadTap.MODID);
+        DeferredRegister.create(Registries.RECIPE_TYPE, HeadTap.MOD_ID);
     private static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS =
-        DeferredRegister.create(Registries.RECIPE_SERIALIZER, HeadTap.MODID);
+        DeferredRegister.create(Registries.RECIPE_SERIALIZER, HeadTap.MOD_ID);
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<StoneGeneratorRecipe>> STONE_GENERATING = registerType("stone_generating");
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<StoneGeneratorRecipe>> STONE_GENERATING_SERIALIZER =

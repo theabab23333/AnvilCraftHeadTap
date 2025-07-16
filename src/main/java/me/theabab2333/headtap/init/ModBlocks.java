@@ -7,6 +7,7 @@ import dev.dubhe.anvilcraft.init.ModItems;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
+import me.theabab2333.headtap.block.AutoRoyalGrindstone;
 import me.theabab2333.headtap.block.DensityCoreBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
@@ -112,6 +113,14 @@ public class ModBlocks {
 
     public static final BlockEntry<VariableFluidTankBlock> VARIABLE_FLUID_TANK = REGISTRATE
         .block("variable_fluid_tank", VariableFluidTankBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<AutoRoyalGrindstone> AUTO_ROYAL_GRINDSTONE = REGISTRATE
+        .block("auto_royal_grindstone", AutoRoyalGrindstone::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
