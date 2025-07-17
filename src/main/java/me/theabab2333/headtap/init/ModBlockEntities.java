@@ -1,7 +1,8 @@
 package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
-import me.theabab2333.headtap.block.entity.AutoRoyalGrindstoneEntity;
+import me.theabab2333.headtap.block.entity.AutoRoyalAnvilBlockEntity;
+import me.theabab2333.headtap.block.entity.AutoRoyalGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
@@ -25,9 +26,14 @@ public class ModBlockEntities {
         .validBlocks(ModBlocks.VARIABLE_FLUID_TANK)
         .register();
 
-    public static final BlockEntityEntry<AutoRoyalGrindstoneEntity> AUTO_ROYAL_GRINDSTONE = REGISTRATE
-        .blockEntity("auto_royal_grindstone", AutoRoyalGrindstoneEntity::new)
+    public static final BlockEntityEntry<AutoRoyalGrindstoneBlockEntity> AUTO_ROYAL_GRINDSTONE = REGISTRATE
+        .blockEntity("auto_royal_grindstone", AutoRoyalGrindstoneBlockEntity::new)
         .validBlock(ModBlocks.AUTO_ROYAL_GRINDSTONE)
+        .register();
+
+    public static final BlockEntityEntry<AutoRoyalAnvilBlockEntity> AUTO_ROYAL_ANVIL = REGISTRATE
+        .blockEntity("auto_royal_anvil", AutoRoyalAnvilBlockEntity::new)
+        .validBlock(ModBlocks.AUTO_ROYAL_ANVIL)
         .register();
 
     public static void register() {}

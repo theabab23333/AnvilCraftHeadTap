@@ -31,7 +31,7 @@ import java.util.Iterator;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoRoyalGrindstoneEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
+public class AutoRoyalGrindstoneBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
 
     public static final Item REPAIR_MATERIAL = Items.GOLD_INGOT;
     public static final Item RESULT_MATERIAL = ModItems.CURSED_GOLD_INGOT.get();
@@ -115,7 +115,7 @@ public class AutoRoyalGrindstoneEntity extends BlockEntity implements IItemHandl
         return true;
     }
 
-    public AutoRoyalGrindstoneEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+    public AutoRoyalGrindstoneBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 
