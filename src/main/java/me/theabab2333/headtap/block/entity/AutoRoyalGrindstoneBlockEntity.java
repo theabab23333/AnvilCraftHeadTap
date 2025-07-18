@@ -74,11 +74,11 @@ public class AutoRoyalGrindstoneBlockEntity extends BlockEntity implements IItem
         }
     };
 
-    public boolean createResult() {
-        assert level != null;
+    public void createResult() {
+        if (level == null) return;
         int hasGold = itemHandler.getStackInSlot(0).getCount();
         ItemStack repairItem = itemHandler.getStackInSlot(1);
-        if (hasGold == 0 || repairItem.isEmpty()) return false;
+        if (hasGold == 0 || repairItem.isEmpty()) return;
         ItemStack result = repairItem.copy();
         int repairCost = repairItem.getOrDefault(DataComponents.REPAIR_COST, 0);
         int goldUsed = 0;
@@ -112,7 +112,6 @@ public class AutoRoyalGrindstoneBlockEntity extends BlockEntity implements IItem
             itemHandler.setStackInSlot(2, new ItemStack(ModItems.CURSED_GOLD_INGOT.get(), count));
             itemHandler.setStackInSlot(3, result);
         }
-        return true;
     }
 
     public AutoRoyalGrindstoneBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
