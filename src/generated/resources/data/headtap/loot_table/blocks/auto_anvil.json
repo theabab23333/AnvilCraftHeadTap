@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "headtap:auto_royal_anvil"
+          "name": "headtap:auto_anvil"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "headtap:blocks/auto_royal_anvil"
+  "random_sequence": "headtap:blocks/auto_anvil"
 }

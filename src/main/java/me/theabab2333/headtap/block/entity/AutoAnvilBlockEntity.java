@@ -31,7 +31,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoRoyalAnvilBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
+public class AutoAnvilBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
 
     public static final Item BOOK = Items.ENCHANTED_BOOK;
 
@@ -95,7 +95,7 @@ public class AutoRoyalAnvilBlockEntity extends BlockEntity implements IItemHandl
         }
     }
 
-    public AutoRoyalAnvilBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+    public AutoAnvilBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 
@@ -112,7 +112,7 @@ public class AutoRoyalAnvilBlockEntity extends BlockEntity implements IItemHandl
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
-            ModBlockEntities.AUTO_ROYAL_ANVIL.get(),
+            ModBlockEntities.AUTO_ANVIL.get(),
             (be, context) -> be.itemHandler
         );
     }

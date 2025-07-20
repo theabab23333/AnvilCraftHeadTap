@@ -7,8 +7,9 @@ import dev.dubhe.anvilcraft.init.ModItems;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
-import me.theabab2333.headtap.block.AutoRoyalAnvilBlock;
-import me.theabab2333.headtap.block.AutoRoyalGrindstoneBlock;
+import me.theabab2333.headtap.block.AutoAnvilBlock;
+import me.theabab2333.headtap.block.AutoGrindstoneBlock;
+import me.theabab2333.headtap.block.AutoSmithingTableBlock;
 import me.theabab2333.headtap.block.DensityCoreBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
@@ -120,8 +121,24 @@ public class ModBlocks {
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
-    public static final BlockEntry<AutoRoyalGrindstoneBlock> AUTO_ROYAL_GRINDSTONE = REGISTRATE
-        .block("auto_royal_grindstone", AutoRoyalGrindstoneBlock::new)
+    public static final BlockEntry<AutoGrindstoneBlock> AUTO_GRINDSTONE = REGISTRATE
+        .block("auto_grindstone", AutoGrindstoneBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<AutoAnvilBlock> AUTO_ANVIL = REGISTRATE
+        .block("auto_anvil", AutoAnvilBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<AutoSmithingTableBlock> AUTO_SMITHING_TABLE = REGISTRATE
+        .block("auto_smithing", AutoSmithingTableBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -133,14 +150,6 @@ public class ModBlocks {
         .initialProperties(() -> Blocks.COPPER_BLOCK)
         .properties(p -> p.lightLevel(p_152632_ -> 5))
         .properties(p -> p.noOcclusion().strength(5.0f, 1200f))
-        .blockstate(DataGenUtil::noExtraModelOrState)
-        .simpleItem()
-        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
-        .properties(p -> p.sound(SoundType.COPPER))
-        .register();
-
-    public static final BlockEntry<AutoRoyalAnvilBlock> AUTO_ROYAL_ANVIL = REGISTRATE
-        .block("auto_royal_anvil", AutoRoyalAnvilBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)

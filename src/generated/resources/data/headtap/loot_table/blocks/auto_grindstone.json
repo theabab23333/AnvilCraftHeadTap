@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "headtap:auto_royal_grindstone"
+          "name": "headtap:auto_grindstone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "headtap:blocks/auto_royal_grindstone"
+  "random_sequence": "headtap:blocks/auto_grindstone"
 }

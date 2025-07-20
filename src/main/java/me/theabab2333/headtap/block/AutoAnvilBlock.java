@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.block.better.BetterBaseEntityBlock;
-import me.theabab2333.headtap.block.entity.AutoRoyalGrindstoneBlockEntity;
+import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -15,24 +15,25 @@ import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoRoyalGrindstoneBlock extends BetterBaseEntityBlock implements IHammerRemovable {
-    public AutoRoyalGrindstoneBlock(Properties pProperties) {
+public class AutoAnvilBlock extends BetterBaseEntityBlock implements IHammerRemovable {
+    public AutoAnvilBlock(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(AutoRoyalGrindstoneBlock::new);
+        return simpleCodec(AutoAnvilBlock::new);
     }
 
     @Override
-    public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AutoRoyalGrindstoneBlockEntity(ModBlockEntities.AUTO_ROYAL_GRINDSTONE.get(), blockPos, blockState);
+    public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+        return new AutoAnvilBlockEntity(ModBlockEntities.AUTO_ANVIL.get(), blockPos, blockState);
     }
 
     public RenderShape getRenderShape(BlockState state) {
@@ -47,7 +48,7 @@ public class AutoRoyalGrindstoneBlock extends BetterBaseEntityBlock implements I
         BlockState newState,
         boolean movedByPiston) {
         if (state.is(newState.getBlock())) return;
-        if (level.getBlockEntity(pos) instanceof AutoRoyalGrindstoneBlockEntity entity) {
+        if (level.getBlockEntity(pos) instanceof AutoAnvilBlockEntity entity) {
             Vec3 vec3 = entity.getBlockPos().getCenter();
             FilteredItemStackHandler depository = entity.getFilteredItemDepository();
             for (int slot = 0; slot < depository.getSlots(); slot++) {
