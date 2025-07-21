@@ -72,19 +72,17 @@ public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHa
         SmithingRecipeInput smithingrecipeinput = createRecipeInput();
         List<RecipeHolder<SmithingRecipe>> list =
             level.getRecipeManager().getRecipesFor(RecipeType.SMITHING, smithingrecipeinput, level);
-        if (list.isEmpty()) {
-            itemHandler.setStackInSlot(3, ItemStack.EMPTY);
-        } else {
+        if (!list.isEmpty()) {
             RecipeHolder<SmithingRecipe> recipeholder = list.getFirst();
             ItemStack itemstack = recipeholder.value().assemble(smithingrecipeinput, level.registryAccess());
-            if (itemstack.isItemEnabled(level.enabledFeatures())) {
+            if (itemstack.isItemEnabled(level.enabledFeatures()) && itemHandler.getStackInSlot(3).isEmpty()) {
                 if (itemHandler.getStackInSlot(3).isEmpty()) {
-                    clearSlot();
                     itemHandler.setStackInSlot(3, itemstack);
+                    clearSlot();
                 } else {
                     if (itemstack.getItem() == itemHandler.getStackInSlot(3).getItem()) {
-                        clearSlot();
                         itemHandler.getStackInSlot(3).grow(itemstack.getCount());
+                        clearSlot();
                     }
                 }
             }
@@ -92,7 +90,7 @@ public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHa
     }
 
     private void clearSlot() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 1; i < 3; i++) {
             itemHandler.getStackInSlot(i).shrink(1);
         }
     }
