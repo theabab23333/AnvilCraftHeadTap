@@ -7,7 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class HitAutoRoyalGrindstoneBehavior implements IAnvilBehavior {
+public class HitAutoGrindstoneBehavior implements IAnvilBehavior {
     @Override
     public boolean handle(Level level, BlockPos hitBlockPos, BlockState hitBlockState, float fallDistance, AnvilFallOnLandEvent event) {
         if (!hitBlockState.hasBlockEntity()) return false;

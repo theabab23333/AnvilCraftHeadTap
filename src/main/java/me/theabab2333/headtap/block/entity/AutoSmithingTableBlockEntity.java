@@ -12,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmithingRecipe;
+import net.minecraft.world.item.crafting.SmithingRecipeInput;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,6 +29,7 @@ import java.util.List;
 public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
 
     public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
+
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
             if (slot == 0) {
@@ -65,6 +67,43 @@ public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHa
         }
     };
 
+    public void createResult() {
+        if (level == null) return;
+        SmithingRecipeInput smithingrecipeinput = createRecipeInput();
+        List<RecipeHolder<SmithingRecipe>> list =
+            level.getRecipeManager().getRecipesFor(RecipeType.SMITHING, smithingrecipeinput, level);
+        if (list.isEmpty()) {
+            itemHandler.setStackInSlot(3, ItemStack.EMPTY);
+        } else {
+            RecipeHolder<SmithingRecipe> recipeholder = list.getFirst();
+            ItemStack itemstack = recipeholder.value().assemble(smithingrecipeinput, level.registryAccess());
+            if (itemstack.isItemEnabled(level.enabledFeatures())) {
+                if (itemHandler.getStackInSlot(3).isEmpty()) {
+                    clearSlot();
+                    itemHandler.setStackInSlot(3, itemstack);
+                } else {
+                    if (itemstack.getItem() == itemHandler.getStackInSlot(3).getItem()) {
+                        clearSlot();
+                        itemHandler.getStackInSlot(3).grow(itemstack.getCount());
+                    }
+                }
+            }
+        }
+    }
+
+    private void clearSlot() {
+        for (int i = 0; i < 3; i++) {
+            itemHandler.getStackInSlot(i).shrink(1);
+        }
+    }
+
+    private SmithingRecipeInput createRecipeInput() {
+        return new SmithingRecipeInput(
+            itemHandler.getStackInSlot(0),
+            itemHandler.getStackInSlot(1),
+            itemHandler.getStackInSlot(2));
+    }
+
     public AutoSmithingTableBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
@@ -88,13 +127,13 @@ public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHa
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider provider) {
+    protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
         tag.put("Inv", itemHandler.serializeNBT(provider));
     }
 
     @Override
-    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.@NotNull Provider provider) {
+    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
         itemHandler.deserializeNBT(provider, tag.getCompound("Inv"));
     }
