@@ -6,6 +6,8 @@
     "headtap:variable_fluid_tank",
     "headtap:auto_grindstone",
     "headtap:auto_anvil",
+    "headtap:auto_smithing",
+    "headtap:anvil_observer",
     "headtap:density_core",
     "headtap:resin_fluid_cauldron"
   ]

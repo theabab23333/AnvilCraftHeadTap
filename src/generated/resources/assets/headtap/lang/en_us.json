@@ -1,7 +1,9 @@
 {
   "block.headtap.amethyst_anvil": "Amethyst Anvil",
+  "block.headtap.anvil_observer": "Anvil Observer",
   "block.headtap.auto_anvil": "Auto Anvil",
   "block.headtap.auto_grindstone": "Auto Grindstone",
+  "block.headtap.auto_smithing": "Auto Smithing",
   "block.headtap.density_core": "Density Core",
   "block.headtap.resin_extractor": "Resin Extractor",
   "block.headtap.resin_fluid": "Resin Fluid",
@@ -12,6 +14,7 @@
   "item.headtap.amethyst_hammer": "Amethyst Hammer",
   "item.headtap.amethyst_hammer.tooltip": "Fragile crystal, deals more damage.",
   "item.headtap.bamboo_javelin": "Bamboo Javelin",
+  "item.headtap.blessed_gold_ingot": "Blessed Gold Ingot",
   "item.headtap.golem_craftbow": "Golem Craftbow",
   "item.headtap.golem_craftbow.tooltip": "Right click to heal nearby Iron Golems with Iron Ingots. \n Shift + Right click to summon golems with material blocks.",
   "item.headtap.resin_fluid_bucket": "Resin Fluid Bucket",

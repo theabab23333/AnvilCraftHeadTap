@@ -7,6 +7,7 @@ import dev.dubhe.anvilcraft.init.ModItems;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
+import me.theabab2333.headtap.block.AnvilObserverBlock;
 import me.theabab2333.headtap.block.AutoAnvilBlock;
 import me.theabab2333.headtap.block.AutoGrindstoneBlock;
 import me.theabab2333.headtap.block.AutoSmithingTableBlock;
@@ -139,6 +140,14 @@ public class ModBlocks {
 
     public static final BlockEntry<AutoSmithingTableBlock> AUTO_SMITHING_TABLE = REGISTRATE
         .block("auto_smithing", AutoSmithingTableBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<AnvilObserverBlock> ANVIL_OBSERVER = REGISTRATE
+        .block("anvil_observer", AnvilObserverBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
