@@ -12,6 +12,7 @@ import me.theabab2333.headtap.block.AutoAnvilBlock;
 import me.theabab2333.headtap.block.AutoGrindstoneBlock;
 import me.theabab2333.headtap.block.AutoSmithingTableBlock;
 import me.theabab2333.headtap.block.DensityCoreBlock;
+import me.theabab2333.headtap.block.EntityEjectorBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
@@ -148,6 +149,14 @@ public class ModBlocks {
 
     public static final BlockEntry<AnvilObserverBlock> ANVIL_OBSERVER = REGISTRATE
         .block("anvil_observer", AnvilObserverBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<EntityEjectorBlock> ENTITY_EJECTOR = REGISTRATE
+        .block("entity_ejector", EntityEjectorBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)

@@ -8,6 +8,7 @@
     "headtap:auto_anvil",
     "headtap:auto_smithing",
     "headtap:anvil_observer",
+    "headtap:entity_ejector",
     "headtap:density_core",
     "headtap:resin_fluid_cauldron"
   ]
