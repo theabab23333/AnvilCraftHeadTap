@@ -1,6 +1,9 @@
 package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
+import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
+import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
@@ -22,6 +25,21 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<VariableFluidTankBlockEntity> VARIABLE_FLUID_TANK = REGISTRATE
         .blockEntity("variable_fluid_tank", VariableFluidTankBlockEntity::createBlockEntity)
         .validBlocks(ModBlocks.VARIABLE_FLUID_TANK)
+        .register();
+
+    public static final BlockEntityEntry<AutoGrindstoneBlockEntity> AUTO_GRINDSTONE = REGISTRATE
+        .blockEntity("auto_grindstone", AutoGrindstoneBlockEntity::new)
+        .validBlock(ModBlocks.AUTO_GRINDSTONE)
+        .register();
+
+    public static final BlockEntityEntry<AutoAnvilBlockEntity> AUTO_ANVIL = REGISTRATE
+        .blockEntity("auto_anvil", AutoAnvilBlockEntity::new)
+        .validBlock(ModBlocks.AUTO_ANVIL)
+        .register();
+
+    public static final BlockEntityEntry<AutoSmithingTableBlockEntity> AUTO_SMITHING_TABLE = REGISTRATE
+        .blockEntity("auto_smithing", AutoSmithingTableBlockEntity::new)
+        .validBlock(ModBlocks.AUTO_SMITHING_TABLE)
         .register();
 
     public static void register() {}

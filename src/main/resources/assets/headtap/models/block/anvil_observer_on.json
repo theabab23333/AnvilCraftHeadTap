@@ -1,0 +1,6 @@
+{
+  "parent": "headtap:block/anvil_observer",
+  "textures": {
+    "0": "headtap:block/anvil_observer_back_on"
+  }
+}
