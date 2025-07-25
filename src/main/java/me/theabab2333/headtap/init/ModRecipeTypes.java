@@ -1,6 +1,7 @@
 package me.theabab2333.headtap.init;
 
 import me.theabab2333.headtap.HeadTap;
+import me.theabab2333.headtap.recipe.EjectorRecipe;
 import me.theabab2333.headtap.recipe.GolemCraftRecipe;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
 import net.minecraft.core.registries.Registries;
@@ -24,6 +25,10 @@ public class ModRecipeTypes {
     public static final DeferredHolder<RecipeType<?>, RecipeType<GolemCraftRecipe>> GOLEM_CRAFTBOW = registerType("golem_craftbow");
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<GolemCraftRecipe>> GOLEM_CRAFTBOW_SERIALIZER =
         RECIPE_SERIALIZERS.register("golem_craftbow", GolemCraftRecipe.Serializer::new);
+
+    public static final DeferredHolder<RecipeType<?>, RecipeType<EjectorRecipe>> EJECTOR = registerType("ejector");
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<EjectorRecipe>> EJECTOR_SERIALIZER =
+        RECIPE_SERIALIZERS.register("ejector", EjectorRecipe.Serializer::new);
 
     private static <T extends Recipe<?>> DeferredHolder<RecipeType<?>, RecipeType<T>> registerType(String name) {
         return RECIPE_TYPES.register(name, () -> new RecipeType<>() {

@@ -1,0 +1,11 @@
+{
+  "type": "headtap:ejector",
+  "high": 32,
+  "ingredient": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result": {
+    "count": 1,
+    "id": "headtap:blessed_gold_ingot"
+  }
+}
