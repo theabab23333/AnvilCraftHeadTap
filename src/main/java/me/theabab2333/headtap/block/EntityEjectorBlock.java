@@ -1,11 +1,13 @@
 package me.theabab2333.headtap.block;
 
 import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
+import me.theabab2333.headtap.block.state.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -24,13 +27,14 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @MethodsReturnNonnullByDefault
 public class EntityEjectorBlock extends Block implements IHammerRemovable {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
-    public double HIGH = 0;
+    public static final IntegerProperty HIGH = ModBlockStateProperties.HIGH;
 
     public EntityEjectorBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition
             .any()
-            .setValue(POWERED, false));
+            .setValue(POWERED, false)
+            .setValue(HIGH, 0));
     }
 
     @Override
@@ -40,14 +44,15 @@ public class EntityEjectorBlock extends Block implements IHammerRemovable {
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(POWERED);
+        builder.add(POWERED, HIGH);
     }
 
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        return this.defaultBlockState().setValue(POWERED,
-            context.getLevel().hasNeighborSignal(context.getClickedPos()));
+        return this.defaultBlockState()
+            .setValue(POWERED, context.getLevel().hasNeighborSignal(context.getClickedPos()))
+            .setValue(HIGH, 0);
     }
 
     @Override
@@ -85,14 +90,17 @@ public class EntityEjectorBlock extends Block implements IHammerRemovable {
 
     @Override
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
-        if (state.getValue(POWERED) && this.HIGH > 0) {
-            entity.setDeltaMovement(Vec3.ZERO.relative(Direction.UP, this.HIGH));
-            this.HIGH = 0;
+        int high = state.getValue(HIGH);
+        if (state.getValue(POWERED) && high > 0) {
+            entity.move(MoverType.SELF, Vec3.ZERO.relative(Direction.UP, high));
+            level.setBlockAndUpdate(pos, state.setValue(HIGH, 0));
         }
     }
 
-    public boolean getHigh(double count) {
-        this.HIGH += count;
-        return false;
+    public void getHigh(int count, Level level, BlockPos blockPos) {
+        BlockState blockState = level.getBlockState(blockPos);
+        int high = count + blockState.getValue(HIGH);
+        high = high <= 0 ? 1 :  Math.min(high, 128);
+        level.setBlockAndUpdate(blockPos, blockState.setValue(HIGH, high));
     }
 }

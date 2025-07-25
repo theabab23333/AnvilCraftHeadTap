@@ -18,8 +18,9 @@ public class HitEntityEjectorBehavior implements IAnvilBehavior {
         AnvilFallOnLandEvent event) {
         Block block = hitBlockState.getBlock();
         if (block instanceof EntityEjectorBlock entityEjectorBlock) {
-            double count = 0.1;
-            return entityEjectorBlock.getHigh(count);
+            int count = (int) fallDistance + 1;
+            count = count <= 0 ? 1 : count;
+            entityEjectorBlock.getHigh(count, level, hitBlockPos);
         }
         return false;
     }
