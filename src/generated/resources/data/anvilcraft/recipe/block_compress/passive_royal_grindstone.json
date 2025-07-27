@@ -1,0 +1,8 @@
+{
+  "type": "anvilcraft:block_compress",
+  "inputs": [
+    "headtap:density_core",
+    "anvilcraft:royal_grindstone"
+  ],
+  "result": "headtap:passive_royal_grindstone"
+}
