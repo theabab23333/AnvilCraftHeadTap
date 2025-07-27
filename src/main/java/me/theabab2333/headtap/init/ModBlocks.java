@@ -121,6 +121,20 @@ public class ModBlocks {
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .properties(p -> p.sound(SoundType.COPPER))
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern("AAA")
+            .pattern("BCB")
+            .pattern("AAA")
+            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.HEAVY_IRON_BLOCK)
+            .define('B', Blocks.AMETHYST_BLOCK)
+            .define('C', dev.dubhe.anvilcraft.init.ModBlocks.MENGER_SPONGE)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.HEAVY_IRON_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.HEAVY_IRON_BLOCK))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.AMETHYST_BLOCK), AnvilCraftDatagen.has(Blocks.AMETHYST_BLOCK))
+            .unlockedBy(
+                AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.MENGER_SPONGE),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.MENGER_SPONGE))
+            .save(provider))
         .register();
 
     public static final BlockEntry<PassiveRoyalGrindstoneBlock> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
@@ -157,6 +171,16 @@ public class ModBlocks {
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .initialProperties(() -> Blocks.OBSERVER)
         .properties(p -> p.sound(SoundType.COPPER))
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern(" B ")
+            .pattern("BAB")
+            .pattern(" B ")
+            .define('A', Blocks.OBSERVER)
+            .define('B', ModItems.BRONZE_INGOT)
+            .unlockedBy(AnvilCraftDatagen.hasItem(ModItems.BRONZE_INGOT),
+                AnvilCraftDatagen.has(ModItems.BRONZE_INGOT))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.OBSERVER), AnvilCraftDatagen.has(Blocks.OBSERVER))
+            .save(provider))
         .register();
 
     public static final BlockEntry<EntityEjectorBlock> ENTITY_EJECTOR = REGISTRATE
@@ -166,6 +190,19 @@ public class ModBlocks {
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .initialProperties(() -> Blocks.IRON_BLOCK)
         .properties(p -> p.sound(SoundType.COPPER))
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern(" A ")
+            .pattern(" B ")
+            .pattern(" C ")
+            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL)
+            .define('B', dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK)
+            .define('C', ModBlocks.ANVIL_OBSERVER)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK))
+            .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.ANVIL_OBSERVER), AnvilCraftDatagen.has(ModBlocks.ANVIL_OBSERVER))
+            .save(provider))
         .register();
 
     public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE

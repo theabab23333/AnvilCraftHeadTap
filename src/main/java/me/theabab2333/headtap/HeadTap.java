@@ -1,6 +1,7 @@
 package me.theabab2333.headtap;
 
 import com.tterrag.registrate.Registrate;
+import me.theabab2333.headtap.api.tooltips.ItemTooltipManager;
 import me.theabab2333.headtap.data.HeadTapDataGen;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import me.theabab2333.headtap.init.ModBlocks;
@@ -14,9 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Mod(HeadTap.MOD_ID)
 public class HeadTap {
@@ -41,6 +42,7 @@ public class HeadTap {
     }
 
     private static void registerEvents(@NotNull IEventBus eventBus) {
+        NeoForge.EVENT_BUS.addListener(HeadTap::addItemTooltips);
         eventBus.addListener(HeadTap::loadComplete);
     }
 
@@ -50,5 +52,9 @@ public class HeadTap {
 
     public static void loadComplete(@NotNull FMLLoadCompleteEvent event) {
         event.enqueueWork(ModInteractionMap::initInteractionMap);
+    }
+
+    public static void addItemTooltips(ItemTooltipEvent event) {
+        ItemTooltipManager.addTooltip(event.getItemStack(), event.getToolTip());
     }
 }

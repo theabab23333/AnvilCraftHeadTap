@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:royal_anvil"
+    },
+    "B": {
+      "item": "anvilcraft:levitation_powder_block"
+    },
+    "C": {
+      "item": "headtap:anvil_observer"
+    }
+  },
+  "pattern": [
+    " A ",
+    " B ",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "headtap:entity_ejector"
+  }
+}

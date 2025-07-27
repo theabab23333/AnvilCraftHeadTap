@@ -22,5 +22,6 @@
   "itemGroup.headtap.block": "AnvilCraft: HeadTap",
   "jei.headtap.category.stone_generator": "Stone Generator",
   "message.headtap.golem_craftbow.golem_fail": "Don't have enough materials to craft a golem.",
-  "modmenu.nameTranslation.headtap": "AnvilCraft: HeadTap"
+  "modmenu.nameTranslation.headtap": "AnvilCraft: HeadTap",
+  "tooltip.headtap.item.entity_ejector": "significant weightlessness"
 }
