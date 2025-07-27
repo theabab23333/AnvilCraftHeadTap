@@ -1,4 +1,4 @@
-name: CI for AnvilCraft|HeadTap
+name: CI for AnvilCraftHeadTap
 on:
   workflow_dispatch:
   push:
@@ -56,4 +56,4 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
-          path: build/libs/anvilcraft-neoforge-${{ steps.version.outputs.version }}.jar
+          path: build/libs/${{ steps.properties.outputs.mod_name }}-neoforge-1.21.1-${{ steps.version.outputs.version }}.jar
