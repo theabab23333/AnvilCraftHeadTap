@@ -112,7 +112,7 @@ public class AutoAnvilBlockEntity extends BlockEntity implements IItemHandlerHol
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
-            ModBlockEntities.AUTO_ANVIL.get(),
+            ModBlockEntities.PASSIVE_ROYAL_ANVIL.get(),
             (be, context) -> be.itemHandler
         );
     }

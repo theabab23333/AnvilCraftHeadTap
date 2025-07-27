@@ -20,19 +20,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoGrindstoneBlock extends BetterBaseEntityBlock implements IHammerRemovable {
-    public AutoGrindstoneBlock(Properties pProperties) {
+public class PassiveRoyalGrindstoneBlock extends BetterBaseEntityBlock implements IHammerRemovable {
+    public PassiveRoyalGrindstoneBlock(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(AutoGrindstoneBlock::new);
+        return simpleCodec(PassiveRoyalGrindstoneBlock::new);
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AutoGrindstoneBlockEntity(ModBlockEntities.AUTO_GRINDSTONE.get(), blockPos, blockState);
+        return new AutoGrindstoneBlockEntity(ModBlockEntities.PASSIVE_ROYAL_GRINDSTONE.get(), blockPos, blockState);
     }
 
     public RenderShape getRenderShape(BlockState state) {

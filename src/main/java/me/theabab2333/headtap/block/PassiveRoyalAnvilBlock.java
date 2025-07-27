@@ -21,19 +21,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoAnvilBlock extends BetterBaseEntityBlock implements IHammerRemovable {
-    public AutoAnvilBlock(Properties pProperties) {
+public class PassiveRoyalAnvilBlock extends BetterBaseEntityBlock implements IHammerRemovable {
+    public PassiveRoyalAnvilBlock(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(AutoAnvilBlock::new);
+        return simpleCodec(PassiveRoyalAnvilBlock::new);
     }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AutoAnvilBlockEntity(ModBlockEntities.AUTO_ANVIL.get(), blockPos, blockState);
+        return new AutoAnvilBlockEntity(ModBlockEntities.PASSIVE_ROYAL_ANVIL.get(), blockPos, blockState);
     }
 
     public RenderShape getRenderShape(BlockState state) {

@@ -21,19 +21,19 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoSmithingTableBlock extends BetterBaseEntityBlock implements IHammerRemovable {
-    public AutoSmithingTableBlock(Properties pProperties) {
+public class PassiveRoyalSmithingTableBlock extends BetterBaseEntityBlock implements IHammerRemovable {
+    public PassiveRoyalSmithingTableBlock(Properties pProperties) {
         super(pProperties);
     }
 
     @Override
     protected MapCodec<? extends BaseEntityBlock> codec() {
-        return simpleCodec(AutoSmithingTableBlock::new);
+        return simpleCodec(PassiveRoyalSmithingTableBlock::new);
     }
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AutoSmithingTableBlockEntity(ModBlockEntities.AUTO_SMITHING_TABLE.get(), blockPos, blockState);
+        return new AutoSmithingTableBlockEntity(ModBlockEntities.PASSIVE_ROYAL_TABLE.get(), blockPos, blockState);
     }
 
     @Override

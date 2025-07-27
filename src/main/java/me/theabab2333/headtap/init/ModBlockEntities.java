@@ -27,19 +27,19 @@ public class ModBlockEntities {
         .validBlocks(ModBlocks.VARIABLE_FLUID_TANK)
         .register();
 
-    public static final BlockEntityEntry<AutoGrindstoneBlockEntity> AUTO_GRINDSTONE = REGISTRATE
-        .blockEntity("auto_grindstone", AutoGrindstoneBlockEntity::new)
-        .validBlock(ModBlocks.AUTO_GRINDSTONE)
+    public static final BlockEntityEntry<AutoGrindstoneBlockEntity> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
+        .blockEntity("passive_royal_grindstone", AutoGrindstoneBlockEntity::new)
+        .validBlock(ModBlocks.PASSIVE_ROYAL_GRINDSTONE)
         .register();
 
-    public static final BlockEntityEntry<AutoAnvilBlockEntity> AUTO_ANVIL = REGISTRATE
-        .blockEntity("auto_anvil", AutoAnvilBlockEntity::new)
-        .validBlock(ModBlocks.AUTO_ANVIL)
+    public static final BlockEntityEntry<AutoAnvilBlockEntity> PASSIVE_ROYAL_ANVIL = REGISTRATE
+        .blockEntity("passive_royal_anvil", AutoAnvilBlockEntity::new)
+        .validBlock(ModBlocks.PASSIVE_ROYAL_ANVIL)
         .register();
 
-    public static final BlockEntityEntry<AutoSmithingTableBlockEntity> AUTO_SMITHING_TABLE = REGISTRATE
-        .blockEntity("auto_smithing", AutoSmithingTableBlockEntity::new)
-        .validBlock(ModBlocks.AUTO_SMITHING_TABLE)
+    public static final BlockEntityEntry<AutoSmithingTableBlockEntity> PASSIVE_ROYAL_TABLE = REGISTRATE
+        .blockEntity("passive_royal_smithing", AutoSmithingTableBlockEntity::new)
+        .validBlock(ModBlocks.PASSIVE_ROYAL_TABLE)
         .register();
 
     public static void register() {}

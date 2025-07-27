@@ -14,9 +14,9 @@ public class ModAnvilBehaviors {
     public static void register() {
         IAnvilBehavior.registerBehavior(ModBlocks.STONE_GENERATOR.get(), new HitStoneGeneratorBehavior());
         IAnvilBehavior.registerBehavior(ModBlocks.RESIN_EXTRACTOR.get(), new HitResinExtractorBehavior());
-        IAnvilBehavior.registerBehavior(ModBlocks.AUTO_GRINDSTONE.get(), new HitAutoGrindstoneBehavior());
-        IAnvilBehavior.registerBehavior(ModBlocks.AUTO_ANVIL.get(), new HitAutoAnvilBehavior());
-        IAnvilBehavior.registerBehavior(ModBlocks.AUTO_SMITHING_TABLE.get(), new HitAutoSmithingTableBehavior());
+        IAnvilBehavior.registerBehavior(ModBlocks.PASSIVE_ROYAL_GRINDSTONE.get(), new HitAutoGrindstoneBehavior());
+        IAnvilBehavior.registerBehavior(ModBlocks.PASSIVE_ROYAL_ANVIL.get(), new HitAutoAnvilBehavior());
+        IAnvilBehavior.registerBehavior(ModBlocks.PASSIVE_ROYAL_TABLE.get(), new HitAutoSmithingTableBehavior());
         IAnvilBehavior.registerBehavior(ModBlocks.ENTITY_EJECTOR.get(), new HitEntityEjectorBehavior());
 
         IAnvilBehavior.registerBehavior(state -> state.is(Tags.Blocks.BUDDING_BLOCKS), new HitBuddingBlockBehavior());

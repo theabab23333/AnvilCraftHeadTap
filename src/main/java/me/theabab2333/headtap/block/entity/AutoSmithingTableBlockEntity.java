@@ -119,7 +119,7 @@ public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHa
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
-            ModBlockEntities.AUTO_SMITHING_TABLE.get(),
+            ModBlockEntities.PASSIVE_ROYAL_TABLE.get(),
             (be, context) -> be.itemHandler
         );
     }

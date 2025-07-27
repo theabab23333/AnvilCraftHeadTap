@@ -129,7 +129,7 @@ public class AutoGrindstoneBlockEntity extends BlockEntity implements IItemHandl
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
-            ModBlockEntities.AUTO_GRINDSTONE.get(),
+            ModBlockEntities.PASSIVE_ROYAL_GRINDSTONE.get(),
             (be, context) -> be.itemHandler
         );
     }

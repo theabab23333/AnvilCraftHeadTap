@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "headtap:auto_anvil"
+          "name": "headtap:passive_royal_grindstone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "headtap:blocks/auto_anvil"
+  "random_sequence": "headtap:blocks/passive_royal_grindstone"
 }

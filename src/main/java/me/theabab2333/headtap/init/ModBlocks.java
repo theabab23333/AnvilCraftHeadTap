@@ -8,9 +8,9 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
-import me.theabab2333.headtap.block.AutoAnvilBlock;
-import me.theabab2333.headtap.block.AutoGrindstoneBlock;
-import me.theabab2333.headtap.block.AutoSmithingTableBlock;
+import me.theabab2333.headtap.block.PassiveRoyalAnvilBlock;
+import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
+import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
 import me.theabab2333.headtap.block.DensityCoreBlock;
 import me.theabab2333.headtap.block.EntityEjectorBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
@@ -123,27 +123,30 @@ public class ModBlocks {
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
-    public static final BlockEntry<AutoGrindstoneBlock> AUTO_GRINDSTONE = REGISTRATE
-        .block("auto_grindstone", AutoGrindstoneBlock::new)
+    public static final BlockEntry<PassiveRoyalGrindstoneBlock> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
+        .block("passive_royal_grindstone", PassiveRoyalGrindstoneBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.GRINDSTONE)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
-    public static final BlockEntry<AutoAnvilBlock> AUTO_ANVIL = REGISTRATE
-        .block("auto_anvil", AutoAnvilBlock::new)
+    public static final BlockEntry<PassiveRoyalAnvilBlock> PASSIVE_ROYAL_ANVIL = REGISTRATE
+        .block("passive_royal_anvil", PassiveRoyalAnvilBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.ANVIL)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
-    public static final BlockEntry<AutoSmithingTableBlock> AUTO_SMITHING_TABLE = REGISTRATE
-        .block("auto_smithing", AutoSmithingTableBlock::new)
+    public static final BlockEntry<PassiveRoyalSmithingTableBlock> PASSIVE_ROYAL_TABLE = REGISTRATE
+        .block("passive_royal_smithing_table", PassiveRoyalSmithingTableBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.SMITHING_TABLE)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
@@ -152,6 +155,7 @@ public class ModBlocks {
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.OBSERVER)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
@@ -160,6 +164,7 @@ public class ModBlocks {
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
