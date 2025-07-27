@@ -1,7 +1,7 @@
-name: Pull Request Check
+name: CI for AnvilCraft|HeadTap
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     branches:
       - releases/**
     paths:
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI_BUILD: true
-      PR_BUILD: true
+      PR_BUILD: false
     steps:
       - name: checkout
         uses: actions/checkout@v4
