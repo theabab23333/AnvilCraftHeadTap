@@ -1,6 +1,8 @@
 /.gradle
-/.idea
 /build
 /out
 /run
 /src/generated/resources/.cache
+
+!.idea/icon.png
+.idea/
