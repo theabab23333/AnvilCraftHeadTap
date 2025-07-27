@@ -2,6 +2,8 @@ package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import dev.dubhe.anvilcraft.AnvilCraft;
+import dev.dubhe.anvilcraft.data.AnvilCraftDatagen;
 import dev.dubhe.anvilcraft.init.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
@@ -11,8 +13,10 @@ import me.theabab2333.headtap.item.BambooJavelinItem;
 import me.theabab2333.headtap.item.GolemCraftbow;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 
 import static me.theabab2333.headtap.HeadTap.REGISTRATE;
@@ -88,6 +92,11 @@ public class ModItems {
             .define('B', Items.WOODEN_SWORD)
             .unlockedBy("has_bamboo", RegistrateRecipeProvider.has(Items.BAMBOO))
             .save(provider))
+        .register();
+
+    public static final ItemEntry<Item> BLESSED_GOLD_INGOT = REGISTRATE
+        .item("blessed_gold_ingot", Item::new)
+        .tag(ModItemTags.VOID_RESISTANT)
         .register();
 
     public static void register() {}

@@ -7,7 +7,12 @@ import dev.dubhe.anvilcraft.init.ModItems;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
+import me.theabab2333.headtap.block.AnvilObserverBlock;
+import me.theabab2333.headtap.block.PassiveRoyalAnvilBlock;
+import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
+import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
 import me.theabab2333.headtap.block.DensityCoreBlock;
+import me.theabab2333.headtap.block.EntityEjectorBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
@@ -115,6 +120,51 @@ public class ModBlocks {
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<PassiveRoyalGrindstoneBlock> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
+        .block("passive_royal_grindstone", PassiveRoyalGrindstoneBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.GRINDSTONE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<PassiveRoyalAnvilBlock> PASSIVE_ROYAL_ANVIL = REGISTRATE
+        .block("passive_royal_anvil", PassiveRoyalAnvilBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.ANVIL)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<PassiveRoyalSmithingTableBlock> PASSIVE_ROYAL_TABLE = REGISTRATE
+        .block("passive_royal_smithing_table", PassiveRoyalSmithingTableBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.SMITHING_TABLE)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<AnvilObserverBlock> ANVIL_OBSERVER = REGISTRATE
+        .block("anvil_observer", AnvilObserverBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.OBSERVER)
+        .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<EntityEjectorBlock> ENTITY_EJECTOR = REGISTRATE
+        .block("entity_ejector", EntityEjectorBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
 

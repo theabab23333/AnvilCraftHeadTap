@@ -4,6 +4,11 @@
     "headtap:stone_generator",
     "headtap:resin_extractor",
     "headtap:variable_fluid_tank",
+    "headtap:passive_royal_grindstone",
+    "headtap:passive_royal_anvil",
+    "headtap:passive_royal_smithing_table",
+    "headtap:anvil_observer",
+    "headtap:entity_ejector",
     "headtap:density_core",
     "headtap:resin_fluid_cauldron"
   ]

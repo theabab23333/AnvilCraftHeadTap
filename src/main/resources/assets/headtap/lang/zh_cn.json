@@ -15,5 +15,12 @@
   "modmenu.nameTranslation.headtap": "铁砧工艺: 敲你脑袋",
   "block.headtap.variable_fluid_tank": "可变流体储罐",
   "block.headtap.density_core": "致密核心",
-  "item.headtap.bamboo_javelin": "竹标枪"
+  "item.headtap.bamboo_javelin": "竹标枪",
+  "block.headtap.anvil_observer": "砸落侦测器",
+  "block.headtap.entity_ejector": "压弹器",
+  "entity.headtap.thrown_bamboo_javelin": "竹标枪",
+  "item.headtap.blessed_gold_ingot": "祝福金锭",
+  "block.headtap.passive_royal_anvil": "被动皇家铁砧",
+  "block.headtap.passive_royal_grindstone": "被动皇家砂轮",
+  "block.headtap.passive_royal_smithing_table": "被动皇家锻造台"
 }

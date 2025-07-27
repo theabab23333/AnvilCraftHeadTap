@@ -4,6 +4,9 @@ package me.theabab2333.headtap.event;
 import dev.dubhe.anvilcraft.init.ModBlockEntities;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
+import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
+import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
+import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
@@ -13,7 +16,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 
-@EventBusSubscriber(modid = HeadTap.MODID)
+@EventBusSubscriber(modid = HeadTap.MOD_ID)
 public class CapabilitiesEventListener {
 
     // 从Create那边学的 个人感觉好看
@@ -23,6 +26,9 @@ public class CapabilitiesEventListener {
         StoneGeneratorBlockEntity.registerCapabilities(event);
         ResinExtractorBlockEntity.registerCapabilities(event);
         VariableFluidTankBlockEntity.registerCapabilities(event);
+        AutoGrindstoneBlockEntity.registerCapabilities(event);
+        AutoAnvilBlockEntity.registerCapabilities(event);
+        AutoSmithingTableBlockEntity.registerCapabilities(event);
 
         // Other
         event.registerBlock(

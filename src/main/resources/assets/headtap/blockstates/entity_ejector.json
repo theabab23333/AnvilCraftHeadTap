@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "headtap:block/entity_ejector"
+    },
+    "powered=true": {
+      "model": "headtap:block/entity_ejector_on"
+    }
+  }
+}

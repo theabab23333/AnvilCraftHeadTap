@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,powered=false": {
+      "model": "headtap:block/anvil_observer",
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "headtap:block/anvil_observer_on",
+      "y": 270
+    },
+    "facing=north,powered=false": {
+      "model": "headtap:block/anvil_observer",
+      "y": 180
+    },
+    "facing=north,powered=true": {
+      "model": "headtap:block/anvil_observer_on",
+      "y": 180
+    },
+    "facing=south,powered=false": {
+      "model": "headtap:block/anvil_observer"
+    },
+    "facing=south,powered=true": {
+      "model": "headtap:block/anvil_observer_on"
+    },
+    "facing=west,powered=false": {
+      "model": "headtap:block/anvil_observer",
+      "y": 90
+    },
+    "facing=west,powered=true": {
+      "model": "headtap:block/anvil_observer_on",
+      "y": 90
+    }
+  }
+}

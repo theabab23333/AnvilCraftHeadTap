@@ -8,7 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 
-@Mod(value = HeadTap.MODID, dist = Dist.CLIENT)
+@Mod(value = HeadTap.MOD_ID, dist = Dist.CLIENT)
 public class HeadTapClient {
 
     public HeadTapClient(IEventBus modBus) {
