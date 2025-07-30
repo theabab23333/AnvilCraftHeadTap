@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.block;
 
 import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
-import me.theabab2333.headtap.block.state.ModBlockStateProperties;
+import me.theabab2333.headtap.init.ModBlockStateProperties;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.EjectorRecipe;
 import net.minecraft.core.BlockPos;

@@ -1,7 +1,7 @@
 package me.theabab2333.headtap;
 
 import com.tterrag.registrate.Registrate;
-import me.theabab2333.headtap.api.tooltips.ItemTooltipManager;
+import me.theabab2333.headtap.api.tooltip.ItemTooltipManager;
 import me.theabab2333.headtap.data.HeadTapDataGen;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import me.theabab2333.headtap.init.ModBlocks;

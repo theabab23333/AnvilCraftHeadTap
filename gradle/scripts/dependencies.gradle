@@ -16,8 +16,8 @@ dependencies {
     implementation("mezz.jei:jei-1.21.1-neoforge:${jei_version}") { transitive = false }
 
     // Jade & Patchouli
-    runtimeOnly("maven.modrinth:jade:15.3.4+neoforge")
-    runtimeOnly("maven.modrinth:patchouli:1.21-87-neoforge")
+    implementation("maven.modrinth:jade:15.3.4+neoforge")
+    compileOnly("maven.modrinth:patchouli:1.21-87-neoforge")
 
     // Create
     compileOnly("com.simibubi.create:create-${minecraft_version}:6.0.4-61") { transitive = false }

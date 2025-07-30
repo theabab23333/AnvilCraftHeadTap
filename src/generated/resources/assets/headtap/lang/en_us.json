@@ -6,6 +6,7 @@
   "block.headtap.passive_royal_anvil": "Passive Royal Anvil",
   "block.headtap.passive_royal_grindstone": "Passive Royal Grindstone",
   "block.headtap.passive_royal_smithing_table": "Passive Royal Smithing Table",
+  "block.headtap.printer": "Printer",
   "block.headtap.resin_extractor": "Resin Extractor",
   "block.headtap.resin_fluid": "Resin Fluid",
   "block.headtap.resin_fluid_cauldron": "Resin Fluid Cauldron",
@@ -23,5 +24,8 @@
   "jei.headtap.category.stone_generator": "Stone Generator",
   "message.headtap.golem_craftbow.golem_fail": "Don't have enough materials to craft a golem.",
   "modmenu.nameTranslation.headtap": "AnvilCraft: HeadTap",
-  "tooltip.headtap.item.entity_ejector": "significant weightlessness"
+  "tooltip.headtap.item.entity_ejector": "significant weightlessness",
+  "tooltip.headtap.printer.book": "Book:",
+  "tooltip.headtap.printer.need": "Need:",
+  "tooltip.headtap.printer.null": "Printer is null"
 }

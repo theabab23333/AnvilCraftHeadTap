@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.api.tooltips;
+package me.theabab2333.headtap.api.tooltip;
 
 import com.google.common.collect.Maps;
 import me.theabab2333.headtap.init.ModBlocks;

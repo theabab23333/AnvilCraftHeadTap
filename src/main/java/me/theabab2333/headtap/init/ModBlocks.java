@@ -13,6 +13,7 @@ import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
 import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
 import me.theabab2333.headtap.block.DensityCoreBlock;
 import me.theabab2333.headtap.block.EntityEjectorBlock;
+import me.theabab2333.headtap.block.PrinterBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
@@ -203,6 +204,15 @@ public class ModBlocks {
                 AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK))
             .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.ANVIL_OBSERVER), AnvilCraftDatagen.has(ModBlocks.ANVIL_OBSERVER))
             .save(provider))
+        .register();
+
+    public static final BlockEntry<PrinterBlock> PRINTER = REGISTRATE
+        .block("printer", PrinterBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
+        .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
     public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE

@@ -9,6 +9,8 @@ logoFile = "pack.png"
 authors = "theabab2333,Abslb"
 [[mixins]]
 config = "${mod_id}.mixins.json"
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
 [[dependencies."${mod_id}"]]
 modId = "neoforge"
 type = "required"
@@ -25,5 +27,5 @@ side = "BOTH"
 modId = "anvilcraft"
 type = "required"
 versionRange = "[1.4.10,)"
-ordering = "NONE"
+ordering="AFTER"
 side = "BOTH"

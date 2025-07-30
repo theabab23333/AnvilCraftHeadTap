@@ -7,6 +7,7 @@ import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
 import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
 import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
+import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
@@ -29,6 +30,7 @@ public class CapabilitiesEventListener {
         AutoGrindstoneBlockEntity.registerCapabilities(event);
         AutoAnvilBlockEntity.registerCapabilities(event);
         AutoSmithingTableBlockEntity.registerCapabilities(event);
+        PrinterBlockEntity.registerCapabilities(event);
 
         // Other
         event.registerBlock(

@@ -1,5 +1,6 @@
 package me.theabab2333.headtap.client;
 
+import me.theabab2333.headtap.client.event.GuiLayerRegistrationEventListener;
 import me.theabab2333.headtap.client.init.ModModelLayers;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.ModFluids;
@@ -12,6 +13,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 public class HeadTapClient {
 
     public HeadTapClient(IEventBus modBus) {
+        modBus.addListener(GuiLayerRegistrationEventListener::onRegister);
         modBus.addListener(HeadTapClient::registerClientExtensions);
         modBus.addListener(ModModelLayers::register);
     }

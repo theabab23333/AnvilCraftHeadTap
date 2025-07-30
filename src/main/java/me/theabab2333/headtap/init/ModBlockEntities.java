@@ -4,6 +4,7 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
 import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
+import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
@@ -40,6 +41,11 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<AutoSmithingTableBlockEntity> PASSIVE_ROYAL_TABLE = REGISTRATE
         .blockEntity("passive_royal_smithing", AutoSmithingTableBlockEntity::new)
         .validBlock(ModBlocks.PASSIVE_ROYAL_TABLE)
+        .register();
+
+    public static final BlockEntityEntry<PrinterBlockEntity> PRINTER = REGISTRATE
+        .blockEntity("printer", PrinterBlockEntity::new)
+        .validBlock(ModBlocks.PRINTER)
         .register();
 
     public static void register() {}

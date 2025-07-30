@@ -6,6 +6,7 @@
   "block.headtap.passive_royal_anvil": "ןıʌuⱯ ןɐʎoᴚ ǝʌıssɐԀ",
   "block.headtap.passive_royal_grindstone": "ǝuoʇspuıɹ⅁ ןɐʎoᴚ ǝʌıssɐԀ",
   "block.headtap.passive_royal_smithing_table": "ǝןqɐ⟘ buıɥʇıɯS ןɐʎoᴚ ǝʌıssɐԀ",
+  "block.headtap.printer": "ɹǝʇuıɹԀ",
   "block.headtap.resin_extractor": "ɹoʇɔɐɹʇxƎ uısǝᴚ",
   "block.headtap.resin_fluid": "pınןℲ uısǝᴚ",
   "block.headtap.resin_fluid_cauldron": "uoɹpןnɐƆ pınןℲ uısǝᴚ",
@@ -23,5 +24,8 @@
   "jei.headtap.category.stone_generator": "ɹoʇɐɹǝuǝ⅁ ǝuoʇS",
   "message.headtap.golem_craftbow.golem_fail": "˙ɯǝןob ɐ ʇɟɐɹɔ oʇ sןɐıɹǝʇɐɯ ɥbnouǝ ǝʌɐɥ ʇ,uoᗡ",
   "modmenu.nameTranslation.headtap": "dɐ⟘pɐǝH :ʇɟɐɹƆןıʌuⱯ",
-  "tooltip.headtap.item.entity_ejector": "ssǝussǝןʇɥbıǝʍ ʇuɐɔıɟıubıs"
+  "tooltip.headtap.item.entity_ejector": "ssǝussǝןʇɥbıǝʍ ʇuɐɔıɟıubıs",
+  "tooltip.headtap.printer.book": ":ʞooᗺ",
+  "tooltip.headtap.printer.need": ":pǝǝN",
+  "tooltip.headtap.printer.null": "ןןnu sı ɹǝʇuıɹԀ"
 }
