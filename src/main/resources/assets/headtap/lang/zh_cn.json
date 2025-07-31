@@ -23,5 +23,10 @@
   "block.headtap.passive_royal_anvil": "被动皇家铁砧",
   "block.headtap.passive_royal_grindstone": "被动皇家砂轮",
   "block.headtap.passive_royal_smithing_table": "被动皇家锻造台",
-  "tooltip.headtap.item.entity_ejector": "飞起来!"
+  "tooltip.headtap.item.entity_ejector": "飞起来!",
+  "block.headtap.printer": "打印台",
+  "tooltip.headtap.printer.book": "打印:",
+  "tooltip.headtap.printer.level": "等级: %d",
+  "tooltip.headtap.printer.need": "需要:",
+  "tooltip.headtap.printer.null": "未设置打印台内容"
 }

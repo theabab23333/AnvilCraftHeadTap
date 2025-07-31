@@ -25,7 +25,8 @@
   "message.headtap.golem_craftbow.golem_fail": "˙ɯǝןob ɐ ʇɟɐɹɔ oʇ sןɐıɹǝʇɐɯ ɥbnouǝ ǝʌɐɥ ʇ,uoᗡ",
   "modmenu.nameTranslation.headtap": "dɐ⟘pɐǝH :ʇɟɐɹƆןıʌuⱯ",
   "tooltip.headtap.item.entity_ejector": "ssǝussǝןʇɥbıǝʍ ʇuɐɔıɟıubıs",
-  "tooltip.headtap.printer.book": ":ʞooᗺ",
+  "tooltip.headtap.printer.book": ":ʇuıɹԀ",
+  "tooltip.headtap.printer.level": "%d :ןǝʌǝꞀ",
   "tooltip.headtap.printer.need": ":pǝǝN",
-  "tooltip.headtap.printer.null": "ןןnu sı ɹǝʇuıɹԀ"
+  "tooltip.headtap.printer.null": "ʎʇdɯǝ sı ɹǝʇuıɹԀ"
 }

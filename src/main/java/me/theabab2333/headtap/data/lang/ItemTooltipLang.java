@@ -11,8 +11,9 @@ public class ItemTooltipLang {
         provider.add("item.headtap.amethyst_hammer.tooltip", "Fragile crystal, deals more damage.");
         provider.add("item.headtap.golem_craftbow.tooltip", "Right click to heal nearby Iron Golems with Iron Ingots. \n Shift + Right click to summon golems with material blocks.");
 
-        provider.add("tooltip.headtap.printer.null", "Printer is null");
+        provider.add("tooltip.headtap.printer.null", "Printer is empty");
         provider.add("tooltip.headtap.printer.book", "Print:");
+        provider.add("tooltip.headtap.printer.level", "Level: %d");
         provider.add("tooltip.headtap.printer.need", "Need:");
     }
 }

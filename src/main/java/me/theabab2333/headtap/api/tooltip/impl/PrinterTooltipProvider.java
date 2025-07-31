@@ -8,9 +8,9 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrinterTooltipProvider extends ITooltipProvider.BlockEntityTooltipProvider{
+
     @Override
     public boolean accepts(BlockEntity value) {
         return value instanceof PrinterBlockEntity;
@@ -32,20 +33,24 @@ public class PrinterTooltipProvider extends ITooltipProvider.BlockEntityTooltipP
             lines.add(Component.translatable("tooltip.headtap.printer.null").withStyle(ChatFormatting.DARK_RED));
         } else {
             lines.add(Component.translatable("tooltip.headtap.printer.book").withStyle(ChatFormatting.YELLOW));
-
             DataComponentType<ItemEnchantments> enchantmentComponent = DataComponents.STORED_ENCHANTMENTS;
             ItemEnchantments enchantments = itemStack.get(enchantmentComponent);
-            ItemEnchantments.Mutable inputEnchantments =
-                new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(itemStack));
-            for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
-                Holder<Enchantment> holder = entry.getKey();
-                int i = inputEnchantments.getLevel(holder);
-                lines.add(Component.translatable(holder.getRegisteredName(), i));
+            if (enchantments != null) {
+                for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
+                    Holder<Enchantment> holder = entry.getKey();
+                    int level = entry.getIntValue();
+                    if (holder.is(EnchantmentTags.CURSE)) {
+                        lines.add(Component.translatable(holder.value().toString()).append(String.valueOf(level)).withStyle(ChatFormatting.RED));
+                    } else lines.add(Component.translatable(holder.value().toString()).append(String.valueOf(level)).withStyle(ChatFormatting.LIGHT_PURPLE));
+                }
             }
 
-
-
+            int needBCount = printer.getNeedBlessedGold();
+            int needCCount = printer.getNeedCurseGold();
             lines.add(Component.translatable("tooltip.headtap.printer.need").withStyle(ChatFormatting.BLUE));
+            if (needBCount > 0) lines.add(Component.translatable(printer.slot0.getDescriptionId()).append(String.valueOf(needBCount)).withStyle(ChatFormatting.AQUA));
+            if (needCCount > 0) lines.add(Component.translatable(printer.slot1.getDescriptionId()).append(String.valueOf(needCCount)).withStyle(ChatFormatting.DARK_AQUA));
+            lines.add(Component.translatable(printer.slot2.getDescriptionId()).withStyle(ChatFormatting.GOLD));
         }
         return lines;
     }

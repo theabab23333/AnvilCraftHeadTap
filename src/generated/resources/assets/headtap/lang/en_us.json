@@ -25,7 +25,8 @@
   "message.headtap.golem_craftbow.golem_fail": "Don't have enough materials to craft a golem.",
   "modmenu.nameTranslation.headtap": "AnvilCraft: HeadTap",
   "tooltip.headtap.item.entity_ejector": "significant weightlessness",
-  "tooltip.headtap.printer.book": "Book:",
+  "tooltip.headtap.printer.book": "Print:",
+  "tooltip.headtap.printer.level": "Level: %d",
   "tooltip.headtap.printer.need": "Need:",
-  "tooltip.headtap.printer.null": "Printer is null"
+  "tooltip.headtap.printer.null": "Printer is empty"
 }

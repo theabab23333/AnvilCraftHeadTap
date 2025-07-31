@@ -15,18 +15,17 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
@@ -40,10 +39,12 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
     public ItemStack displayItemStack;
     private final int id;
 
-    public int needCurseGold = 0;
-    public int needBlessedGold = 0;
+    private int needCurseGold = 0;
+    private int needBlessedGold = 0;
 
-    public final ItemStackHandler book = new ItemStackHandler(1);
+    public Item slot0 = ModItems.BLESSED_GOLD_INGOT.asItem();
+    public Item slot1 = dev.dubhe.anvilcraft.init.ModItems.CURSED_GOLD_INGOT.asItem();
+    public Item slot2 = Items.BOOK;
     public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
@@ -71,11 +72,11 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             if (slot == 0) {
-                return stack.is(ModItems.BLESSED_GOLD_INGOT);
+                return stack.is(slot0);
             } else if (slot == 1) {
-                return stack.is(dev.dubhe.anvilcraft.init.ModItems.CURSED_GOLD_INGOT);
+                return stack.is(slot1);
             } else if (slot == 2) {
-                return stack.is(Items.BOOK);
+                return stack.is(slot2);
             } else return true;
         }
     };
@@ -88,7 +89,7 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         int inv1 = itemHandler.getStackInSlot(1).getCount();
         int inv2 = itemHandler.getStackInSlot(2).getCount();
         int total = needBlessedGold + needCurseGold;
-        if (inv0 > needBlessedGold && inv1 > needCurseGold && inv2 >= 1 && itemHandler.getStackInSlot(3).isEmpty() && total > 0 && !displayItemStack.isEmpty()) {
+        if (inv0 >= needBlessedGold && inv1 >= needCurseGold && inv2 >= 1 && itemHandler.getStackInSlot(3).isEmpty() && total > 0 && !displayItemStack.isEmpty()) {
             itemHandler.getStackInSlot(0).shrink(needBlessedGold);
             itemHandler.getStackInSlot(1).shrink(needCurseGold);
             itemHandler.getStackInSlot(2).shrink(1);
@@ -155,6 +156,10 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         needBlessedGold = tag.getInt("needB");
         needCurseGold = tag.getInt("needC");
         super.loadAdditional(tag, provider);
+        if (level != null && displayItemStack != null) {
+            if (!level.isClientSide)
+                PacketDistributor.sendToAllPlayers(new UpdateDisplayItemPacket(displayItemStack, getBlockPos()));
+        }
     }
 
     @Override
@@ -164,5 +169,21 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
 
     public int getId() {
         return this.id;
+    }
+
+    public int getNeedCurseGold() {
+        return this.needCurseGold;
+    }
+
+    public int getNeedBlessedGold() {
+        return this.needBlessedGold;
+    }
+
+    public int getNowCurseGold() {
+        return this.itemHandler.getStackInSlot(1).getCount();
+    }
+
+    public int getNowBlessedGold() {
+        return this.itemHandler.getStackInSlot(0).getCount();
     }
 }
