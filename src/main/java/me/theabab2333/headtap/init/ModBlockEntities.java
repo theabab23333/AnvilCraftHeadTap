@@ -1,6 +1,7 @@
 package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import dev.dubhe.anvilcraft.client.renderer.blockentity.BatchCrafterRenderer;
 import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
 import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
@@ -8,6 +9,7 @@ import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
+import me.theabab2333.headtap.client.renderer.blockentity.PrinterBlockRenderer;
 
 import static me.theabab2333.headtap.HeadTap.REGISTRATE;
 
@@ -46,6 +48,7 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<PrinterBlockEntity> PRINTER = REGISTRATE
         .blockEntity("printer", PrinterBlockEntity::new)
         .validBlock(ModBlocks.PRINTER)
+        .renderer(() -> PrinterBlockRenderer::new)
         .register();
 
     public static void register() {}

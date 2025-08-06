@@ -18,6 +18,10 @@ import net.minecraft.tags.EnchantmentTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
@@ -30,22 +34,19 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, IFilterBlockEntity {
     private static final AtomicInteger COUNTER = new AtomicInteger(0);
-    public ItemStack displayItemStack;
+    private ItemStack displayItemStack = null;
     private final int id;
 
     private int needCurseGold = 0;
     private int needBlessedGold = 0;
-
-    public Item slot0 = ModItems.BLESSED_GOLD_INGOT.asItem();
-    public Item slot1 = dev.dubhe.anvilcraft.init.ModItems.CURSED_GOLD_INGOT.asItem();
-    public Item slot2 = Items.BOOK;
-    public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
+    private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
             if (slot != 3) {
@@ -62,9 +63,8 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
 
         @Override
         public void onContentsChanged(int slot) {
-            if (level != null && displayItemStack != null) {
-                if (!level.isClientSide)
-                    PacketDistributor.sendToAllPlayers(new UpdateDisplayItemPacket(displayItemStack, getBlockPos()));
+            if (level != null && !level.isClientSide) {
+                PacketDistributor.sendToAllPlayers(new UpdateDisplayItemPacket(displayItemStack, getPos()));
             }
             setChanged();
         }
@@ -72,11 +72,11 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         @Override
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             if (slot == 0) {
-                return stack.is(slot0);
+                return stack.is(ModItems.BLESSED_GOLD_INGOT);
             } else if (slot == 1) {
-                return stack.is(slot1);
+                return stack.is(dev.dubhe.anvilcraft.init.ModItems.CURSED_GOLD_INGOT);
             } else if (slot == 2) {
-                return stack.is(slot2);
+                return stack.is(Items.BOOK);
             } else return true;
         }
     };
@@ -109,14 +109,20 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         int otherLevel = 0;
         ItemEnchantments.Mutable inputEnchantments =
             new ItemEnchantments.Mutable(EnchantmentHelper.getEnchantmentsForCrafting(itemStack));
-        for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
-            Holder<Enchantment> holder = entry.getKey();
-            int i = inputEnchantments.getLevel(holder);
-            if (holder.is(EnchantmentTags.CURSE)) {
-                curseLevel += i;
-            } else if (!holder.is(EnchantmentTags.CURSE)) {
-                otherLevel += i;
+        if (enchantments != null) {
+            for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
+                Holder<Enchantment> holder = entry.getKey();
+                int i = inputEnchantments.getLevel(holder);
+                if (holder.is(EnchantmentTags.CURSE)) {
+                    curseLevel += i;
+                } else if (!holder.is(EnchantmentTags.CURSE)) {
+                    otherLevel += i;
+                }
             }
+        }
+
+        if (level != null && !level.isClientSide) {
+            PacketDistributor.sendToAllPlayers(new UpdateDisplayItemPacket(displayItemStack, getPos()));
         }
         needCurseGold = curseLevel * 4;
         needBlessedGold = otherLevel * 4;
@@ -125,11 +131,6 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
     public PrinterBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
         id = COUNTER.incrementAndGet();
-    }
-
-    @Override
-    public void updateDisplayItem(ItemStack stack) {
-        this.displayItemStack = stack;
     }
 
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -156,10 +157,6 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         needBlessedGold = tag.getInt("needB");
         needCurseGold = tag.getInt("needC");
         super.loadAdditional(tag, provider);
-        if (level != null && displayItemStack != null) {
-            if (!level.isClientSide)
-                PacketDistributor.sendToAllPlayers(new UpdateDisplayItemPacket(displayItemStack, getBlockPos()));
-        }
     }
 
     @Override
@@ -179,11 +176,16 @@ public class PrinterBlockEntity extends BlockEntity implements IHasDisplayItem, 
         return this.needBlessedGold;
     }
 
-    public int getNowCurseGold() {
-        return this.itemHandler.getStackInSlot(1).getCount();
+    public BlockPos getPos() {
+        return this.getBlockPos();
     }
 
-    public int getNowBlessedGold() {
-        return this.itemHandler.getStackInSlot(0).getCount();
+    public ItemStack getDisplayItemStack() {
+        return this.displayItemStack;
+    }
+
+    @Override
+    public void updateDisplayItem(ItemStack stack) {
+        this.displayItemStack = stack;
     }
 }
