@@ -77,7 +77,7 @@ public class EntityEjectorBlock extends Block implements IHammerRemovable {
         boolean bl = state.getValue(POWERED);
         if (bl != level.hasNeighborSignal(pos)) {
             if (bl) {
-                level.scheduleTick(pos, this, 4);
+                level.scheduleTick(pos, this, 0);
             } else {
                 level.setBlockAndUpdate(pos, state.cycle(POWERED));
             }

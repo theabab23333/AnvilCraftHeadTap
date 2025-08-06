@@ -2,6 +2,7 @@ package me.theabab2333.headtap.integration.jei;
 
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.recipe.EjectorRecipe;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -27,6 +28,8 @@ public class HeadTapJeiPlugin implements IModPlugin {
 
     public static final RecipeType<RecipeHolder<StoneGeneratorRecipe>> STONE_GENERATOR =
         createRecipeHolderType("stone_generator");
+    public static final RecipeType<RecipeHolder<EjectorRecipe>> EJECT =
+        createRecipeHolderType("eject");
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -36,13 +39,17 @@ public class HeadTapJeiPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         StoneGeneratorCategory.registerRecipes(registration);
+        EjectorCategory.registerRecipes(registration);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         StoneGeneratorCategory.registerRecipeCatalysts(registration);
+        EjectorCategory.registerRecipeCatalysts(registration);
 
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.AMETHYST_ANVIL), RecipeTypes.ANVIL);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.PASSIVE_ROYAL_TABLE), RecipeTypes.SMITHING);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.PASSIVE_ROYAL_ANVIL), RecipeTypes.ANVIL);
     }
 
     @Override
@@ -51,6 +58,7 @@ public class HeadTapJeiPlugin implements IModPlugin {
         IGuiHelper guiHelper = jeiHelpers.getGuiHelper();
 
         registration.addRecipeCategories(new StoneGeneratorCategory(guiHelper));
+        registration.addRecipeCategories(new EjectorCategory(guiHelper));
     }
 
     public static <R extends Recipe<?>> RecipeType<RecipeHolder<R>> createRecipeHolderType(String name) {
