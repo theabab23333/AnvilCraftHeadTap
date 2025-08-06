@@ -15,13 +15,8 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.EnchantmentTags;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.CraftingRecipe;
-import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.ItemEnchantments;
@@ -34,7 +29,6 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @ParametersAreNonnullByDefault

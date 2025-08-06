@@ -32,7 +32,6 @@ public class PrinterTooltipProvider extends ITooltipProvider.BlockEntityTooltipP
         List<Component> lines = new ArrayList<>();
         ItemStack itemStack = printer.getDisplayItemStack();
         // make idea angry
-        System.out.println(itemStack);
         if (itemStack == null) {
             lines.add(Component.translatable("tooltip.headtap.printer.null").withStyle(ChatFormatting.DARK_RED));
             return lines;

@@ -23,6 +23,6 @@ public class PrinterBlockRenderer extends BaseShowSingleItemRenderer<PrinterBloc
 
     @Override
     float getY() {
-        return 0.15f;
+        return 0f;
     }
 }

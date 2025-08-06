@@ -52,8 +52,8 @@ public abstract class BaseShowSingleItemRenderer<B extends BlockEntity> implemen
             .getTransform(ItemDisplayContext.GROUND)
             .scale
             .y();
-        poseStack.translate(0.5F, (0.5F * transformedGroundScaleY) + getY(), 0.5F);
-        float rotation = (Objects.requireNonNull(blockEntity.getLevel()).getGameTime() + partialTick) * 2f;
+        poseStack.translate(0.5F, (0.5F * transformedGroundScaleY + 0.15f) + getY(), 0.5F);
+        float rotation = (Objects.requireNonNull(blockEntity.getLevel()).getGameTime() + partialTick) * 2.5f;
         poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
         poseStack.pushPose();
         this.itemRenderer.render(
