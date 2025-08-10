@@ -26,7 +26,7 @@ import java.util.List;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
+public class PassiveRoyalSmithingTableBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
 
     public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
 
@@ -102,7 +102,7 @@ public class AutoSmithingTableBlockEntity extends BlockEntity implements IItemHa
             itemHandler.getStackInSlot(2));
     }
 
-    public AutoSmithingTableBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+    public PassiveRoyalSmithingTableBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 

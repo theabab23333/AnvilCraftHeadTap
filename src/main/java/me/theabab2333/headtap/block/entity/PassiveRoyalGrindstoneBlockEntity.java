@@ -4,6 +4,7 @@ import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import dev.dubhe.anvilcraft.init.ModItems;
+import me.theabab2333.headtap.api.GetEnchantments;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -31,7 +32,7 @@ import java.util.Iterator;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class AutoGrindstoneBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
+public class PassiveRoyalGrindstoneBlockEntity extends BlockEntity implements IItemHandlerHolder, IFilterBlockEntity {
 
     public static final Item REPAIR_MATERIAL = Items.GOLD_INGOT;
     public static final Item RESULT_MATERIAL = ModItems.CURSED_GOLD_INGOT.get();
@@ -83,16 +84,13 @@ public class AutoGrindstoneBlockEntity extends BlockEntity implements IItemHandl
         int repairCost = repairItem.getOrDefault(DataComponents.REPAIR_COST, 0);
         int goldUsed = 0;
         goldUsed += repairCost;
-        DataComponentType<ItemEnchantments> enchantmentComponent = result.is(Items.ENCHANTED_BOOK) ? DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS;
-        ItemEnchantments enchantments = result.get(enchantmentComponent);
+        DataComponentType<ItemEnchantments> enchantmentComponent = GetEnchantments.getEnchantmentComponent(result);
+        ItemEnchantments enchantments = GetEnchantments.getItemEnchantments(result);
         this.totalCurseCount = 0;
         if (enchantments != null) {
-            this.totalCurseCount = (int) enchantments.keySet()
-                .stream()
-                .filter(it -> it.is(EnchantmentTags.CURSE))
-                .count();
-            ItemEnchantments.Mutable mutEnch = new ItemEnchantments.Mutable(enchantments);
-            Iterator<Holder<Enchantment>> iterator = mutEnch.keySet().iterator();
+            this.totalCurseCount = GetEnchantments.getCurseCount(result);
+            ItemEnchantments.Mutable mutEnch = GetEnchantments.getMutableEnchantments(enchantments);
+            Iterator<Holder<Enchantment>> iterator = GetEnchantments.getIterator(mutEnch);
             while (iterator.hasNext() && hasGold >= GOLD_PER_CURSE) {
                 Holder<Enchantment> curseEnchantment = iterator.next();
                 if (!curseEnchantment.is(EnchantmentTags.CURSE)) continue;
@@ -114,7 +112,7 @@ public class AutoGrindstoneBlockEntity extends BlockEntity implements IItemHandl
         }
     }
 
-    public AutoGrindstoneBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+    public PassiveRoyalGrindstoneBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
 

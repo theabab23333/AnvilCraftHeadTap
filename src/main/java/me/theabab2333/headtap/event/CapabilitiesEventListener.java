@@ -4,9 +4,9 @@ package me.theabab2333.headtap.event;
 import dev.dubhe.anvilcraft.init.ModBlockEntities;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
-import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
-import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
-import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalAnvilBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalGrindstoneBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
 import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
@@ -27,9 +27,9 @@ public class CapabilitiesEventListener {
         StoneGeneratorBlockEntity.registerCapabilities(event);
         ResinExtractorBlockEntity.registerCapabilities(event);
         VariableFluidTankBlockEntity.registerCapabilities(event);
-        AutoGrindstoneBlockEntity.registerCapabilities(event);
-        AutoAnvilBlockEntity.registerCapabilities(event);
-        AutoSmithingTableBlockEntity.registerCapabilities(event);
+        PassiveRoyalGrindstoneBlockEntity.registerCapabilities(event);
+        PassiveRoyalAnvilBlockEntity.registerCapabilities(event);
+        PassiveRoyalSmithingTableBlockEntity.registerCapabilities(event);
         PrinterBlockEntity.registerCapabilities(event);
 
         // Other

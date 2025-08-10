@@ -18,7 +18,7 @@ public class PrinterBlockRenderer extends BaseShowSingleItemRenderer<PrinterBloc
 
     @Override
     int getSeed(@NotNull PrinterBlockEntity blockEntity) {
-        return blockEntity.getId();
+        return 1;
     }
 
     @Override

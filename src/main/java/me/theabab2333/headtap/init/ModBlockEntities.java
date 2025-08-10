@@ -1,10 +1,9 @@
 package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
-import dev.dubhe.anvilcraft.client.renderer.blockentity.BatchCrafterRenderer;
-import me.theabab2333.headtap.block.entity.AutoAnvilBlockEntity;
-import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
-import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalAnvilBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalGrindstoneBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
 import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
@@ -30,18 +29,18 @@ public class ModBlockEntities {
         .validBlocks(ModBlocks.VARIABLE_FLUID_TANK)
         .register();
 
-    public static final BlockEntityEntry<AutoGrindstoneBlockEntity> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
-        .blockEntity("passive_royal_grindstone", AutoGrindstoneBlockEntity::new)
+    public static final BlockEntityEntry<PassiveRoyalGrindstoneBlockEntity> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
+        .blockEntity("passive_royal_grindstone", PassiveRoyalGrindstoneBlockEntity::new)
         .validBlock(ModBlocks.PASSIVE_ROYAL_GRINDSTONE)
         .register();
 
-    public static final BlockEntityEntry<AutoAnvilBlockEntity> PASSIVE_ROYAL_ANVIL = REGISTRATE
-        .blockEntity("passive_royal_anvil", AutoAnvilBlockEntity::new)
+    public static final BlockEntityEntry<PassiveRoyalAnvilBlockEntity> PASSIVE_ROYAL_ANVIL = REGISTRATE
+        .blockEntity("passive_royal_anvil", PassiveRoyalAnvilBlockEntity::new)
         .validBlock(ModBlocks.PASSIVE_ROYAL_ANVIL)
         .register();
 
-    public static final BlockEntityEntry<AutoSmithingTableBlockEntity> PASSIVE_ROYAL_TABLE = REGISTRATE
-        .blockEntity("passive_royal_smithing", AutoSmithingTableBlockEntity::new)
+    public static final BlockEntityEntry<PassiveRoyalSmithingTableBlockEntity> PASSIVE_ROYAL_TABLE = REGISTRATE
+        .blockEntity("passive_royal_smithing", PassiveRoyalSmithingTableBlockEntity::new)
         .validBlock(ModBlocks.PASSIVE_ROYAL_TABLE)
         .register();
 

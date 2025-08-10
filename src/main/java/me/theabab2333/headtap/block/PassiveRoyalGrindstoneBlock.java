@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.block.better.BetterBaseEntityBlock;
-import me.theabab2333.headtap.block.entity.AutoGrindstoneBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalGrindstoneBlockEntity;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -32,7 +32,7 @@ public class PassiveRoyalGrindstoneBlock extends BetterBaseEntityBlock implement
 
     @Override
     public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AutoGrindstoneBlockEntity(ModBlockEntities.PASSIVE_ROYAL_GRINDSTONE.get(), blockPos, blockState);
+        return new PassiveRoyalGrindstoneBlockEntity(ModBlockEntities.PASSIVE_ROYAL_GRINDSTONE.get(), blockPos, blockState);
     }
 
     public RenderShape getRenderShape(BlockState state) {
@@ -47,7 +47,7 @@ public class PassiveRoyalGrindstoneBlock extends BetterBaseEntityBlock implement
         BlockState newState,
         boolean movedByPiston) {
         if (state.is(newState.getBlock())) return;
-        if (level.getBlockEntity(pos) instanceof AutoGrindstoneBlockEntity entity) {
+        if (level.getBlockEntity(pos) instanceof PassiveRoyalGrindstoneBlockEntity entity) {
             Vec3 vec3 = entity.getBlockPos().getCenter();
             FilteredItemStackHandler depository = entity.getFilteredItemDepository();
             for (int slot = 0; slot < depository.getSlots(); slot++) {

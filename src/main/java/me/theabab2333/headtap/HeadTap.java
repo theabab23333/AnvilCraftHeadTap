@@ -9,6 +9,7 @@ import me.theabab2333.headtap.init.ModEntities;
 import me.theabab2333.headtap.init.ModFluids;
 import me.theabab2333.headtap.init.ModItemGroups;
 import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.ModNetworks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.util.ModInteractionMap;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,8 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.jetbrains.annotations.NotNull;
 
 @Mod(HeadTap.MOD_ID)
@@ -43,7 +46,14 @@ public class HeadTap {
 
     private static void registerEvents(@NotNull IEventBus eventBus) {
         NeoForge.EVENT_BUS.addListener(HeadTap::addItemTooltips);
+
+        eventBus.addListener(HeadTap::registerPayload);
         eventBus.addListener(HeadTap::loadComplete);
+    }
+
+    public static void registerPayload(@NotNull RegisterPayloadHandlersEvent event) {
+        PayloadRegistrar registrar = event.registrar("1");
+        ModNetworks.init(registrar);
     }
 
     public static @NotNull ResourceLocation of(String path) {

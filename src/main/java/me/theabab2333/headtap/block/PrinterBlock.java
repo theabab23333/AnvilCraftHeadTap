@@ -13,6 +13,8 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
@@ -51,16 +53,14 @@ public class PrinterBlock extends BetterBaseEntityBlock implements IHammerRemova
     }
 
     @Override
-    protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (stack.getItem() instanceof EnchantedBookItem) {
-            DataComponentType<ItemEnchantments> enchantmentComponent = DataComponents.STORED_ENCHANTMENTS;
-            ItemEnchantments enchantments = stack.get(enchantmentComponent);
-            if (enchantments == null || enchantments.isEmpty()) return ItemInteractionResult.FAIL;
-            PrinterBlockEntity blockEntity = (PrinterBlockEntity) level.getBlockEntity(pos);
-            if (blockEntity == null) return ItemInteractionResult.FAIL;
-            blockEntity.getBook(stack);
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        if (entity instanceof ItemEntity itemEntity) {
+            if (itemEntity.getItem().getItem() instanceof EnchantedBookItem) {
+                PrinterBlockEntity blockEntity = (PrinterBlockEntity) level.getBlockEntity(pos);
+                if (blockEntity == null) return;
+                blockEntity.getPrintBook(itemEntity.getItem());
+            }
         }
-        return ItemInteractionResult.FAIL;
     }
 
     @Override

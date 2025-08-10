@@ -18,6 +18,7 @@ public class HudTooltipManager extends dev.dubhe.anvilcraft.api.tooltip.HudToolt
 
     // 这个也是直接抄本体的... 不会写 以后学会了就重写的qwq
 
+    // 配色看jade的
     private static final int BACKGROUND_COLOR = 0xB3131313;
     private static final int BORDER_COLOR_TOP = 0xAC383838;
     private static final int BORDER_COLOR_BOTTOM = 0xE6242424;

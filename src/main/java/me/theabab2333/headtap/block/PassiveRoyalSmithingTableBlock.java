@@ -4,7 +4,7 @@ import com.mojang.serialization.MapCodec;
 import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.block.better.BetterBaseEntityBlock;
-import me.theabab2333.headtap.block.entity.AutoSmithingTableBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -33,7 +33,7 @@ public class PassiveRoyalSmithingTableBlock extends BetterBaseEntityBlock implem
 
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-        return new AutoSmithingTableBlockEntity(ModBlockEntities.PASSIVE_ROYAL_TABLE.get(), blockPos, blockState);
+        return new PassiveRoyalSmithingTableBlockEntity(ModBlockEntities.PASSIVE_ROYAL_TABLE.get(), blockPos, blockState);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PassiveRoyalSmithingTableBlock extends BetterBaseEntityBlock implem
         BlockState newState,
         boolean movedByPiston) {
         if (state.is(newState.getBlock())) return;
-        if (level.getBlockEntity(pos) instanceof AutoSmithingTableBlockEntity entity) {
+        if (level.getBlockEntity(pos) instanceof PassiveRoyalSmithingTableBlockEntity entity) {
             Vec3 vec3 = entity.getBlockPos().getCenter();
             FilteredItemStackHandler depository = entity.getFilteredItemDepository();
             for (int slot = 0; slot < depository.getSlots(); slot++) {
