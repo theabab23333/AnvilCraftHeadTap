@@ -213,6 +213,21 @@ public class ModBlocks {
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .initialProperties(() -> Blocks.IRON_BLOCK)
         .properties(p -> p.sound(SoundType.COPPER))
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern(" A ")
+            .pattern("CBC")
+            .pattern("DBD")
+            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL)
+            .define('B', Blocks.ENCHANTING_TABLE)
+            .define('C', Items.DIAMOND)
+            .define('D', me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.ENCHANTING_TABLE), AnvilCraftDatagen.has(Blocks.ENCHANTING_TABLE))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Items.DIAMOND), AnvilCraftDatagen.has(Items.DIAMOND))
+            .unlockedBy(AnvilCraftDatagen.hasItem(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT),
+                AnvilCraftDatagen.has(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT))
+            .save(provider))
         .register();
 
     public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE
@@ -250,6 +265,7 @@ public class ModBlocks {
         )
         .blockstate(ModelProviderUtil::liquid)
         .register();
+
     public static void register() {}
 
     public static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos, EntityType<?> entity) {
