@@ -90,7 +90,7 @@ public class PrinterBlock extends BetterBaseEntityBlock implements IHammerRemova
     public static VoxelShape SHAPE =
         Shapes.or(
             Block.box(0, 14, 0, 16, 16, 16),
-            Block.box(2, 1, 2, 15.5, 15, 15.5),
+            Block.box(2, 1, 2, 15, 15, 15),
             Block.box(0, 0, 0, 16, 2, 16)
         );
 
