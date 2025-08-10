@@ -1,24 +1,24 @@
 dependencies {
-    // AnvilCraft
-    implementation("dev.dubhe:anvilcraft-neoforge-1.21.1:${anvilcraft_version}"){
-        transitive = false
-    }
-
     // Registrate
-    api("com.tterrag.registrate:Registrate:${registrate_version}")
+    api(libs.registrate)
+
+    // Cloth Config
+    implementation(libs.clothConfig)
+
+    // AnvilCraft
+    implementation(libs.anvilCraft) { transitive = false }
 
     // Curios API
-    api("top.theillusivec4.curios:curios-neoforge:${curios_version}")
+    implementation(libs.curios)
 
     // JEI
-    compileOnlyApi("mezz.jei:jei-1.21.1-common-api:${jei_version}") { transitive = false }
-    compileOnlyApi("mezz.jei:jei-1.21.1-neoforge-api:${jei_version}") { transitive = false }
-    implementation("mezz.jei:jei-1.21.1-neoforge:${jei_version}") { transitive = false }
+    compileOnlyApi(libs.jeiCommonApi) { transitive = false }
+    compileOnlyApi(libs.jeiForgeApi) { transitive = false }
+    implementation(libs.jeiForgeImpl) { transitive = false }
 
-    // Jade & Patchouli
-    implementation("maven.modrinth:jade:15.3.4+neoforge")
-    compileOnly("maven.modrinth:patchouli:1.21-87-neoforge")
+    // Jade
+    implementation(libs.jade)
 
-    // Create
-    compileOnly("com.simibubi.create:create-${minecraft_version}:6.0.4-61") { transitive = false }
+    // Patchouli
+    implementation(libs.patchouli)
 }

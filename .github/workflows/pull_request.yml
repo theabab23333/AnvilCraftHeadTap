@@ -56,4 +56,10 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
-          path: build/libs/*.jar
+          path: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+
+      - name: gametest
+        uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
+        with:
+          mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+          extra-mods: patchouli:1.21-87-neoforge cloth-config:15.0.140+neoforge anvilcraft:1.21.1-1.4.10

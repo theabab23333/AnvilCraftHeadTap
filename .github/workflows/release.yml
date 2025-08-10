@@ -1,24 +1,17 @@
-name: CI for Mod
+name: Upload Release Asset
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - releases/**
-    paths:
-      - src/**
-      - common/**
-      - fabric/**
-      - forge/**
-      - build.gradle
-      - gradle.properties
-      - settings.gradle
+  release:
+    types: [ published ]
 
 jobs:
   build:
+    permissions: write-all
     runs-on: ubuntu-latest
     env:
-      CI_BUILD: true
+      CI_BUILD: false
       PR_BUILD: false
+      VERSION_TYPE: ${{ github.event.release.prerelease && 'alpha' || 'release' }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -28,7 +21,7 @@ jobs:
         uses: christian-draeger/read-properties@1.1.1
         with:
           path: gradle.properties
-          properties: 'mod_id mod_name java_version upload'
+          properties: 'mod_id mod_name java_version modrinth_id curseforge_id upload'
 
       - name: Setup Java ${{ steps.properties.outputs.java_version }}
         uses: actions/setup-java@v3.6.0
@@ -67,8 +60,32 @@ jobs:
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASS }}
         continue-on-error: true
 
-      - name: gametest
-        uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
+      - name: Upload Release Jar
+        uses: softprops/action-gh-release@v0.1.15
         with:
-          mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
-          extra-mods: patchouli:1.21-87-neoforge cloth-config:15.0.140+neoforge
+          files: |
+            build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+
+      - name: publish neoforge mc mod
+        uses: Kir-Antipov/mc-publish@v3.3
+        if: ${{ steps.properties.outputs.upload }}
+        continue-on-error: true
+        with:
+          name: "${{ steps.properties.outputs.mod_name }} For NeoForge v${{ steps.version.outputs.version }}"
+          version: ${{ steps.version.outputs.version }}
+          game-versions: 1.21.1
+          version-type: ${{ env.VERSION_TYPE }}
+          java: 21
+          fail-mode: skip
+          changelog: ${{ github.event.release.body }}
+
+          modrinth-id: ${{ steps.properties.outputs.modrinth_id }}
+          modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
+          modrinth-featured: true
+
+          curseforge-id: ${{ steps.properties.outputs.curseforge_id }}
+          curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
+
+          files: |
+            build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+            build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}-sources.jar
