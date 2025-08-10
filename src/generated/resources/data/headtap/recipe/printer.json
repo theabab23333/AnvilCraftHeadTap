@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:spectral_anvil"
+    },
+    "B": {
+      "item": "minecraft:enchanting_table"
+    },
+    "C": {
+      "item": "minecraft:diamond"
+    },
+    "D": {
+      "item": "headtap:blessed_gold_ingot"
+    }
+  },
+  "pattern": [
+    " A ",
+    "CBC",
+    "DBD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "headtap:printer"
+  }
+}
