@@ -54,8 +54,6 @@ public class PassiveRoyalAnvilBlockEntity extends BlockEntity implements IItemHa
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             if (slot == 0) {
                 return stack.is(BOOK);
-            } else if (slot == 1) {
-                return stack.is(BOOK);
             } else {
                 return true;
             }
@@ -92,8 +90,8 @@ public class PassiveRoyalAnvilBlockEntity extends BlockEntity implements IItemHa
                 inputEnchantments.set(holder, j);
             }
         }
-        EnchantmentHelper.setEnchantments(bookLeft, inputEnchantments.toImmutable());
-        return bookLeft;
+        EnchantmentHelper.setEnchantments(bookRight, inputEnchantments.toImmutable());
+        return bookRight;
     }
 
     public void setBook() {

@@ -40,6 +40,8 @@ public abstract class ResinBlockItemMixin extends HasMobBlockItem {
         ItemStack stack = context.getItemInHand();
         BlockEntity blockEntity = level.getBlockEntity(pos);
 
+        // 鬼知道我为什么要重新写spawnMobFromItem什么的
+        // 但是不写这些又不会写(指保存的树脂块会有奇怪的标签导致不能使用
         if (blockEntity instanceof SpawnerBlockEntity spawnerBlockEntity && !hasMob(stack)) {
             BaseSpawner baseSpawner = spawnerBlockEntity.getSpawner();
             Entity entity = baseSpawner.getOrCreateDisplayEntity(level, pos);
@@ -58,7 +60,7 @@ public abstract class ResinBlockItemMixin extends HasMobBlockItem {
             if (!player.getAbilities().instabuild) {
                 player.getInventory().placeItemBackInInventory(back);
             }
-        }
+        } else return;
         cir.setReturnValue(InteractionResult.SUCCESS);
     }
 }
