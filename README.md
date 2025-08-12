@@ -3,23 +3,11 @@
 ## 说明
 此模组是铁砧工艺(AnvilCraft)的附属  
 部分方块的设计灵感源于铁砧工艺的方块 有些在models里面引用了铁砧工艺的材质 还有些参考了铁砧工艺的blockstates 但是并未对原材质做出任何修改  
-分为main和modpack俩分支  
-modpack有些main没有的独特功能(特性)  
-搞modpack是为了写整合包(可能很屎)
-## 方块/物品
-傀儡工造弩：消耗材料制造傀儡或者为傀儡补血  
-紫水晶锤/紫水晶砧：有铁砧锤/铁砧的功能 发电量比普通铁砧高点（材料特性）  
-造石机：根据周围的方块或者流体在铁砧砸中时被动生成物品（支持自定义配方） 能在jei中查看配方  
-树脂提取器: 贴在树上被动提取液态树脂 如果旁边有炼药锅则会消耗1000mb液态树脂使炼药锅装满树脂 本身有4000mb存储空间  
-液态树脂锅：能被输入液态树脂(手动或者树脂提取器) 将液态树脂转换为树脂块(无cd) 可以被漏斗输出  
-可变流体储罐: 默认不能存液体 通过检测自身为中心3*3*3的方块来调整存储流体的容量和模式(额外未实现)  
-## 特性
-铁砧砸紫水晶母岩：能加速紫水晶芽的生长(modpack中还能加速赛特斯石英母岩生长)  
-蟹笼可输出：字面意思 蟹笼中的物品可以被漏斗输出
-## 作者的话(theabab2333说的)
-很多(大多数)的代码都是直接参考本体的(不乏我直接cv大法的), 但是似乎都能正常运行说是, 这是个奇迹 (如果出现问题我会尝试去修, 但是你得跟我说声有这个问题)
-技术不是很好, 但是能玩就行  
-如果有地方让你高血压(难受)的话, 可以直接提, 我会去改会去学的, 但是能不能改好会不会学会什么时候学会就不知道了  
-如果可以, 你也能为这个附属提供更好的材质、更好的建议、更好的想法、更好的代码等...(招黑奴属于是   
-此外, 感谢Abslb对我的指导(很多地方离不开Abslb的帮助)  
-还有, 为什么有俩个theabab呢...(另一个的身份令牌什么的被我放在老电脑上面了,暂时没法取出来(其实是我懒得管了) <- 这是个大懒虫 + 呆逼)
+很多都是看本体写的或者直接CV大法的 在此感谢每位开发者  
+## 下载
+发布版(没太多太大的bug):  
+[Modrinth](https://modrinth.com/mod/anvilcraft-headtap)  
+构建版(bug可能很多):  
+[![CI for Mod](https://github.com/theabab23333/AnvilCraftHeadTap/actions/workflows/ci.yml/badge.svg)](https://github.com/theabab23333/AnvilCraftHeadTap/actions/workflows/ci.yml)
+(pr的问题也可能很多)
+[![Pull Request Check](https://github.com/theabab23333/AnvilCraftHeadTap/actions/workflows/pull_request.yml/badge.svg)](https://github.com/theabab23333/AnvilCraftHeadTap/actions/workflows/pull_request.yml)
