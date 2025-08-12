@@ -73,15 +73,6 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
     }
 
     @Override
-    public int getAnalogOutputSignal(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos) {
-        BlockEntity blockEntity = level.getBlockEntity(blockPos);
-        if (blockEntity instanceof BuilderBlockEntity builderBlockEntity) {
-//            return builderBlockEntity.getRedstoneSignal();
-        }
-        return 0;
-    }
-
-    @Override
     @SuppressWarnings({"UnreachableCode"})
     public InteractionResult use(
         BlockState state,
@@ -101,12 +92,7 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
                 PacketDistributor.sendToPlayer(serverPlayer, new MachineOutputDirectionPacket(builderBlockEntity.getDirection()));
                 PacketDistributor.sendToPlayer(serverPlayer, new MachineEnableFilterPacket(builderBlockEntity.isFilterEnabled()));
                 for (int i = 0; i < builderBlockEntity.getFilteredItems().size(); i++) {
-//                    PacketDistributor.sendToPlayer(
-//                        serverPlayer,
-//                        new SlotDisableChangePacket(
-//                            i, builderBlockEntity.getItemHandler().getDisabled().get(i)
-//                        )
-//                    );
+                    PacketDistributor.sendToPlayer(serverPlayer, new SlotDisableChangePacket(i, builderBlockEntity.getItemHandler().getDisabled().get(i)));
                     PacketDistributor.sendToPlayer(serverPlayer, new SlotFilterChangePacket(i, builderBlockEntity.getFilter(i)));
                 }
             }
@@ -122,14 +108,14 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
         boolean movedByPiston
     ) {
         if (state.is(newState.getBlock())) return;
-//        if (level.getBlockEntity(pos) instanceof BuilderBlockEntity entity) {
-//            Vec3 vec3 = entity.getBlockPos().getCenter();
-//            FilteredItemStackHandler itemHandler = entity.getItemHandler();
-//            for (int slot = 0; slot < itemHandler.getSlots(); slot++) {
-//                Containers.dropItemStack(level, vec3.x, vec3.y, vec3.z, itemHandler.getStackInSlot(slot));
-//            }
-//            level.updateNeighbourForOutputSignal(pos, this);
-//        }
+        if (level.getBlockEntity(pos) instanceof BuilderBlockEntity entity) {
+            Vec3 vec3 = entity.getBlockPos().getCenter();
+            FilteredItemStackHandler itemHandler = entity.getFilteredItemDepository();
+            for (int slot = 0; slot < itemHandler.getSlots(); slot++) {
+                Containers.dropItemStack(level, vec3.x, vec3.y, vec3.z, itemHandler.getStackInSlot(slot));
+            }
+            level.updateNeighbourForOutputSignal(pos, this);
+        }
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
 

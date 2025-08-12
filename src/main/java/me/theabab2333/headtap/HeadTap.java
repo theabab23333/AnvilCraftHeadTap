@@ -9,6 +9,7 @@ import me.theabab2333.headtap.init.ModEntities;
 import me.theabab2333.headtap.init.ModFluids;
 import me.theabab2333.headtap.init.ModItemGroups;
 import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.ModMenuTypes;
 import me.theabab2333.headtap.init.ModNetworks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.util.ModInteractionMap;
@@ -37,6 +38,7 @@ public class HeadTap {
         ModRecipeTypes.register(modEventBus);
         ModFluids.register(modEventBus);
         ModEntities.register();
+        ModMenuTypes.register();
 
         // datagen
         HeadTapDataGen.init();

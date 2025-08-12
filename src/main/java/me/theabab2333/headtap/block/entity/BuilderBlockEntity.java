@@ -1,13 +1,18 @@
 package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
+import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import dev.dubhe.anvilcraft.init.ModRecipeTypes;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockConversionRecipe;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
+import me.theabab2333.headtap.block.BuilderBlock;
 import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.ModMenuTypes;
+import me.theabab2333.headtap.inventory.BuilderMenu;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,7 +29,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,7 +39,7 @@ import java.util.List;
 @Getter
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity {
+public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder {
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -45,7 +49,8 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
     };
 
-    private List<ItemStack> getIngredientList() {
+    // qwq
+    public List<ItemStack> getIngredientList() {
         assert level != null;
         List<ItemStack> ingredientList = new ArrayList<>();
         List<RecipeHolder<MultiblockRecipe>> multiblockRecipe;
@@ -74,18 +79,15 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
 
     @Override
     public Direction getDirection() {
-        return null;
+        assert this.level != null;
+        BlockState state = this.level.getBlockState(this.getBlockPos());
+        if (state.is(ModBlocks.BUILDER.get())) return state.getValue(BuilderBlock.FACING);
+        return Direction.NORTH;
     }
 
     @Override
     public void setDirection(Direction direction) {
 
-    }
-
-
-    @Override
-    public IItemHandler getItemHandler() {
-        return itemHandler;
     }
 
     @Override
@@ -115,11 +117,12 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
 
     @Override
     public Component getDisplayName() {
-        return null;
+        return Component.translatable("test");
     }
 
     @Override
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return null;
+        assert !player.isSpectator();
+        return new BuilderMenu(ModMenuTypes.BUILDER.get(), i, inventory, this);
     }
 }
