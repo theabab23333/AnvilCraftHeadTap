@@ -49,8 +49,7 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
     };
 
-    // qwq
-    public List<ItemStack> getIngredientList() {
+    private List<ItemStack> getIngredientList() {
         assert level != null;
         List<ItemStack> ingredientList = new ArrayList<>();
         List<RecipeHolder<MultiblockRecipe>> multiblockRecipe;
@@ -87,7 +86,10 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
 
     @Override
     public void setDirection(Direction direction) {
-
+        assert getLevel() != null;
+        BlockState state = getLevel().getBlockState(getBlockPos());
+        assert state.is(ModBlocks.BUILDER.get());
+        getLevel().setBlockAndUpdate(getBlockPos(), state.setValue(BuilderBlock.FACING, direction));
     }
 
     @Override

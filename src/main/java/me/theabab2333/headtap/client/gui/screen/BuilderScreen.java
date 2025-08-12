@@ -10,6 +10,7 @@ import lombok.Getter;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.inventory.BuilderMenu;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,7 +27,7 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     // 来自本体的BatchCrafterScreen
 
     private static final ResourceLocation CONTAINER_LOCATION = HeadTap.of("textures/gui/builder.png");
-    BiFunction<Integer, Integer, EnableFilterButton> enableFilterButtonSupplier = this.getEnableFilterButtonSupplier(116, 18);
+    BiFunction<Integer, Integer, EnableFilterButton> enableFilterButtonSupplier = this.getEnableFilterButtonSupplier(6, 50);
     @Getter
     private EnableFilterButton enableFilterButton = null;
     private final BuilderMenu menu;
@@ -34,13 +35,23 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     public BuilderScreen(BuilderMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.menu = menu;
+        this.setDirectionButtonSupplier(getDirectionButtonSupplier(26, 50));
     }
 
     @Override
     protected void init() {
         super.init();
         this.enableFilterButton = enableFilterButtonSupplier.apply(this.leftPos, this.topPos);
+        for (Direction value : Direction.values()) {
+            if (shouldSkipDirection(value)) {
+                this.getDirectionButton().skip(value);
+            }
+        }
         this.addRenderableWidget(this.enableFilterButton);
+    }
+
+    boolean shouldSkipDirection(Direction direction) {
+        return Direction.UP == direction || Direction.DOWN == direction;
     }
 
     @Override

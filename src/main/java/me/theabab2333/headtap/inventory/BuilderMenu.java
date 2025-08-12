@@ -54,14 +54,14 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
                     new SlotItemHandlerWithFilter(
                         this.blockEntity.getItemHandler(),
                         i * 3 + j,
-                        26 + j * 18,
-                        18 + i * 18
+                        107 + j * 18,
+                        17 + i * 18
                     )
                 );
             }
         }
 
-        this.addSlot(resultSlot = new ReadOnlySlot(new SimpleContainer(1), 0, 8 + 7 * 18, 18 + 2 * 18));
+        this.addSlot(resultSlot = new ReadOnlySlot(new SimpleContainer(1), 0, 21, 21));
 
         this.onChanged();
         this.addSlotListener(this);
@@ -184,14 +184,14 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
     }
 
     private void onChanged() {
-        List<ItemStack> itemStackList = blockEntity.getIngredientList();
-        if (itemStackList.isEmpty()) {
-            this.resultSlot.set(ItemStack.EMPTY);
-        } else {
-            for (ItemStack resultItem : itemStackList) {
-                this.resultSlot.set(resultItem);
-            }
-        }
+//        List<ItemStack> itemStackList = blockEntity.getIngredientList();
+//        if (itemStackList.isEmpty()) {
+//            this.resultSlot.set(ItemStack.EMPTY);
+//        } else {
+//            for (ItemStack resultItem : itemStackList) {
+//                this.resultSlot.set(resultItem);
+//            }
+//        }
     }
 
     @Override
