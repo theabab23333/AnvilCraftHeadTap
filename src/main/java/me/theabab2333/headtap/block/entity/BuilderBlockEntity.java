@@ -1,5 +1,6 @@
 package me.theabab2333.headtap.block.entity;
 
+import dev.dubhe.anvilcraft.api.IHasDisplayItem;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
@@ -8,6 +9,7 @@ import dev.dubhe.anvilcraft.init.ModRecipeTypes;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockConversionRecipe;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
+import lombok.Setter;
 import me.theabab2333.headtap.block.BuilderBlock;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import me.theabab2333.headtap.init.ModBlocks;
@@ -29,6 +31,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +43,7 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder {
+    private final ItemStackHandler displayItemHandler = new ItemStackHandler(1);
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -108,13 +112,15 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
-        tag.put("Inv", itemHandler.serializeNBT(provider));
+        tag.put("Display", displayItemHandler.serializeNBT(provider));
+        tag.put("Inventory", itemHandler.serializeNBT(provider));
     }
 
     @Override
     public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
-        itemHandler.deserializeNBT(provider, tag.getCompound("Inv"));
+        displayItemHandler.deserializeNBT(provider, tag.getCompound("Display"));
+        itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
     @Override

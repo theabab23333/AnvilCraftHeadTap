@@ -1,14 +1,19 @@
 package me.theabab2333.headtap.inventory;
 
+import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.SlotItemHandlerWithFilter;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
+import dev.dubhe.anvilcraft.init.ModRecipeTypes;
 import dev.dubhe.anvilcraft.inventory.BaseMachineMenu;
 import dev.dubhe.anvilcraft.inventory.IFilterMenu;
 import dev.dubhe.anvilcraft.inventory.component.ReadOnlySlot;
+import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockInput;
+import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
 import me.theabab2333.headtap.init.ModBlocks;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -19,11 +24,14 @@ import net.minecraft.world.inventory.ContainerListener;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -183,7 +191,32 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
         this.onChanged();
     }
 
-    private void onChanged() {
+    public void onChanged() {
+
+//        List<ItemStack> itemStackList = blockEntity.getIngredientList();
+//        FilteredItemStackHandler itemStackHandler = blockEntity.getItemHandler();
+//        NonNullList<ItemStack> filteredItemStack = itemStackHandler.getFilteredItems();
+//        int slot = itemStackHandler.getSlots();
+//        int success = 0;
+//        for (int i = 0; i < itemStackList.size(); i++) {
+//            int finalI = i;
+//            boolean ding = filteredItemStack.stream().anyMatch(itemStack -> itemStack.is(itemStackList.get(finalI).getItem()));
+//            if (ding) {
+//                success++;
+//            }
+//        }
+//
+//        List<RecipeHolder<MultiblockRecipe>> multiblockRecipe;
+//        multiblockRecipe =
+//            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
+//
+//        for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
+//            multiblockRecipeRecipeHolder.value().getResult();
+//        }
+//        if (success >= slot) {
+//            this.resultSlot.set(resultItem);
+//        }
+
 //        List<ItemStack> itemStackList = blockEntity.getIngredientList();
 //        if (itemStackList.isEmpty()) {
 //            this.resultSlot.set(ItemStack.EMPTY);

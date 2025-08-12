@@ -10,6 +10,7 @@ import dev.dubhe.anvilcraft.network.MachineEnableFilterPacket;
 import dev.dubhe.anvilcraft.network.MachineOutputDirectionPacket;
 import dev.dubhe.anvilcraft.network.SlotDisableChangePacket;
 import dev.dubhe.anvilcraft.network.SlotFilterChangePacket;
+import dev.dubhe.anvilcraft.network.UpdateDisplayItemPacket;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
