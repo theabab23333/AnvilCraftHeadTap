@@ -8,6 +8,7 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
+import me.theabab2333.headtap.block.BuilderBlock;
 import me.theabab2333.headtap.block.PassiveRoyalAnvilBlock;
 import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
 import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
@@ -228,6 +229,15 @@ public class ModBlocks {
             .unlockedBy(AnvilCraftDatagen.hasItem(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT),
                 AnvilCraftDatagen.has(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT))
             .save(provider))
+        .register();
+
+    public static final BlockEntry<BuilderBlock> BUILDER = REGISTRATE
+        .block("builder", BuilderBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
+        .properties(p -> p.sound(SoundType.COPPER))
         .register();
 
     public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE
