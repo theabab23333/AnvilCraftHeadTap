@@ -5,7 +5,6 @@ import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import dev.dubhe.anvilcraft.init.ModRecipeTypes;
-import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockConversionRecipe;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
 import me.theabab2333.headtap.block.BuilderBlock;
@@ -50,7 +49,7 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
             return itemStackList.stream().anyMatch(itemStack -> itemStack.is(stack.getItem()));
         }
     };
-    private ItemStack displayItemStack = null;
+    private ItemStack displayItemStack = ItemStack.EMPTY;
 
     private List<ItemStack> getIngredientList() {
         assert level != null;
@@ -58,18 +57,11 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         List<RecipeHolder<MultiblockRecipe>> multiblockRecipe;
         multiblockRecipe =
             level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
-        List<RecipeHolder<MultiblockConversionRecipe>> multiblockConversionRecipe;
-        multiblockConversionRecipe =
-            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_CONVERSION_TYPE.get());
 
         // idea建议我换的增强for 我觉得fori挺好
         for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
             ingredientList.addAll(multiblockRecipeRecipeHolder.value()
                 .getPattern().toIngredientList());
-        }
-        for (RecipeHolder<MultiblockConversionRecipe> multiblockConversionRecipeRecipeHolder :multiblockConversionRecipe) {
-            ingredientList.addAll(multiblockConversionRecipeRecipeHolder.value()
-                .getOutputPattern().toIngredientList());
         }
 
         return ingredientList;
@@ -82,31 +74,20 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
             ItemFrame itemFrame = itemFrames.getFirst();
             ItemStack itemStack = itemFrame.getItem();
             assert !itemStack.isEmpty();
-            if (displayItemStack != itemStack) {
-                displayItemStack = checkDisplayItemStack(itemStack);
-            }
-        }
+            if (displayItemStack != itemStack) checkDisplayItemStack(itemStack);
+        } else displayItemStack = ItemStack.EMPTY;
     }
 
-    private ItemStack checkDisplayItemStack(ItemStack itemFrame) {
+    private void checkDisplayItemStack(ItemStack itemFrame) {
         assert level != null;
-        List<ItemStack> resultList = new ArrayList<>();
         List<RecipeHolder<MultiblockRecipe>> multiblockRecipe =
             level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
-        List<RecipeHolder<MultiblockConversionRecipe>> multiblockConversionRecipe =
-            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_CONVERSION_TYPE.get());
-
         for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
-            resultList.addAll(multiblockRecipeRecipeHolder.value()
-                .getPattern().toIngredientList());
+            if (multiblockRecipeRecipeHolder.value().getResult().getItem() == itemFrame.getItem()) {
+                displayItemStack = itemFrame;
+                break;
+            }
         }
-        for (RecipeHolder<MultiblockConversionRecipe> multiblockConversionRecipeRecipeHolder :multiblockConversionRecipe) {
-            resultList.addAll(multiblockConversionRecipeRecipeHolder.value()
-                .getOutputPattern().toIngredientList());
-        }
-
-        if (resultList.stream().anyMatch(itemStack -> itemStack.copy() == itemFrame)) return itemFrame;
-        return ItemStack.EMPTY;
     }
 
     public BuilderBlockEntity(BlockEntityType<? extends BlockEntity> type, BlockPos pos, BlockState blockState) {
