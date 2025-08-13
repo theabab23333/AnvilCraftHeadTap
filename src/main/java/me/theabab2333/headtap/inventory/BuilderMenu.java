@@ -192,39 +192,8 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
     }
 
     public void onChanged() {
-
-//        List<ItemStack> itemStackList = blockEntity.getIngredientList();
-//        FilteredItemStackHandler itemStackHandler = blockEntity.getItemHandler();
-//        NonNullList<ItemStack> filteredItemStack = itemStackHandler.getFilteredItems();
-//        int slot = itemStackHandler.getSlots();
-//        int success = 0;
-//        for (int i = 0; i < itemStackList.size(); i++) {
-//            int finalI = i;
-//            boolean ding = filteredItemStack.stream().anyMatch(itemStack -> itemStack.is(itemStackList.get(finalI).getItem()));
-//            if (ding) {
-//                success++;
-//            }
-//        }
-//
-//        List<RecipeHolder<MultiblockRecipe>> multiblockRecipe;
-//        multiblockRecipe =
-//            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
-//
-//        for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
-//            multiblockRecipeRecipeHolder.value().getResult();
-//        }
-//        if (success >= slot) {
-//            this.resultSlot.set(resultItem);
-//        }
-
-//        List<ItemStack> itemStackList = blockEntity.getIngredientList();
-//        if (itemStackList.isEmpty()) {
-//            this.resultSlot.set(ItemStack.EMPTY);
-//        } else {
-//            for (ItemStack resultItem : itemStackList) {
-//                this.resultSlot.set(resultItem);
-//            }
-//        }
+        ItemStack itemStack = this.blockEntity.getDisplayItemStack();
+        if (itemStack != null) this.resultSlot.set(itemStack);
     }
 
     @Override

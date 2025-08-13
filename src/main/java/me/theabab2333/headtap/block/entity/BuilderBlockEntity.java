@@ -1,6 +1,5 @@
 package me.theabab2333.headtap.block.entity;
 
-import dev.dubhe.anvilcraft.api.IHasDisplayItem;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
@@ -9,7 +8,6 @@ import dev.dubhe.anvilcraft.init.ModRecipeTypes;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockConversionRecipe;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
-import lombok.Setter;
 import me.theabab2333.headtap.block.BuilderBlock;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import me.theabab2333.headtap.init.ModBlocks;
@@ -21,6 +19,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -29,9 +28,9 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -43,7 +42,6 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder {
-    private final ItemStackHandler displayItemHandler = new ItemStackHandler(1);
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -52,6 +50,7 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
             return itemStackList.stream().anyMatch(itemStack -> itemStack.is(stack.getItem()));
         }
     };
+    private ItemStack displayItemStack = null;
 
     private List<ItemStack> getIngredientList() {
         assert level != null;
@@ -74,6 +73,40 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
 
         return ingredientList;
+    }
+
+    public void tick() {
+        assert level != null;
+        List<ItemFrame> itemFrames = level.getEntitiesOfClass(ItemFrame.class, new AABB(getBlockPos().above()));
+        if (!itemFrames.isEmpty()) {
+            ItemFrame itemFrame = itemFrames.getFirst();
+            ItemStack itemStack = itemFrame.getItem();
+            assert !itemStack.isEmpty();
+            if (displayItemStack != itemStack) {
+                displayItemStack = checkDisplayItemStack(itemStack);
+            }
+        }
+    }
+
+    private ItemStack checkDisplayItemStack(ItemStack itemFrame) {
+        assert level != null;
+        List<ItemStack> resultList = new ArrayList<>();
+        List<RecipeHolder<MultiblockRecipe>> multiblockRecipe =
+            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
+        List<RecipeHolder<MultiblockConversionRecipe>> multiblockConversionRecipe =
+            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_CONVERSION_TYPE.get());
+
+        for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
+            resultList.addAll(multiblockRecipeRecipeHolder.value()
+                .getPattern().toIngredientList());
+        }
+        for (RecipeHolder<MultiblockConversionRecipe> multiblockConversionRecipeRecipeHolder :multiblockConversionRecipe) {
+            resultList.addAll(multiblockConversionRecipeRecipeHolder.value()
+                .getOutputPattern().toIngredientList());
+        }
+
+        if (resultList.stream().anyMatch(itemStack -> itemStack.copy() == itemFrame)) return itemFrame;
+        return ItemStack.EMPTY;
     }
 
     public BuilderBlockEntity(BlockEntityType<? extends BlockEntity> type, BlockPos pos, BlockState blockState) {
@@ -112,14 +145,12 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
-        tag.put("Display", displayItemHandler.serializeNBT(provider));
         tag.put("Inventory", itemHandler.serializeNBT(provider));
     }
 
     @Override
     public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
-        displayItemHandler.deserializeNBT(provider, tag.getCompound("Display"));
         itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
