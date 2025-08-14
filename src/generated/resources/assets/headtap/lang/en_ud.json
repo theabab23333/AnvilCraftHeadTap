@@ -1,6 +1,7 @@
 {
   "block.headtap.amethyst_anvil": "ןıʌuⱯ ʇsʎɥʇǝɯⱯ",
   "block.headtap.anvil_observer": "ɹǝʌɹǝsqO ןıʌuⱯ",
+  "block.headtap.builder": "ɹǝpןınᗺ",
   "block.headtap.density_core": "ǝɹoƆ ʎʇısuǝᗡ",
   "block.headtap.entity_ejector": "ɹoʇɔǝظƎ ʎʇıʇuƎ",
   "block.headtap.passive_royal_anvil": "ןıʌuⱯ ןɐʎoᴚ ǝʌıssɐԀ",
@@ -13,6 +14,8 @@
   "block.headtap.stone_generator": "ɹoʇɐɹǝuǝ⅁ ǝuoʇS",
   "block.headtap.variable_fluid_tank": "ʞuɐ⟘ pınןℲ ǝןqɐıɹɐΛ",
   "entity.headtap.thrown_bamboo_javelin": "uıןǝʌɐſ ooqɯɐᗺ uʍoɹɥ⟘",
+  "gui.headtap.builder.top": "ɹǝpןınᗺ",
+  "gui.headtap.builder.wip": "u∞s buıɯoƆ :ԀIM",
   "item.headtap.amethyst_hammer": "ɹǝɯɯɐH ʇsʎɥʇǝɯⱯ",
   "item.headtap.amethyst_hammer.tooltip": "˙ǝbɐɯɐp ǝɹoɯ sןɐǝp 'ןɐʇsʎɹɔ ǝןıbɐɹℲ",
   "item.headtap.bamboo_javelin": "uıןǝʌɐſ ooqɯɐᗺ",

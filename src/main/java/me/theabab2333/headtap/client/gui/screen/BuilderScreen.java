@@ -33,7 +33,7 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     public BuilderScreen(BuilderMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.menu = menu;
-        this.setDirectionButtonSupplier(getDirectionButtonSupplier(26, 50));
+        this.setDirectionButtonSupplier(getDirectionButtonSupplier(22, 40));
     }
 
     @Override
@@ -111,6 +111,12 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
             }
         }
         super.slotClicked(slot, slotId, mouseButton, type);
+    }
+
+    @Override
+    protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderLabels(guiGraphics, mouseX, mouseY);
+        guiGraphics.drawString(this.font, Component.translatable("gui.headtap.builder.wip"), 40, 40, 8453920);
     }
 
     @Override

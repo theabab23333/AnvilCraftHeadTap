@@ -8,6 +8,7 @@ public class OtherLang {
         provider.add("message.headtap.golem_craftbow.golem_fail", "Don't have enough materials to craft a golem.");
         provider.add("modmenu.nameTranslation.headtap", "AnvilCraft: HeadTap");
 
+        provider.add("gui.headtap.builder.top", "Builder");
         provider.add("gui.headtap.builder.wip", "WIP: Coming s∞n");
     }
 }
