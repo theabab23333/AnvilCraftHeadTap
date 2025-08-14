@@ -99,6 +99,7 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
                 ModMenuTypes.open(serverPlayer, builderBlockEntity, pos);
                 PacketDistributor.sendToPlayer(serverPlayer, new MachineOutputDirectionPacket(builderBlockEntity.getDirection()));
                 PacketDistributor.sendToPlayer(serverPlayer, new MachineEnableFilterPacket(builderBlockEntity.isFilterEnabled()));
+                PacketDistributor.sendToPlayer(serverPlayer, new UpdateDisplayItemPacket(builderBlockEntity.getDisplayItemStack(), pos));
                 for (int i = 0; i < builderBlockEntity.getFilteredItems().size(); i++) {
                     PacketDistributor.sendToPlayer(serverPlayer, new SlotDisableChangePacket(i, builderBlockEntity.getItemHandler().getDisabled().get(i)));
                     PacketDistributor.sendToPlayer(serverPlayer, new SlotFilterChangePacket(i, builderBlockEntity.getFilter(i)));
@@ -117,11 +118,8 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
     ) {
         if (state.is(newState.getBlock())) return;
         if (level.getBlockEntity(pos) instanceof BuilderBlockEntity entity) {
-            Vec3 vec3 = entity.getBlockPos().getCenter();
             FilteredItemStackHandler itemHandler = entity.getFilteredItemDepository();
-            for (int slot = 0; slot < itemHandler.getSlots(); slot++) {
-                Containers.dropItemStack(level, vec3.x, vec3.y, vec3.z, itemHandler.getStackInSlot(slot));
-            }
+            Containers.dropContents(level, pos, itemHandler.getStacks());
             level.updateNeighbourForOutputSignal(pos, this);
         }
         super.onRemove(state, level, pos, newState, movedByPiston);

@@ -1,5 +1,6 @@
 package me.theabab2333.headtap.block.entity;
 
+import dev.dubhe.anvilcraft.api.IHasDisplayItem;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
@@ -18,6 +19,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
 import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -27,6 +30,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -37,10 +41,12 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
 
+import static me.theabab2333.headtap.block.BuilderBlock.POWERED;
+
 @Getter
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder {
+public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder, IHasDisplayItem {
     // 来自本体MultiBlockCraftingCategory和BatchCrafter
 
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
@@ -71,9 +77,14 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         if (!itemFrames.isEmpty()) {
             ItemFrame itemFrame = itemFrames.getFirst();
             ItemStack itemStack = itemFrame.getItem();
-            if (itemStack.isEmpty()) return;
-            if (displayItemStack != itemStack){
+            if (itemStack.isEmpty()) {
+                itemHandler.setFilterEnabled(false);
+                displayItemStack = ItemStack.EMPTY;
+                return;
+            }
+            if (displayItemStack.getItem() != itemStack.getItem()){
                 checkDisplayItemStack(itemStack);
+                itemHandler.setFilterEnabled(true);
                 setFilter();
             }
         } else displayItemStack = ItemStack.EMPTY;
@@ -81,19 +92,26 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
 
     private void setFilter() {
         assert level != null;
-        itemHandler.setFilterEnabled(true);
+        if (displayItemStack.isEmpty()) return;
         List<RecipeHolder<MultiblockRecipe>> multiblockRecipe =
             level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
         for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
+            List<ItemStack> itemStackList = multiblockRecipeRecipeHolder.value().getPattern().toIngredientList();
+            if (itemStackList != itemHandler.getStacks()) Containers.dropContents(level, getBlockPos().above(), itemHandler.getStacks());
             if (multiblockRecipeRecipeHolder.value().getResult().getItem() == displayItemStack.getItem()) {
-                List<ItemStack> itemStackList = multiblockRecipeRecipeHolder.value().getPattern().toIngredientList();
+                itemHandler.setFilterEnabled(false);
+                itemHandler.setFilterEnabled(true);
                 for (int i = 0; i < itemStackList.size(); i++) {
-                    ItemStack itemStack = itemStackList.get(i);
-                    itemHandler.setFilter(i, itemStack);
+                    ItemStack filter = itemStackList.get(i);
+                    itemHandler.setFilter(i, filter);
                 }
                 break;
             }
         }
+    }
+
+    private void toBuild() {
+
     }
 
     private void checkDisplayItemStack(ItemStack itemFrame) {
@@ -144,12 +162,16 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
+        CompoundTag item = (CompoundTag) this.displayItemStack.save(provider);
+        tag.put("ResultItemStack", item);
         tag.put("Inventory", itemHandler.serializeNBT(provider));
     }
 
     @Override
     public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
+        CompoundTag ct = tag.getCompound("ResultItemStack");
+        displayItemStack = ct.contains("id") ? ItemStack.parse(provider, ct).orElse(ItemStack.EMPTY) : ItemStack.EMPTY;
         itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
@@ -162,5 +184,10 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     public @Nullable AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         assert !player.isSpectator();
         return new BuilderMenu(ModMenuTypes.BUILDER.get(), i, inventory, this);
+    }
+
+    @Override
+    public void updateDisplayItem(ItemStack stack) {
+        displayItemStack = stack;
     }
 }
