@@ -1,14 +1,13 @@
 package me.theabab2333.headtap.client.gui.screen;
 
 import dev.dubhe.anvilcraft.api.itemhandler.SlotItemHandlerWithFilter;
-import dev.dubhe.anvilcraft.client.gui.component.EnableFilterButton;
 import dev.dubhe.anvilcraft.client.gui.screen.BaseMachineScreen;
 import dev.dubhe.anvilcraft.client.gui.screen.IFilterScreen;
 import dev.dubhe.anvilcraft.network.SlotDisableChangePacket;
 import dev.dubhe.anvilcraft.network.SlotFilterChangePacket;
-import lombok.Getter;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.inventory.BuilderMenu;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -20,16 +19,15 @@ import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.function.BiFunction;
+import javax.annotation.ParametersAreNonnullByDefault;
 
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     implements IFilterScreen<BuilderMenu> {
-    // 来自本体的BatchCrafterScreen
+    // 来自本体的BatchCrafterScreen和MultiBlockCraftingCategory......(太多了
 
     private static final ResourceLocation CONTAINER_LOCATION = HeadTap.of("textures/gui/builder.png");
-    BiFunction<Integer, Integer, EnableFilterButton> enableFilterButtonSupplier = this.getEnableFilterButtonSupplier(6, 50);
-    @Getter
-    private EnableFilterButton enableFilterButton = null;
     private final BuilderMenu menu;
 
     public BuilderScreen(BuilderMenu menu, Inventory playerInventory, Component title) {
@@ -41,13 +39,17 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     @Override
     protected void init() {
         super.init();
-        this.enableFilterButton = enableFilterButtonSupplier.apply(this.leftPos, this.topPos);
         for (Direction value : Direction.values()) {
             if (shouldSkipDirection(value)) {
                 this.getDirectionButton().skip(value);
             }
         }
-        this.addRenderableWidget(this.enableFilterButton);
+    }
+
+    @Override
+    public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        super.render(guiGraphics, mouseX, mouseY, partialTick);
+        this.renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
     boolean shouldSkipDirection(Direction direction) {
@@ -85,11 +87,6 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     @Override
     public @NotNull BuilderMenu getFilterMenu() {
         return this.menu;
-    }
-
-    @Override
-    public void flush() {
-        this.enableFilterButton.flush();
     }
 
     @Override

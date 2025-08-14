@@ -41,6 +41,8 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder {
+    // 来自本体MultiBlockCraftingCategory和BatchCrafter
+
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -57,13 +59,9 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         List<RecipeHolder<MultiblockRecipe>> multiblockRecipe;
         multiblockRecipe =
             level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
-
-        // idea建议我换的增强for 我觉得fori挺好
-        for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
-            ingredientList.addAll(multiblockRecipeRecipeHolder.value()
-                .getPattern().toIngredientList());
-        }
-
+        for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe)
+            ingredientList.addAll(
+                multiblockRecipeRecipeHolder.value().getPattern().toIngredientList());
         return ingredientList;
     }
 
@@ -73,9 +71,29 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         if (!itemFrames.isEmpty()) {
             ItemFrame itemFrame = itemFrames.getFirst();
             ItemStack itemStack = itemFrame.getItem();
-            assert !itemStack.isEmpty();
-            if (displayItemStack != itemStack) checkDisplayItemStack(itemStack);
+            if (itemStack.isEmpty()) return;
+            if (displayItemStack != itemStack){
+                checkDisplayItemStack(itemStack);
+                setFilter();
+            }
         } else displayItemStack = ItemStack.EMPTY;
+    }
+
+    private void setFilter() {
+        assert level != null;
+        itemHandler.setFilterEnabled(true);
+        List<RecipeHolder<MultiblockRecipe>> multiblockRecipe =
+            level.getRecipeManager().getAllRecipesFor(ModRecipeTypes.MULTIBLOCK_TYPE.get());
+        for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : multiblockRecipe) {
+            if (multiblockRecipeRecipeHolder.value().getResult().getItem() == displayItemStack.getItem()) {
+                List<ItemStack> itemStackList = multiblockRecipeRecipeHolder.value().getPattern().toIngredientList();
+                for (int i = 0; i < itemStackList.size(); i++) {
+                    ItemStack itemStack = itemStackList.get(i);
+                    itemHandler.setFilter(i, itemStack);
+                }
+                break;
+            }
+        }
     }
 
     private void checkDisplayItemStack(ItemStack itemFrame) {
