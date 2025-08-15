@@ -6,6 +6,7 @@ import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import dev.dubhe.anvilcraft.init.ModRecipeTypes;
+import dev.dubhe.anvilcraft.recipe.multiblock.BlockPattern;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
 import me.theabab2333.headtap.block.BuilderBlock;
@@ -19,19 +20,16 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.Container;
 import net.minecraft.world.Containers;
 import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -40,6 +38,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -58,6 +57,8 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
     };
     private ItemStack displayItemStack = ItemStack.EMPTY;
+    private static final Comparator<ItemStack> BY_COUNT_DECREASING =Comparator.comparing(ItemStack::getCount)
+        .thenComparing(ItemStack::getDescriptionId).reversed();
 
     public List<RecipeHolder<MultiblockRecipe>> recipeHolderList() {
         assert level != null;
@@ -109,6 +110,7 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
             List<ItemStack> itemStackList = multiblockRecipeRecipeHolder.value().getPattern().toIngredientList();
             Containers.dropContents(level, getBlockPos().above(), itemHandler.getStacks());
             if (multiblockRecipeRecipeHolder.value().getResult().is(displayItemStack.getItem())) {
+                itemStackList.sort(BY_COUNT_DECREASING);
                 itemHandler.setFilterEnabled(false);
                 itemHandler.setFilterEnabled(true);
                 for (int i = 0; i < itemStackList.size(); i++) {
@@ -126,6 +128,7 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         for (RecipeHolder<MultiblockRecipe> multiblockRecipeRecipeHolder : recipeHolderList()) {
             if (multiblockRecipeRecipeHolder.value().getResult().is(displayItemStack.getItem())) {
                 List<ItemStack> itemStackList = multiblockRecipeRecipeHolder.value().getPattern().toIngredientList();
+                itemStackList.sort(BY_COUNT_DECREASING);
                 for (int i = 0; i < itemStackList.size(); i++) {
                     ItemStack needItemStack = itemStackList.get(i);
                     ItemStack nowItemStack = itemHandler.getStackInSlot(i);
@@ -138,8 +141,29 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     }
 
     private void toBuild() {
+        assert level!=null;
         if (checkFilter()) {
-
+            for (RecipeHolder<MultiblockRecipe> recipe : recipeHolderList()) {
+                if (recipe.value().getResult().is(displayItemStack.getItem())) {
+                    Direction direction = getBlockState().getValue(BuilderBlock.FACING);
+                    BlockPos blockPos = getBlockPos().relative(direction, 2);
+                    BlockPos centerPos = blockPos.above();
+                    for (int i = -1; i <= 1; i++) {
+                        for (int j = -1; j <= 1; j++) {
+                            for (int k = -1; k <= 1; k++) {
+                                BlockPos bp = new BlockPos(centerPos.getX() + i, centerPos.getY() + j, centerPos.getZ() + k);
+                                BlockPattern blockPattern = recipe.value().getPattern();
+                                BlockState blockState = level.getBlockState(bp);
+                                BlockState readyState = blockPattern.getPredicate(i + 1, j + 1, k + 1).getDefaultState();
+                                if (blockState.isAir() || blockState == readyState) {
+                                    level.setBlockAndUpdate(bp, readyState);
+                                } else return;
+                            }
+                        }
+                    }
+                    return;
+                }
+            }
         }
     }
 

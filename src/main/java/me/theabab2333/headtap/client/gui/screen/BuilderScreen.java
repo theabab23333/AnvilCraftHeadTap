@@ -116,7 +116,7 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     @Override
     protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
         super.renderLabels(guiGraphics, mouseX, mouseY);
-        guiGraphics.drawString(this.font, Component.translatable("gui.headtap.builder.wip"), 40, 40, 8453920);
+        guiGraphics.drawString(this.font, Component.translatable("gui.headtap.builder.wip"), 50, 37, 8453920);
     }
 
     @Override
