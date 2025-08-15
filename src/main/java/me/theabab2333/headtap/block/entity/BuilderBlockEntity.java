@@ -58,8 +58,11 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
     };
     private ItemStack displayItemStack = ItemStack.EMPTY;
-    private static final Comparator<ItemStack> BY_COUNT_DECREASING =Comparator.comparing(ItemStack::getCount)
+    private static final Comparator<ItemStack> BY_COUNT_DECREASING = Comparator.comparing(ItemStack::getCount)
         .thenComparing(ItemStack::getDescriptionId).reversed();
+    public final List<RecipeHolder<MultiblockRecipe>> recipeHolderList = getRecipeHolderList();
+    private boolean poweredBefore = false;
+    private int cooldown = 40;
 
     public List<RecipeHolder<MultiblockRecipe>> recipeHolderList() {
         assert level != null;
@@ -99,8 +102,13 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
 
             BlockState state = level.getBlockState(getBlockPos());
             level.updateNeighbourForOutputSignal(getBlockPos(), state.getBlock());
+            cooldown = Math.max(0, this.cooldown - 1);
             boolean powered = state.getValue(BuilderBlock.POWERED);
-            if (powered && !level.isClientSide) toBuild();
+            if (powered && !poweredBefore && !level.isClientSide && cooldown == 0) {
+                cooldown = 40;
+                toBuild();
+            }
+            poweredBefore = powered;
         }
     }
 
@@ -154,21 +162,22 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
                     for (int i = -halfSize; i <= halfSize; i++) {
                         for (int j = -halfSize; j <= halfSize; j++) {
                             for (int k = -halfSize; k <= halfSize; k++) {
-                                BlockPos bp = new BlockPos(centerPos.getX() + i, centerPos.getY() + j, centerPos.getZ() + k);
+                                BlockPos pos =
+                                    new BlockPos(centerPos.getX() + i, centerPos.getY() + j, centerPos.getZ() + k);
                                 BlockPattern blockPattern = recipe.value().getPattern();
-                                BlockState blockState = level.getBlockState(bp);
-                                BlockState readyState = blockPattern.getPredicate(i + halfSize, j + halfSize, k + halfSize).getDefaultState();
-                                if (blockState.isAir() || blockState == readyState) {
+                                BlockState readyState =
+                                    blockPattern.getPredicate(i + halfSize, j + halfSize, k + halfSize).getDefaultState();
+                                BlockState blockState = level.getBlockState(pos);
+                                if (blockState.isAir()) {
                                     Item item = readyState.getBlock().asItem();
-                                    int invSize = itemHandler.getSlots();
-                                    for (int l = 0; l < invSize; l++) {
+                                    for (int l = 0; l < itemHandler.getSlots(); l++) {
                                         ItemStack itemStack = itemHandler.getStackInSlot(l);
                                         if (itemStack.is(item)) {
                                             itemHandler.getStackInSlot(l).shrink(1);
-                                            level.setBlockAndUpdate(bp, readyState);
+                                            level.setBlockAndUpdate(pos, readyState);
                                         }
                                     }
-                                } else return;
+                                }
                             }
                         }
                     }
