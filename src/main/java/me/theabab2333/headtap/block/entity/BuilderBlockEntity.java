@@ -25,6 +25,7 @@ import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -145,18 +146,28 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         if (checkFilter()) {
             for (RecipeHolder<MultiblockRecipe> recipe : recipeHolderList()) {
                 if (recipe.value().getResult().is(displayItemStack.getItem())) {
+                    int blockSize = recipe.value().getPattern().getSize();
                     Direction direction = getBlockState().getValue(BuilderBlock.FACING);
-                    BlockPos blockPos = getBlockPos().relative(direction, 2);
+                    BlockPos blockPos = getBlockPos().relative(direction, blockSize - 1);
                     BlockPos centerPos = blockPos.above();
-                    for (int i = -1; i <= 1; i++) {
-                        for (int j = -1; j <= 1; j++) {
-                            for (int k = -1; k <= 1; k++) {
+                    int halfSize = blockSize / 2;
+                    for (int i = -halfSize; i <= halfSize; i++) {
+                        for (int j = -halfSize; j <= halfSize; j++) {
+                            for (int k = -halfSize; k <= halfSize; k++) {
                                 BlockPos bp = new BlockPos(centerPos.getX() + i, centerPos.getY() + j, centerPos.getZ() + k);
                                 BlockPattern blockPattern = recipe.value().getPattern();
                                 BlockState blockState = level.getBlockState(bp);
-                                BlockState readyState = blockPattern.getPredicate(i + 1, j + 1, k + 1).getDefaultState();
+                                BlockState readyState = blockPattern.getPredicate(i + halfSize, j + halfSize, k + halfSize).getDefaultState();
                                 if (blockState.isAir() || blockState == readyState) {
-                                    level.setBlockAndUpdate(bp, readyState);
+                                    Item item = readyState.getBlock().asItem();
+                                    int invSize = itemHandler.getSlots();
+                                    for (int l = 0; l < invSize; l++) {
+                                        ItemStack itemStack = itemHandler.getStackInSlot(l);
+                                        if (itemStack.is(item)) {
+                                            itemHandler.getStackInSlot(l).shrink(1);
+                                            level.setBlockAndUpdate(bp, readyState);
+                                        }
+                                    }
                                 } else return;
                             }
                         }
