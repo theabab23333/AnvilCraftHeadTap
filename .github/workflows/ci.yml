@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: "${{ steps.properties.outputs.mod_name }}-${{ steps.properties.outputs.mod_version }}"
-          path: build/libs/*.jar
+          path: build/libs/AnvilCraftHeadTap-0.0.2-${{ steps.version.outputs.version }}.jar
 
       - name: Publish to maven
         if: ${{ steps.properties.outputs.upload }}
