@@ -55,7 +55,7 @@ jobs:
       - name: Capture build artifacts
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: "${{ steps.properties.outputs.mod_name }}-${{ steps.properties.outputs.mod_version }}"
+          name: "${{ steps.properties.outputs.mod_name }}-${{ steps.properties.outputs.mod_version }}-${{ steps.version.outputs.version }}"
           path: build/libs/AnvilCraftHeadTap-${{ steps.properties.outputs.mod_version }}${{ steps.version.outputs.version }}.jar
 
       - name: Publish to maven
