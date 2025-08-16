@@ -66,7 +66,7 @@ public class BuilderScreen extends BaseMachineScreen<BuilderMenu>
     public BuilderScreen(BuilderMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
         this.menu = menu;
-        this.setDirectionButtonSupplier(getDirectionButtonSupplier(22, 40));
+        this.setDirectionButtonSupplier(getDirectionButtonSupplier(21, 50));
     }
 
     @Override
