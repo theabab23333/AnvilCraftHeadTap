@@ -10,6 +10,7 @@
     "headtap:anvil_observer",
     "headtap:entity_ejector",
     "headtap:printer",
+    "headtap:builder",
     "headtap:density_core",
     "headtap:resin_fluid_cauldron"
   ]

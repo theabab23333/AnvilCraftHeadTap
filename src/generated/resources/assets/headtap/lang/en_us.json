@@ -1,6 +1,7 @@
 {
   "block.headtap.amethyst_anvil": "Amethyst Anvil",
   "block.headtap.anvil_observer": "Anvil Observer",
+  "block.headtap.builder": "Builder",
   "block.headtap.density_core": "Density Core",
   "block.headtap.entity_ejector": "Entity Ejector",
   "block.headtap.passive_royal_anvil": "Passive Royal Anvil",
@@ -13,6 +14,7 @@
   "block.headtap.stone_generator": "Stone Generator",
   "block.headtap.variable_fluid_tank": "Variable Fluid Tank",
   "entity.headtap.thrown_bamboo_javelin": "Thrown Bamboo Javelin",
+  "gui.headtap.builder.top": "Builder",
   "item.headtap.amethyst_hammer": "Amethyst Hammer",
   "item.headtap.amethyst_hammer.tooltip": "Fragile crystal, deals more damage.",
   "item.headtap.bamboo_javelin": "Bamboo Javelin",

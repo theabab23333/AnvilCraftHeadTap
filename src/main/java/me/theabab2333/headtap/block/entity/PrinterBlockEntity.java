@@ -2,6 +2,7 @@ package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
+import lombok.Getter;
 import me.theabab2333.headtap.api.GetEnchantments;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import me.theabab2333.headtap.init.ModItems;
@@ -32,6 +33,7 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class PrinterBlockEntity extends BlockEntity implements IFilterBlockEntity {
+    @Getter
     private ItemStack displayItemStack = null;
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(4) {
         @Override
@@ -143,10 +145,6 @@ public class PrinterBlockEntity extends BlockEntity implements IFilterBlockEntit
     @Override
     public FilteredItemStackHandler getFilteredItemDepository() {
         return itemHandler;
-    }
-
-    public ItemStack getDisplayItemStack() {
-        return this.displayItemStack;
     }
 
     public int getNeedB() {
