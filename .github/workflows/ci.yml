@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - releases/**
+      - *
     paths:
       - src/**
       - common/**
@@ -52,11 +52,11 @@ jobs:
           MESSAGE=$(ls build/libs/* | grep sources.jar -v | grep shadow.jar -v | grep slim.jar -v | awk -F '${{ steps.properties.outputs.mod_id }}-neoforge-|.jar' '{print $2}')
           echo "version=$MESSAGE" >> $GITHUB_OUTPUT
 
-      - name: capture build artifacts
+      - name: Capture build artifacts
         uses: actions/upload-artifact@v4.3.3
         with:
           name: "${{ steps.properties.outputs.mod_name }}-${{ steps.properties.outputs.mod_version }}"
-          path: build/libs/AnvilCraftHeadTap-0.0.2-${{ steps.version.outputs.version }}.jar
+          path: build/libs/AnvilCraftHeadTap-${{ steps.properties.outputs.mod_version }}-${{ steps.version.outputs.version }}.jar
 
       - name: Publish to maven
         if: ${{ steps.properties.outputs.upload }}
