@@ -9,6 +9,5 @@ public class OtherLang {
         provider.add("modmenu.nameTranslation.headtap", "AnvilCraft: HeadTap");
 
         provider.add("gui.headtap.builder.top", "Builder");
-        provider.add("gui.headtap.builder.wip", "Coming s∞n");
     }
 }

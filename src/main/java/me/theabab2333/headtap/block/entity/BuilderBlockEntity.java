@@ -48,7 +48,6 @@ import java.util.List;
 public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder, IHasDisplayItem {
     // 来自本体MultiBlockCraftingCategory和BatchCrafter
     // 妈的 屎一样 能跑就行(
-
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
@@ -58,11 +57,12 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
     };
     private ItemStack displayItemStack = ItemStack.EMPTY;
-    private static final Comparator<ItemStack> BY_COUNT_DECREASING = Comparator.comparing(ItemStack::getCount)
-        .thenComparing(ItemStack::getDescriptionId).reversed();
-    public final List<RecipeHolder<MultiblockRecipe>> recipeHolderList = getRecipeHolderList();
     private boolean poweredBefore = false;
     private int cooldown = 40;
+
+    public static ItemStack resultStack = ItemStack.EMPTY;
+    private static final Comparator<ItemStack> BY_COUNT_DECREASING = Comparator.comparing(ItemStack::getCount)
+        .thenComparing(ItemStack::getDescriptionId).reversed();
 
     public List<RecipeHolder<MultiblockRecipe>> recipeHolderList() {
         assert level != null;
@@ -98,8 +98,9 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
                 displayItemStack = ItemStack.EMPTY;
                 return;
             }
-            if (displayItemStack.getItem() != itemStack.getItem()) checkDisplayItemStack(itemStack);
-
+            if (displayItemStack.getItem() != itemStack.getItem())
+                checkDisplayItemStack(itemStack);
+            resultStack = itemStack;
             BlockState state = level.getBlockState(getBlockPos());
             level.updateNeighbourForOutputSignal(getBlockPos(), state.getBlock());
             cooldown = Math.max(0, this.cooldown - 1);
