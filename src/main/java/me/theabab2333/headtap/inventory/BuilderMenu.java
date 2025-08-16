@@ -29,6 +29,8 @@ import org.jetbrains.annotations.Nullable;
 public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, ContainerListener {
     // 抄自本体的BatchCrafterMenu 注释均未修改 感谢每位开发者
 
+    public static ItemStack resultStack = ItemStack.EMPTY;
+
     public final BuilderBlockEntity blockEntity;
     private final Slot resultSlot;
     private final Level level;
@@ -182,7 +184,11 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
     }
 
     public void onChanged() {
-        this.resultSlot.set(this.blockEntity.getDisplayItemStack().copy());
+        ItemStack itemStack = this.blockEntity.getDisplayItemStack().copy();
+        this.resultSlot.set(itemStack);
+        if (!itemStack.isEmpty()) {
+            resultStack = itemStack;
+        }
     }
 
     @Override

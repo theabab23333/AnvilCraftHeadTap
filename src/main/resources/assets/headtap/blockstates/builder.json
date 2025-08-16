@@ -1,33 +1,18 @@
 {
   "variants": {
-    "facing=east,powered=false": {
-      "model": "headtap:block/anvil_observer",
+    "facing=east": {
+      "model": "headtap:block/builder",
       "y": 270
     },
-    "facing=east,powered=true": {
-      "model": "headtap:block/anvil_observer_on",
-      "y": 270
-    },
-    "facing=north,powered=false": {
-      "model": "headtap:block/anvil_observer",
+    "facing=north": {
+      "model": "headtap:block/builder",
       "y": 180
     },
-    "facing=north,powered=true": {
-      "model": "headtap:block/anvil_observer_on",
-      "y": 180
+    "facing=south": {
+      "model": "headtap:block/builder"
     },
-    "facing=south,powered=false": {
-      "model": "headtap:block/anvil_observer"
-    },
-    "facing=south,powered=true": {
-      "model": "headtap:block/anvil_observer_on"
-    },
-    "facing=west,powered=false": {
-      "model": "headtap:block/anvil_observer",
-      "y": 90
-    },
-    "facing=west,powered=true": {
-      "model": "headtap:block/anvil_observer_on",
+    "facing=west": {
+      "model": "headtap:block/builder",
       "y": 90
     }
   }

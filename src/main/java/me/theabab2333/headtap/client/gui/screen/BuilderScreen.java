@@ -49,7 +49,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static me.theabab2333.headtap.block.entity.BuilderBlockEntity.resultStack;
+import static me.theabab2333.headtap.inventory.BuilderMenu.resultStack;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault

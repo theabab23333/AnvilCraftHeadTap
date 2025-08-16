@@ -237,7 +237,25 @@ public class ModBlocks {
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .initialProperties(() -> Blocks.IRON_BLOCK)
+        .properties(p -> p.lightLevel(p_152632_ -> 15))
         .properties(p -> p.sound(SoundType.COPPER))
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern("AAA")
+            .pattern("CBC")
+            .pattern("DBD")
+            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER)
+            .define('B', dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK)
+            .define('C', ModBlocks.DENSITY_CORE)
+            .define('D', dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL))
+            .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.DENSITY_CORE),
+                AnvilCraftDatagen.has(ModBlocks.DENSITY_CORE))
+            .save(provider))
         .register();
 
     public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE

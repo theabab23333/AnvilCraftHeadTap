@@ -12,7 +12,6 @@ import dev.dubhe.anvilcraft.network.SlotDisableChangePacket;
 import dev.dubhe.anvilcraft.network.SlotFilterChangePacket;
 import dev.dubhe.anvilcraft.network.UpdateDisplayItemPacket;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
-import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -23,10 +22,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameType;
@@ -46,7 +42,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -145,6 +140,11 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
         BlockPos pos,
         CollisionContext context) {
         return Shapes.empty();
+    }
+
+    @Override
+    public boolean useShapeForLightOcclusion(@NotNull BlockState state) {
+        return true;
     }
 
     @Override

@@ -59,8 +59,6 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     private ItemStack displayItemStack = ItemStack.EMPTY;
     private boolean poweredBefore = false;
     private int cooldown = 40;
-
-    public static ItemStack resultStack = ItemStack.EMPTY;
     private static final Comparator<ItemStack> BY_COUNT_DECREASING = Comparator.comparing(ItemStack::getCount)
         .thenComparing(ItemStack::getDescriptionId).reversed();
 
@@ -100,7 +98,6 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
             }
             if (displayItemStack.getItem() != itemStack.getItem())
                 checkDisplayItemStack(itemStack);
-            resultStack = itemStack;
             BlockState state = level.getBlockState(getBlockPos());
             level.updateNeighbourForOutputSignal(getBlockPos(), state.getBlock());
             cooldown = Math.max(0, this.cooldown - 1);

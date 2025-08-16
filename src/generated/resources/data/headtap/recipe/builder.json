@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "anvilcraft:block_placer"
+    },
+    "B": {
+      "item": "anvilcraft:transcendium_block"
+    },
+    "C": {
+      "item": "headtap:density_core"
+    },
+    "D": {
+      "item": "anvilcraft:spectral_anvil"
+    }
+  },
+  "pattern": [
+    "AAA",
+    "CBC",
+    "DBD"
+  ],
+  "result": {
+    "count": 1,
+    "id": "headtap:builder"
+  }
+}
