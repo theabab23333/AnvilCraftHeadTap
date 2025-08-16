@@ -8,6 +8,7 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
+import me.theabab2333.headtap.block.BuilderBlock;
 import me.theabab2333.headtap.block.PassiveRoyalAnvilBlock;
 import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
 import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
@@ -227,6 +228,33 @@ public class ModBlocks {
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.DIAMOND), AnvilCraftDatagen.has(Items.DIAMOND))
             .unlockedBy(AnvilCraftDatagen.hasItem(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT),
                 AnvilCraftDatagen.has(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT))
+            .save(provider))
+        .register();
+
+    public static final BlockEntry<BuilderBlock> BUILDER = REGISTRATE
+        .block("builder", BuilderBlock::new)
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .initialProperties(() -> Blocks.IRON_BLOCK)
+        .properties(p -> p.lightLevel(p_152632_ -> 15))
+        .properties(p -> p.sound(SoundType.COPPER))
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern("AAA")
+            .pattern("CBC")
+            .pattern("DBD")
+            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER)
+            .define('B', dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK)
+            .define('C', ModBlocks.DENSITY_CORE)
+            .define('D', dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL))
+            .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.DENSITY_CORE),
+                AnvilCraftDatagen.has(ModBlocks.DENSITY_CORE))
             .save(provider))
         .register();
 

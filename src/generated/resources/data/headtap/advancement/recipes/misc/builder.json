@@ -1,0 +1,65 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_block_placer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "anvilcraft:block_placer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_density_core": {
+      "conditions": {
+        "items": [
+          {
+            "items": "headtap:density_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_spectral_anvil": {
+      "conditions": {
+        "items": [
+          {
+            "items": "anvilcraft:spectral_anvil"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "headtap:builder"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_transcendium_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "anvilcraft:transcendium_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_block_placer",
+      "has_transcendium_block",
+      "has_spectral_anvil",
+      "has_density_core"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "headtap:builder"
+    ]
+  }
+}

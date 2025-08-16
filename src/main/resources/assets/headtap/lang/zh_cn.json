@@ -28,5 +28,9 @@
   "tooltip.headtap.printer.book": "打印:",
   "tooltip.headtap.printer.level": "等级: %d",
   "tooltip.headtap.printer.need": "需要:",
-  "tooltip.headtap.printer.null": "未设置打印台内容"
+  "tooltip.headtap.printer.null": "未设置打印台内容",
+  "block.headtap.builder": "多方块放置器",
+  "gui.headtap.builder.top": "多方块放置器",
+  "jei.headtap.category.ejector": "弹射",
+  "jei.headtap.category.ejector.high": "需要高度: %s"
 }

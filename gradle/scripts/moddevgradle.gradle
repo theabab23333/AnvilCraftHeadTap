@@ -13,7 +13,6 @@ neoForge {
     runs {
         client {
             client()
-            programArguments.addAll "--width", "1440", "--height", "841"
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
