@@ -34,9 +34,9 @@ public class HitBuddingBlockBehavior implements IAnvilBehavior {
         }
 
         if (block != null) {
-            BlockState blockstate1 = (BlockState)((BlockState)block
+            BlockState blockstate1 = block
                 .defaultBlockState()
-                .setValue(AmethystClusterBlock.FACING, direction))
+                .setValue(AmethystClusterBlock.FACING, direction)
                 .setValue(AmethystClusterBlock.WATERLOGGED, blockstate.getFluidState().getType() == Fluids.WATER);
             level.setBlockAndUpdate(blockpos, blockstate1);
         }
