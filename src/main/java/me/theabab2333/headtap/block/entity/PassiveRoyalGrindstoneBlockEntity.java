@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.IItemHandler;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -120,10 +121,6 @@ public class PassiveRoyalGrindstoneBlockEntity extends BlockEntity implements II
         return itemHandler;
     }
 
-    public FilteredItemStackHandler getItemHandler() {
-        return itemHandler;
-    }
-
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
@@ -139,5 +136,15 @@ public class PassiveRoyalGrindstoneBlockEntity extends BlockEntity implements II
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
         itemHandler.deserializeNBT(provider, tag.getCompound("Inv"));
+    }
+
+    @Override
+    public FilteredItemStackHandler getFilteredItemStackHandler() {
+        return itemHandler;
+    }
+
+    @Override
+    public IItemHandler getItemHandler() {
+        return itemHandler;
     }
 }

@@ -142,16 +142,16 @@ public class PrinterBlockEntity extends BlockEntity implements IFilterBlockEntit
         return ClientboundBlockEntityDataPacket.create(this);
     }
 
-    @Override
-    public FilteredItemStackHandler getFilteredItemDepository() {
-        return itemHandler;
-    }
-
     public int getNeedB() {
         return bCount;
     }
 
     public int getNeedC() {
         return cCount;
+    }
+
+    @Override
+    public FilteredItemStackHandler getFilteredItemStackHandler() {
+        return itemHandler;
     }
 }

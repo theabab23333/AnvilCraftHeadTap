@@ -51,7 +51,7 @@ public class PassiveRoyalSmithingTableBlock extends BetterBaseEntityBlock implem
         if (state.is(newState.getBlock())) return;
         if (level.getBlockEntity(pos) instanceof PassiveRoyalSmithingTableBlockEntity entity) {
             Vec3 vec3 = entity.getBlockPos().getCenter();
-            FilteredItemStackHandler depository = entity.getFilteredItemDepository();
+            FilteredItemStackHandler depository = entity.getFilteredItemStackHandler();
             for (int slot = 0; slot < depository.getSlots(); slot++) {
                 Containers.dropItemStack(level, vec3.x, vec3.y, vec3.z, depository.getStackInSlot(slot));
             }

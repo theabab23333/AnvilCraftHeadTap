@@ -1,6 +1,6 @@
 package me.theabab2333.headtap.event;
 
-import dev.dubhe.anvilcraft.api.event.anvil.AnvilFallOnLandEvent;
+import dev.dubhe.anvilcraft.api.event.AnvilEvent;
 import dev.dubhe.anvilcraft.block.PiezoelectricCrystalBlock;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
@@ -21,7 +21,7 @@ import java.util.List;
 public class AnvilEventListener {
     private static boolean behaviorRegistered = false;
     @SubscribeEvent
-    public static void onLand(@NotNull AnvilFallOnLandEvent event){
+    public static void onLand(@NotNull AnvilEvent.OnLand event){
         if (!behaviorRegistered) {
             ModAnvilBehaviors.register();
             PiezoelectricCrystalBlock.ANVIL_TYPES.put(ModBlocks.AMETHYST_ANVIL.get(), List.of(2, 4, 6, 8));
