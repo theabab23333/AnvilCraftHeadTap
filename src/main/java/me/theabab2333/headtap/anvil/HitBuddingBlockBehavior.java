@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.anvil;
 
 import dev.dubhe.anvilcraft.api.anvil.IAnvilBehavior;
-import dev.dubhe.anvilcraft.api.event.anvil.AnvilFallOnLandEvent;
+import dev.dubhe.anvilcraft.api.event.AnvilEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -15,15 +15,8 @@ import net.minecraft.world.level.material.Fluids;
 import static net.minecraft.world.level.block.BuddingAmethystBlock.canClusterGrowAtState;
 
 public class HitBuddingBlockBehavior implements IAnvilBehavior {
-
     @Override
-    public boolean handle(
-        Level level,
-        BlockPos hitBlockPos,
-        BlockState hitBlockState,
-        float fallDistance,
-        AnvilFallOnLandEvent event
-    ) {
+    public boolean handle(Level level, BlockPos hitBlockPos, BlockState hitBlockState, float fallDistance, AnvilEvent.OnLand event) {
         Direction[] DIRECTIONS = Direction.values();
         RandomSource random = level.getRandom();
         Direction direction = DIRECTIONS[random.nextInt(DIRECTIONS.length)];

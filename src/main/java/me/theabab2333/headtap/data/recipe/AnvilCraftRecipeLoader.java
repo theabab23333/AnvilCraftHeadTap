@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.data.recipe;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import dev.dubhe.anvilcraft.recipe.anvil.BlockCompressRecipe;
+import dev.dubhe.anvilcraft.recipe.anvil.wrap.BlockCompressRecipe;
 import me.theabab2333.headtap.init.ModBlocks;
 
 public class AnvilCraftRecipeLoader {

@@ -84,7 +84,7 @@ public class PassiveRoyalAnvilBlockEntity extends BlockEntity implements IItemHa
                 j = i == j ? j + 1 : Math.max(j, i);
                 Enchantment enchantment = holder.value();
 
-                if (!AnvilCraft.config.royalAnvilBeyondMaxLevel && j > enchantment.getMaxLevel()) {
+                if (!AnvilCraft.CONFIG.royalAnvilBeyondMaxLevel && j > enchantment.getMaxLevel()) {
                     j = enchantment.getMaxLevel();
                 }
                 inputEnchantments.set(holder, j);
@@ -105,11 +105,6 @@ public class PassiveRoyalAnvilBlockEntity extends BlockEntity implements IItemHa
 
     @Override
     public IItemHandler getItemHandler() {
-        return itemHandler;
-    }
-
-    @Override
-    public FilteredItemStackHandler getFilteredItemDepository() {
         return itemHandler;
     }
 
@@ -136,5 +131,10 @@ public class PassiveRoyalAnvilBlockEntity extends BlockEntity implements IItemHa
     public ItemStack getResult() {
         setBook();
         return getResult(bookRight, bookLeft);
+    }
+
+    @Override
+    public FilteredItemStackHandler getFilteredItemStackHandler() {
+        return itemHandler;
     }
 }

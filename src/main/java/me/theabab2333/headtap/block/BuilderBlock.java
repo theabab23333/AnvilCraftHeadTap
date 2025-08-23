@@ -113,7 +113,7 @@ public class BuilderBlock extends BetterBaseEntityBlock implements HammerRotateB
     ) {
         if (state.is(newState.getBlock())) return;
         if (level.getBlockEntity(pos) instanceof BuilderBlockEntity entity) {
-            FilteredItemStackHandler itemHandler = entity.getFilteredItemDepository();
+            FilteredItemStackHandler itemHandler = entity.getFilteredItemStackHandler();
             Containers.dropContents(level, pos, itemHandler.getStacks());
             level.updateNeighbourForOutputSignal(pos, this);
         }

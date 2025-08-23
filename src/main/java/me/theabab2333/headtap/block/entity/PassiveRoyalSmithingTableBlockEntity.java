@@ -107,11 +107,6 @@ public class PassiveRoyalSmithingTableBlockEntity extends BlockEntity implements
     }
 
     @Override
-    public FilteredItemStackHandler getFilteredItemDepository() {
-        return itemHandler;
-    }
-
-    @Override
     public IItemHandler getItemHandler() {
         return itemHandler;
     }
@@ -134,5 +129,10 @@ public class PassiveRoyalSmithingTableBlockEntity extends BlockEntity implements
     public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
         itemHandler.deserializeNBT(provider, tag.getCompound("Inv"));
+    }
+
+    @Override
+    public FilteredItemStackHandler getFilteredItemStackHandler() {
+        return itemHandler;
     }
 }

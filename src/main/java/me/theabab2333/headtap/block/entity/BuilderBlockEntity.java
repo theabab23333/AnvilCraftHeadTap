@@ -213,11 +213,6 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         getLevel().setBlockAndUpdate(getBlockPos(), state.setValue(BuilderBlock.FACING, direction));
     }
 
-    @Override
-    public FilteredItemStackHandler getFilteredItemDepository() {
-        return itemHandler;
-    }
-
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
@@ -258,5 +253,10 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     @Override
     public void updateDisplayItem(ItemStack stack) {
         displayItemStack = stack;
+    }
+
+    @Override
+    public FilteredItemStackHandler getFilteredItemStackHandler() {
+        return itemHandler;
     }
 }
