@@ -3,7 +3,6 @@ package me.theabab2333.headtap.init;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import dev.dubhe.anvilcraft.data.AnvilCraftDatagen;
-import dev.dubhe.anvilcraft.init.ModItems;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
@@ -82,14 +81,14 @@ public class ModBlocks {
             .pattern("CDC")
             .pattern("AEA")
             .define('A', Items.IRON_INGOT)
-            .define('B', dev.dubhe.anvilcraft.init.ModBlocks.CRUSHING_TABLE)
-            .define('C', ModItems.MAGNET_INGOT)
+            .define('B', dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE)
+            .define('C', dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT)
             .define('D', Items.AMETHYST_SHARD)
             .define('E', Items.STONECUTTER)
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.IRON_INGOT), RegistrateRecipeProvider.has(Items.IRON_INGOT))
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.CRUSHING_TABLE),
-                RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.ModBlocks.CRUSHING_TABLE))
-            .unlockedBy(AnvilCraftDatagen.hasItem(ModItems.MAGNET_INGOT), RegistrateRecipeProvider.has(ModItems.MAGNET_INGOT))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE),
+                RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT), RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT))
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_SHARD), RegistrateRecipeProvider.has(Items.AMETHYST_SHARD))
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.STONECUTTER), RegistrateRecipeProvider.has(Items.STONECUTTER))
             .save(provider))
@@ -107,13 +106,13 @@ public class ModBlocks {
             .pattern("BCB")
             .pattern("AAA")
             .define('A', Items.IRON_INGOT)
-            .define('B', ModItems.RESIN)
-            .define('C', dev.dubhe.anvilcraft.init.ModBlocks.CRUSHING_TABLE)
+            .define('B', dev.dubhe.anvilcraft.init.item.ModItems.RESIN)
+            .define('C', dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE)
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.IRON_INGOT), AnvilCraftDatagen.has(Items.IRON_INGOT))
-            .unlockedBy(AnvilCraftDatagen.hasItem(ModItems.RESIN), AnvilCraftDatagen.has(ModItems.RESIN))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.item.ModItems.RESIN), AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.item.ModItems.RESIN))
             .unlockedBy(
-                AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.CRUSHING_TABLE),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.CRUSHING_TABLE))
+                AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE))
             .save(provider))
         .register();
 
@@ -127,15 +126,15 @@ public class ModBlocks {
             .pattern("AAA")
             .pattern("BCB")
             .pattern("AAA")
-            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.HEAVY_IRON_BLOCK)
+            .define('A', dev.dubhe.anvilcraft.init.block.ModBlocks.HEAVY_IRON_BLOCK)
             .define('B', Blocks.AMETHYST_BLOCK)
-            .define('C', dev.dubhe.anvilcraft.init.ModBlocks.MENGER_SPONGE)
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.HEAVY_IRON_BLOCK),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.HEAVY_IRON_BLOCK))
+            .define('C', dev.dubhe.anvilcraft.init.block.ModBlocks.MENGER_SPONGE)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.HEAVY_IRON_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.HEAVY_IRON_BLOCK))
             .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.AMETHYST_BLOCK), AnvilCraftDatagen.has(Blocks.AMETHYST_BLOCK))
             .unlockedBy(
-                AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.MENGER_SPONGE),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.MENGER_SPONGE))
+                AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.MENGER_SPONGE),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.MENGER_SPONGE))
             .save(provider))
         .register();
 
@@ -178,9 +177,9 @@ public class ModBlocks {
             .pattern("BAB")
             .pattern(" B ")
             .define('A', Blocks.OBSERVER)
-            .define('B', ModItems.BRONZE_INGOT)
-            .unlockedBy(AnvilCraftDatagen.hasItem(ModItems.BRONZE_INGOT),
-                AnvilCraftDatagen.has(ModItems.BRONZE_INGOT))
+            .define('B', dev.dubhe.anvilcraft.init.item.ModItems.BRONZE_INGOT)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.item.ModItems.BRONZE_INGOT),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.item.ModItems.BRONZE_INGOT))
             .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.OBSERVER), AnvilCraftDatagen.has(Blocks.OBSERVER))
             .save(provider))
         .register();
@@ -196,13 +195,13 @@ public class ModBlocks {
             .pattern(" A ")
             .pattern(" B ")
             .pattern(" C ")
-            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL)
-            .define('B', dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK)
+            .define('A', dev.dubhe.anvilcraft.init.block.ModBlocks.ROYAL_ANVIL)
+            .define('B', dev.dubhe.anvilcraft.init.block.ModBlocks.LEVITATION_POWDER_BLOCK)
             .define('C', ModBlocks.ANVIL_OBSERVER)
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL))
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.LEVITATION_POWDER_BLOCK))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.ROYAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.ROYAL_ANVIL))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.LEVITATION_POWDER_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.LEVITATION_POWDER_BLOCK))
             .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.ANVIL_OBSERVER), AnvilCraftDatagen.has(ModBlocks.ANVIL_OBSERVER))
             .save(provider))
         .register();
@@ -218,12 +217,12 @@ public class ModBlocks {
             .pattern(" A ")
             .pattern("CBC")
             .pattern("DBD")
-            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL)
+            .define('A', dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL)
             .define('B', Blocks.ENCHANTING_TABLE)
             .define('C', Items.DIAMOND)
             .define('D', me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT)
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL))
             .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.ENCHANTING_TABLE), AnvilCraftDatagen.has(Blocks.ENCHANTING_TABLE))
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.DIAMOND), AnvilCraftDatagen.has(Items.DIAMOND))
             .unlockedBy(AnvilCraftDatagen.hasItem(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT),
@@ -243,16 +242,16 @@ public class ModBlocks {
             .pattern("AAA")
             .pattern("CBC")
             .pattern("DBD")
-            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER)
-            .define('B', dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK)
+            .define('A', dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER)
+            .define('B', dev.dubhe.anvilcraft.init.block.ModBlocks.TRANSCENDIUM_BLOCK)
             .define('C', ModBlocks.DENSITY_CORE)
-            .define('D', dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL)
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER))
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.TRANSCENDIUM_BLOCK))
-            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL),
-                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL))
+            .define('D', dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.TRANSCENDIUM_BLOCK),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.TRANSCENDIUM_BLOCK))
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL))
             .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.DENSITY_CORE),
                 AnvilCraftDatagen.has(ModBlocks.DENSITY_CORE))
             .save(provider))

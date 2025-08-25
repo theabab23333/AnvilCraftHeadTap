@@ -2,9 +2,7 @@ package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
-import dev.dubhe.anvilcraft.AnvilCraft;
-import dev.dubhe.anvilcraft.data.AnvilCraftDatagen;
-import dev.dubhe.anvilcraft.init.ModItemTags;
+import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.HeadTap;
@@ -13,7 +11,6 @@ import me.theabab2333.headtap.item.BambooJavelinItem;
 import me.theabab2333.headtap.item.GolemCraftbow;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
-import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -57,12 +54,12 @@ public class ModItems {
             .pattern("APA")
             .pattern("ADA")
             .pattern("XC ")
-            .define('A', dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER)
+            .define('A', dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER)
             .define('P', Items.CARVED_PUMPKIN)
             .define('D', Items.DISPENSER)
             .define('C', Items.CROSSBOW)
             .define('X', Items.SHEARS)
-            .unlockedBy("has_block_placer", RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.ModBlocks.BLOCK_PLACER))
+            .unlockedBy("has_block_placer", RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER))
             .unlockedBy("has_carved_pumpkin", RegistrateRecipeProvider.has(Items.CARVED_PUMPKIN))
             .unlockedBy("has_crossbow", RegistrateRecipeProvider.has(Items.CROSSBOW))
             .save(provider))

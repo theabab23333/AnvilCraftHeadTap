@@ -7,7 +7,7 @@ import com.mojang.math.Axis;
 import dev.dubhe.anvilcraft.api.itemhandler.SlotItemHandlerWithFilter;
 import dev.dubhe.anvilcraft.client.gui.screen.BaseMachineScreen;
 import dev.dubhe.anvilcraft.client.gui.screen.IFilterScreen;
-import dev.dubhe.anvilcraft.init.ModRecipeTypes;
+import dev.dubhe.anvilcraft.init.reicpe.ModRecipeTypes;
 import dev.dubhe.anvilcraft.network.SlotDisableChangePacket;
 import dev.dubhe.anvilcraft.network.SlotFilterChangePacket;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;

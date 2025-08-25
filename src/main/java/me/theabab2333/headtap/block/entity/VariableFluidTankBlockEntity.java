@@ -2,7 +2,8 @@ package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.power.IPowerConsumer;
 import dev.dubhe.anvilcraft.api.power.PowerGrid;
-import dev.dubhe.anvilcraft.init.ModBlocks;
+import dev.dubhe.anvilcraft.init.block.ModBlocks;
+import lombok.Getter;
 import me.theabab2333.headtap.init.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -29,6 +30,7 @@ import java.util.Map;
 public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerConsumer {
     public int power = 16;
     public int hasVoid = 0;
+    @Getter
     private PowerGrid grid;
     public FluidTank tank = new FluidTank(0);
 
@@ -140,7 +142,4 @@ public class VariableFluidTankBlockEntity extends BlockEntity implements IPowerC
         this.grid = grid;
     }
 
-    public PowerGrid getGrid() {
-        return this.grid;
-    }
 }

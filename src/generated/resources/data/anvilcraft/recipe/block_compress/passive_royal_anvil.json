@@ -1,8 +1,14 @@
 {
   "type": "anvilcraft:block_compress",
   "inputs": [
-    "headtap:density_core",
-    "anvilcraft:royal_anvil"
+    {
+      "blocks": "headtap:density_core"
+    },
+    {
+      "blocks": "anvilcraft:royal_anvil"
+    }
   ],
-  "result": "headtap:passive_royal_anvil"
+  "result": {
+    "block": "headtap:passive_royal_anvil"
+  }
 }

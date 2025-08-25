@@ -1,8 +1,14 @@
 {
   "type": "anvilcraft:block_compress",
   "inputs": [
-    "anvilcraft:heavy_iron_block",
-    "anvilcraft:magnetoelectric_core"
+    {
+      "blocks": "anvilcraft:heavy_iron_block"
+    },
+    {
+      "blocks": "anvilcraft:magnetoelectric_core"
+    }
   ],
-  "result": "headtap:density_core"
+  "result": {
+    "block": "headtap:density_core"
+  }
 }

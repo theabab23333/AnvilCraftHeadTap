@@ -3,8 +3,8 @@ package me.theabab2333.headtap.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.anvilcraft.lib.util.CodecUtil;
 import dev.dubhe.anvilcraft.recipe.anvil.builder.AbstractRecipeBuilder;
-import dev.dubhe.anvilcraft.util.CodecUtil;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import net.minecraft.core.BlockPos;
@@ -36,6 +36,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @ParametersAreNonnullByDefault
 public class StoneGeneratorRecipe implements Recipe<StoneGeneratorRecipe.Input> {
@@ -52,7 +53,7 @@ public class StoneGeneratorRecipe implements Recipe<StoneGeneratorRecipe.Input> 
         .apply(ins, StoneGeneratorRecipe::new));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, StoneGeneratorRecipe> STREAM_CODEC = StreamCodec.of(
-        (buf, recipe) -> buf.writeNbt(intoTag(recipe)), friendlyByteBuf -> fromTag(friendlyByteBuf.readNbt()));
+        (buf, recipe) -> buf.writeNbt(intoTag(recipe)), friendlyByteBuf -> fromTag(Objects.requireNonNull(friendlyByteBuf.readNbt())));
 
     public StoneGeneratorRecipe(List<Block> inputBlocks, List<FluidIngredient> inputFluids, ItemStack result, int priority) {
         this.inputBlocks = inputBlocks;
