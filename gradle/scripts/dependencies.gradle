@@ -8,6 +8,9 @@ dependencies {
     // AnvilCraft
     implementation(libs.anvilCraft) { transitive = false }
 
+    // AnvilLib
+    implementation(libs.anvillib)
+
     // Curios API
     implementation(libs.curios)
 

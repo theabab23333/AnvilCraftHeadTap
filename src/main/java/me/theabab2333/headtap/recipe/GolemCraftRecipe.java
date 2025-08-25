@@ -3,9 +3,9 @@ package me.theabab2333.headtap.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import dev.anvilcraft.lib.util.CodecUtil;
 import dev.dubhe.anvilcraft.recipe.anvil.builder.AbstractRecipeBuilder;
 import dev.dubhe.anvilcraft.recipe.transform.TagModification;
-import dev.dubhe.anvilcraft.util.CodecUtil;
 import dev.dubhe.anvilcraft.util.Util;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.ModRecipeTypes;
@@ -64,7 +64,7 @@ public class GolemCraftRecipe implements Recipe<GolemCraftRecipe.Input> {
                 .forGetter(o -> Util.intoOptional(o.tagModifications)))
         .apply(ins, GolemCraftRecipe::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, GolemCraftRecipe> STREAM_CODEC = StreamCodec.of(
-        (buf, recipe) -> buf.writeNbt(intoTag(recipe)), friendlyByteBuf -> fromTag(friendlyByteBuf.readNbt()));
+        (buf, recipe) -> buf.writeNbt(intoTag(recipe)), friendlyByteBuf -> fromTag(Objects.requireNonNull(friendlyByteBuf.readNbt())));
 
     public GolemCraftRecipe(
         ItemStack itemInput, EntityType<?> result,

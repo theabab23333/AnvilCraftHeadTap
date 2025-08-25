@@ -1,6 +1,6 @@
 package me.theabab2333.headtap.api.itemhandler;
 
-import dev.dubhe.anvilcraft.init.ModBlocks;
+import dev.dubhe.anvilcraft.init.block.ModBlocks;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;

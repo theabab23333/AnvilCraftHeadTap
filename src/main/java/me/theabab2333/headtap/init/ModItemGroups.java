@@ -18,7 +18,7 @@ public class ModItemGroups {
         HT.register("block", () -> CreativeModeTab.builder()
             .icon(ModBlocks.AMETHYST_ANVIL::asStack)
             .title(REGISTRATE.addLang("itemGroup", HeadTap.of("block"), "AnvilCraft: HeadTap"))
-            .withTabsBefore(dev.dubhe.anvilcraft.init.ModItemGroups.ANVILCRAFT_BUILD_BLOCK.getId())
+            .withTabsBefore(dev.dubhe.anvilcraft.init.item.ModItemGroups.ANVILCRAFT_BUILD_BLOCK.getId())
             .build());
     public static void register(IEventBus modEventBus) {
         HT.register(modEventBus);

@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.event;
 
 
-import dev.dubhe.anvilcraft.init.ModBlockEntities;
+import dev.dubhe.anvilcraft.init.block.ModBlockEntities;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;

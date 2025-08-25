@@ -2,7 +2,8 @@
 neoForge = "21.1.186"
 registrate = "MC1.21-1.3.0+62"
 clothConfig = "15.0.140"
-anvilCraft = "1.5.0+build.1304"
+anvilCraft = "1.5.0+pre-release.2"
+anvillib = "1.4.0+build.149"
 curios = "9.0.15+1.21.1"
 jei = "19.21.0.247"
 jade = "15.3.4+neoforge"
@@ -14,6 +15,7 @@ lombok = "8.7.1"
 registrate = { group = "com.tterrag.registrate", name = "Registrate", version.ref = "registrate" }
 clothConfig = { group = "me.shedaniel.cloth", name = "cloth-config-neoforge", version.ref = "clothConfig" }
 anvilCraft = { group = "dev.dubhe", name = "anvilcraft-neoforge-1.21.1", version.ref = "anvilCraft" }
+anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-1.21.1", version.ref = "anvillib" }
 curios = { group = "top.theillusivec4.curios", name = "curios-neoforge", version.ref = "curios" }
 jeiCommonApi = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref = "jei" }
 jeiForgeApi = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }

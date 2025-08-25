@@ -94,10 +94,10 @@ public class StoneGeneratorCategory implements IRecipeCategory<RecipeHolder<Ston
     public static void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         registration.addRecipeCatalyst(new ItemStack(Items.ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.AMETHYST_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
-        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.ModBlocks.ROYAL_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
-        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.ModBlocks.EMBER_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
-        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.ModBlocks.GIANT_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
-        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.ModBlocks.SPECTRAL_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
+        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.block.ModBlocks.ROYAL_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
+        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.block.ModBlocks.EMBER_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
+        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.block.ModBlocks.GIANT_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
+        registration.addRecipeCatalyst(new ItemStack(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL), HeadTapJeiPlugin.STONE_GENERATOR);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.STONE_GENERATOR), HeadTapJeiPlugin.STONE_GENERATOR);
     }
 

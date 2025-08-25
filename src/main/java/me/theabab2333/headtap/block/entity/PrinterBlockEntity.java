@@ -55,7 +55,7 @@ public class PrinterBlockEntity extends BlockEntity implements IFilterBlockEntit
             if (slot == 0) {
                 return stack.is(ModItems.BLESSED_GOLD_INGOT);
             } else if (slot == 1) {
-                return stack.is(dev.dubhe.anvilcraft.init.ModItems.CURSED_GOLD_INGOT);
+                return stack.is(dev.dubhe.anvilcraft.init.item.ModItems.CURSED_GOLD_INGOT);
             } else if (slot == 2) {
                 return stack.is(Items.BOOK);
             } else return true;
