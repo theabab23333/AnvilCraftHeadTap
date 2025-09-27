@@ -5,6 +5,7 @@ import dev.dubhe.anvilcraft.init.block.ModBlockEntities;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
+import me.theabab2333.headtap.block.entity.DistributorBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalAnvilBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
@@ -33,6 +34,7 @@ public class CapabilitiesEventListener {
         PassiveRoyalSmithingTableBlockEntity.registerCapabilities(event);
         PrinterBlockEntity.registerCapabilities(event);
         BuilderBlockEntity.registerCapabilities(event);
+        DistributorBlockEntity.registerCapabilities(event);
 
         // Other
         event.registerBlock(

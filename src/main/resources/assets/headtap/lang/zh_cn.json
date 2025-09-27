@@ -32,5 +32,6 @@
   "block.headtap.builder": "多方块放置器",
   "gui.headtap.builder.top": "多方块放置器",
   "jei.headtap.category.ejector": "弹射",
-  "jei.headtap.category.ejector.high": "需要高度: %s"
+  "jei.headtap.category.ejector.high": "需要高度: %s",
+  "block.headtap.distributor": "配布器"
 }

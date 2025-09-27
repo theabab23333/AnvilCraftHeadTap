@@ -1,0 +1,25 @@
+{
+  "credit": "happy... sad... why... split... hate... love...",
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "0": "headtap:block/distributor_arrows",
+    "1": "headtap:block/distributor_happy",
+    "2": "headtap:block/distributor_sad",
+    "3": "headtap:block/distributor",
+    "particle": "headtap:block/distributor"
+  },
+  "elements": [
+    {
+      "from": [0, 0, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "north"},
+        "east": {"uv": [0, 0, 16, 16], "texture": "#3", "cullface": "east"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#2", "cullface": "south"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#3", "cullface": "west"},
+        "up": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "up"},
+        "down": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "down"}
+      }
+    }
+  ]
+}

@@ -8,6 +8,7 @@ import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
 import me.theabab2333.headtap.block.BuilderBlock;
+import me.theabab2333.headtap.block.DistributorBlock;
 import me.theabab2333.headtap.block.PassiveRoyalAnvilBlock;
 import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
 import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
@@ -31,6 +32,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
@@ -266,6 +268,29 @@ public class ModBlocks {
         .simpleItem()
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .properties(p -> p.sound(SoundType.COPPER))
+        .register();
+
+    public static final BlockEntry<DistributorBlock> DISTRIBUTER = REGISTRATE
+        .block("distributor", DistributorBlock::new)
+        .initialProperties(() -> Blocks.DISPENSER)
+        .tag(BlockTags.MINEABLE_WITH_PICKAXE)
+        .properties(p -> p.sound(SoundType.BONE_BLOCK).instrument(NoteBlockInstrument.XYLOPHONE))
+        .blockstate(DataGenUtil::noExtraModelOrState)
+        .simpleItem()
+        .recipe((ctx, provider) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ctx.get())
+            .pattern(" A ")
+            .pattern("DCD")
+            .pattern(" A ")
+            .define('C', dev.dubhe.anvilcraft.init.item.ModItems.CIRCUIT_BOARD)
+            .define('D', Blocks.DROPPER)
+            .define('A', Items.QUARTZ)
+            .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.item.ModItems.CIRCUIT_BOARD),
+                AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.item.ModItems.CIRCUIT_BOARD))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.DROPPER),
+                AnvilCraftDatagen.has(Blocks.DROPPER))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Items.QUARTZ),
+                AnvilCraftDatagen.has(Items.QUARTZ))
+            .save(provider))
         .register();
 
     public static final BlockEntry<ResinFluidCauldronBlock> RESIN_FLUID_CAULDRON = REGISTRATE

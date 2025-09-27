@@ -12,6 +12,7 @@
     "headtap:printer",
     "headtap:builder",
     "headtap:density_core",
+    "headtap:distributor",
     "headtap:resin_fluid_cauldron"
   ]
 }

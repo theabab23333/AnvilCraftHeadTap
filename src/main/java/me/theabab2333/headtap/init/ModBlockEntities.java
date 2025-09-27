@@ -2,6 +2,7 @@ package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
+import me.theabab2333.headtap.block.entity.DistributorBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalAnvilBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
@@ -54,6 +55,11 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<BuilderBlockEntity> BUILDER = REGISTRATE
         .blockEntity("builder", BuilderBlockEntity::new)
         .validBlock(ModBlocks.BUILDER)
+        .register();
+
+    public static final BlockEntityEntry<DistributorBlockEntity> DISTRIBUTER = REGISTRATE
+        .blockEntity("distributor", DistributorBlockEntity::new)
+        .validBlock(ModBlocks.DISTRIBUTER)
         .register();
 
 

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:quartz"
+    },
+    "C": {
+      "item": "anvilcraft:circuit_board"
+    },
+    "D": {
+      "item": "minecraft:dropper"
+    }
+  },
+  "pattern": [
+    " A ",
+    "DCD",
+    " A "
+  ],
+  "result": {
+    "count": 1,
+    "id": "headtap:distributor"
+  }
+}
