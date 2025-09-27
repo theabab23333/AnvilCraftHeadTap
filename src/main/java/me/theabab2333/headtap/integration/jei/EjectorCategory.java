@@ -1,12 +1,11 @@
 package me.theabab2333.headtap.integration.jei;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import dev.dubhe.anvilcraft.client.support.RenderSupport;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRecipeUtil;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRenderHelper;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiSlotUtil;
 import dev.dubhe.anvilcraft.integration.jei.util.TextureConstants;
-import dev.dubhe.anvilcraft.util.RenderHelper;
-import me.theabab2333.headtap.init.ModBlockStateProperties;
 import me.theabab2333.headtap.init.ModBlocks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.EjectorRecipe;
@@ -130,18 +129,18 @@ public class EjectorCategory implements IRecipeCategory<RecipeHolder<EjectorReci
         }
         blockState = ModBlocks.ENTITY_EJECTOR.getDefaultState().setValue(BlockStateProperties.POWERED, power);
 
-        RenderHelper.renderBlock(
+        RenderSupport.renderBlock(
             guiGraphics,
             blockState,
             81,
             40,
             10,
             12,
-            RenderHelper.SINGLE_BLOCK);
+            RenderSupport.SINGLE_BLOCK);
 
         PoseStack poseStack = guiGraphics.pose();
         if (stack == null) return;
-        RenderHelper.renderItemWithTransparency(
+        RenderSupport.renderItemWithTransparency(
             stack,
             poseStack,
             73,

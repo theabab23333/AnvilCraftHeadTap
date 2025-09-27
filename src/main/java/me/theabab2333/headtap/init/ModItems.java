@@ -15,6 +15,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.neoforged.neoforge.common.Tags;
 
 import static me.theabab2333.headtap.HeadTap.REGISTRATE;
 
@@ -67,7 +68,7 @@ public class ModItems {
 
     public static ItemEntry<BucketItem> RESIN_FLUID_BUCKET = HeadTap.REGISTRATE
         .item("resin_fluid_bucket", p -> new BucketItem(ModFluids.RESIN_FLUID.get(), p))
-        .tag(ModItemTags.BUCKETS)
+        .tag(Tags.Items.BUCKETS)
         .properties(p -> p.stacksTo(1).craftRemainder(Items.BUCKET))
         .model(ModelProviderUtil::bucket)
         .register();

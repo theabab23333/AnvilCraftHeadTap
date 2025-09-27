@@ -1,9 +1,9 @@
 package me.theabab2333.headtap.integration.jei;
 
+import dev.dubhe.anvilcraft.client.support.RenderSupport;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRecipeUtil;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRenderHelper;
 import dev.dubhe.anvilcraft.integration.jei.util.TextureConstants;
-import dev.dubhe.anvilcraft.util.RenderHelper;
 import me.theabab2333.headtap.init.ModBlocks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
@@ -120,49 +120,49 @@ public class StoneGeneratorCategory implements IRecipeCategory<RecipeHolder<Ston
         progress.draw(guiGraphics, 75, 26);
         slot.draw(guiGraphics, 109, 25);
 
-        RenderHelper.renderBlock(
+        RenderSupport.renderBlock(
             guiGraphics,
             Blocks.ANVIL.defaultBlockState(),
             50,
             12 + anvilYOffset,
             20,
             12,
-            RenderHelper.SINGLE_BLOCK);
+            RenderSupport.SINGLE_BLOCK);
 
-        RenderHelper.renderBlock(
+        RenderSupport.renderBlock(
             guiGraphics,
             ModBlocks.STONE_GENERATOR.getDefaultState(),
             50,
             30,
             10,
             12,
-            RenderHelper.SINGLE_BLOCK);
+            RenderSupport.SINGLE_BLOCK);
 
         if (!recipe.inputFluids.isEmpty() && !recipe.inputBlocks.isEmpty()) {
             for (int b = recipe.inputBlocks.size() - 1; b >= 0; b--) {
                 List.of(
                     recipe.inputBlocks.get(b)
-                ).forEach(block -> RenderHelper.renderBlock(
+                ).forEach(block -> RenderSupport.renderBlock(
                     guiGraphics,
                     block.defaultBlockState(),
                     42,
                     26,
                     3,
                     12,
-                    RenderHelper.SINGLE_BLOCK)
+                    RenderSupport.SINGLE_BLOCK)
                 );
                 List.of(
                     recipe.inputFluids.get(b)
                 ).forEach(fluidIngredient -> {
                     fluidIngredient.getStacks()[0].getFluid().defaultFluidState().createLegacyBlock();
-                    RenderHelper.renderBlock(
+                    RenderSupport.renderBlock(
                         guiGraphics,
                         fluidIngredient.getStacks()[0].getFluid().defaultFluidState().createLegacyBlock(),
                         58,
                         34,
                         17,
                         12,
-                        RenderHelper.SINGLE_BLOCK);
+                        RenderSupport.SINGLE_BLOCK);
                 });
             }
         } else if (recipe.inputBlocks.isEmpty()) {
@@ -172,23 +172,23 @@ public class StoneGeneratorCategory implements IRecipeCategory<RecipeHolder<Ston
                 FluidStack fluidStack = fluidState.getStacks()[0];
                 renderedFluidState.set(fluidStack.getFluid().defaultFluidState().createLegacyBlock());
                 if (f != 0) {
-                    RenderHelper.renderBlock(
+                    RenderSupport.renderBlock(
                         guiGraphics,
                         renderedFluidState.get(),
                         58,
                         34,
                         17,
                         12,
-                        RenderHelper.SINGLE_BLOCK);
+                        RenderSupport.SINGLE_BLOCK);
                 } else {
-                    RenderHelper.renderBlock(
+                    RenderSupport.renderBlock(
                         guiGraphics,
                         renderedFluidState.get(),
                         42,
                         26,
                         3,
                         12,
-                        RenderHelper.SINGLE_BLOCK); break;
+                        RenderSupport.SINGLE_BLOCK); break;
                 }
             }
         } else {
@@ -198,23 +198,23 @@ public class StoneGeneratorCategory implements IRecipeCategory<RecipeHolder<Ston
                 BlockState blockState = block.defaultBlockState();
                 renderedBlockState.set(blockState);
                 if (b != 0) {
-                    RenderHelper.renderBlock(
+                    RenderSupport.renderBlock(
                         guiGraphics,
                         renderedBlockState.get(),
                         58,
                         34,
                         17,
                         12,
-                        RenderHelper.SINGLE_BLOCK);
+                        RenderSupport.SINGLE_BLOCK);
                 } else {
-                    RenderHelper.renderBlock(
+                    RenderSupport.renderBlock(
                         guiGraphics,
                         renderedBlockState.get(),
                         42,
                         26,
                         3,
                         12,
-                        RenderHelper.SINGLE_BLOCK); break;
+                        RenderSupport.SINGLE_BLOCK); break;
                 }
             }
         }

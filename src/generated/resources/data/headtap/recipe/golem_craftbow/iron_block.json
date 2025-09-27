@@ -9,7 +9,7 @@
     {
       "op": "ROOT_SET",
       "path": "",
-      "tag": "{\n    PlayerCreated: 1b\n}"
+      "tag": "{PlayerCreated: 1b}"
     }
   ]
 }
