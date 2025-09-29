@@ -2,15 +2,10 @@ package me.theabab2333.headtap.item;
 
 import dev.dubhe.anvilcraft.item.AnvilHammerItem;
 import me.theabab2333.headtap.init.ModBlocks;
-import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.block.Block;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 
 
 @ParametersAreNonnullByDefault
@@ -23,13 +18,6 @@ public class AmethystAnvilHammer extends AnvilHammerItem {
      */
     public AmethystAnvilHammer(Properties properties) {
         super(properties);
-    }
-
-    public void appendHoverText(
-        ItemStack pStack, TooltipContext pContext, List<Component> pTooltipComponents, TooltipFlag pTooltipFlag) {
-        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
-        pTooltipComponents.add(Component.translatable("item.headtap.amethyst_hammer.tooltip")
-            .withStyle(ChatFormatting.GRAY));
     }
 
     @Override
