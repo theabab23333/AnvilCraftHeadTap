@@ -27,7 +27,7 @@
   "jei.headtap.category.stone_generator": "Stone Generator",
   "message.headtap.golem_craftbow.golem_fail": "Don't have enough materials to craft a golem.",
   "modmenu.nameTranslation.headtap": "AnvilCraft: HeadTap",
-  "tooltip.headtap.item.amethyst_anvil": "Fragile anvil",
+  "tooltip.headtap.item.amethyst_anvil": "Fragile but pleasant anvil.",
   "tooltip.headtap.item.amethyst_hammer": "Fragile crystal, deals more damage.",
   "tooltip.headtap.item.anvil_observer": "Emits redstone signal when anvil lands on the block in front of it.",
   "tooltip.headtap.item.bamboo_javelin": "The less durability it has, the less damage it deals.",

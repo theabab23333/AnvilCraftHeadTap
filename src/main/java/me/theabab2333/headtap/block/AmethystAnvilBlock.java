@@ -5,6 +5,8 @@ import dev.dubhe.anvilcraft.block.better.BetterAnvilBlock;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -46,13 +48,15 @@ public class AmethystAnvilBlock extends BetterAnvilBlock implements IHammerRemov
 
     public void onLand(Level level, BlockPos pos, BlockState state, BlockState replaceableState, FallingBlockEntity fallingBlock) {
         if (!fallingBlock.isSilent()) {
-            level.levelEvent(1031, pos, 0);
+            //原版的写法是 level.levelEvent(1031, pos, 0);
+            level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_PLACE, SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 0.9F);
         }
     }
 
     public void onBrokenAfterFall(Level level, BlockPos pos, FallingBlockEntity fallingBlock) {
         if (!fallingBlock.isSilent()) {
-            level.levelEvent(1029, pos, 0);
+            //原版的写法是 level.levelEvent(1029, pos, 0);
+            level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_BREAK, SoundSource.BLOCKS, 1.8F, level.random.nextFloat() * 0.1F + 0.9F);
         }
     }
 }

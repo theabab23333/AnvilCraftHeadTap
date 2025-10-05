@@ -25,7 +25,7 @@ public class ItemTooltipManager {
         map.put(ModItems.GOLEM_CRAFTBOW.asItem(), "Right click to heal nearby Iron Golems with Iron Ingots. \nShift + Right click to summon golems with material blocks.");
         map.put(ModItems.RESIN_FLUID_BUCKET.asItem(), "A cauldron of resin turns into a block when output via a hopper.");
 
-        map.put(ModBlocks.AMETHYST_ANVIL.asItem(), "Fragile anvil");
+        map.put(ModBlocks.AMETHYST_ANVIL.asItem(), "Fragile but pleasant anvil.");
         //我想之后试试把紫水晶砧落地的声音改成紫水晶的音效
         map.put(ModBlocks.ANVIL_OBSERVER.asItem(), "Emits redstone signal when anvil lands on the block in front of it.");
         map.put(ModBlocks.BUILDER.asItem(), "Put an itemframe on top of this block, and put a multi-block crafting result in the itemframe will assign the recipe. \nPlaces blocks of the multi-block recipe when enough materials and redstone powered.");
