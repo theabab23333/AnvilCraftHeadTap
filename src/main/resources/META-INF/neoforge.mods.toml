@@ -26,6 +26,6 @@ side = "BOTH"
 [[dependencies."${mod_id}"]]
 modId = "anvilcraft"
 type = "required"
-versionRange = "[1.4.11,)"
-ordering = "NONE"
+versionRange = "[1.5.0+pre-release.14,)"
+ordering = "BEFORE"
 side = "BOTH"
