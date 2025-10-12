@@ -3,6 +3,7 @@ package me.theabab2333.headtap.item;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.GolemCraftRecipe;
 import net.minecraft.ChatFormatting;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -21,22 +22,45 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Objects;
 
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class GolemCraftbow extends Item {
-
-    public static final int MIN_CHARGE_TICKS = 10;
     public static final int FIX_RADIUS = 6;
 
     public GolemCraftbow(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public InteractionResult useOn(UseOnContext context) {
+        Player player = context.getPlayer();
+        if (player != null) {
+            Level level = context.getLevel();
+            InteractionResult interactionResult = applyGolemCraftRecipe(level, player, context);
+            if (interactionResult == InteractionResult.SUCCESS) {
+                ItemStack itemStack = context.getItemInHand();
+                itemStack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(itemStack));
+                player.getCooldowns().addCooldown(this, 20);
+            }
+            else if (interactionResult == InteractionResult.FAIL){
+                player.displayClientMessage(
+                    Component.translatable("message.headtap.golem_craftbow.golem_fail")
+                        .withStyle(ChatFormatting.GRAY),
+                    false);
+            }
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override
@@ -55,7 +79,7 @@ public class GolemCraftbow extends Item {
                 if (item.is(Items.IRON_INGOT)) {
                     for (IronGolem golem : ironGolems) {
                         float x = golem.getHealth();
-                        if (x <= 85.0f) {
+                        if (x < 100.0f) {
                             golem.heal(25.0f);
                             if (golem.getHealth() != x) {
                                 item.shrink(1);
@@ -75,7 +99,7 @@ public class GolemCraftbow extends Item {
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
     }
 
-    public static InteractionResult applyGolemCraftRecipe(Level level, Player player) {
+    public static InteractionResult applyGolemCraftRecipe(Level level, Player player, UseOnContext context) {
         if(!(level instanceof ServerLevel serverLevel)) return InteractionResult.PASS;
         RecipeManager manager = Objects.requireNonNull(level.getServer()).getRecipeManager();
         List<RecipeHolder<GolemCraftRecipe>> recipeHolders = manager.getAllRecipesFor(ModRecipeTypes.GOLEM_CRAFTBOW.get());
@@ -113,6 +137,7 @@ public class GolemCraftbow extends Item {
         if (result instanceof ZombieHorse || result instanceof SkeletonHorse) {
             ((AbstractHorse) result).setTamed(true);
         }
+        result.moveTo(context.getClickedPos().relative(context.getClickedFace()).getCenter());
         serverLevel.tryAddFreshEntityWithPassengers(result);
         return InteractionResult.SUCCESS;
     }
@@ -125,24 +150,6 @@ public class GolemCraftbow extends Item {
     @Override
     public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
         return UseAnim.BOW;
-    }
-
-    @Override
-    public void releaseUsing(@NotNull ItemStack stack, @NotNull Level level, @NotNull LivingEntity livingEntity, int timeCharged) {
-        if (!(livingEntity instanceof Player player)) return;
-        if (timeCharged >= MIN_CHARGE_TICKS && !player.getCooldowns().isOnCooldown(this)) {
-            InteractionResult interactionResult = applyGolemCraftRecipe(level, player);
-            if (interactionResult == InteractionResult.SUCCESS) {
-                stack.hurtAndBreak(1, player, player.getEquipmentSlotForItem(stack));
-                player.getCooldowns().addCooldown(this, 20);
-            }
-            else if (interactionResult == InteractionResult.FAIL){
-                player.displayClientMessage(
-                    Component.translatable("message.headtap.golem_craftbow.golem_fail")
-                        .withStyle(ChatFormatting.GRAY),
-                    false);
-            }
-        }
     }
 
     @Override
