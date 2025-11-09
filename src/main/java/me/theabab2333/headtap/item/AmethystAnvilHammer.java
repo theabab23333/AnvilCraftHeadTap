@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.item;
 
 import dev.dubhe.anvilcraft.item.AnvilHammerItem;
-import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.network.chat.Component;

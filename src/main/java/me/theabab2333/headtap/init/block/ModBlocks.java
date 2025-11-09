@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.init;
+package me.theabab2333.headtap.init.block;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -19,6 +19,9 @@ import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
 import me.theabab2333.headtap.block.VariableFluidTankBlock;
+import me.theabab2333.headtap.init.fluid.ModFluids;
+import me.theabab2333.headtap.init.item.ModItemGroups;
+import me.theabab2333.headtap.init.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -222,13 +225,13 @@ public class ModBlocks {
             .define('A', dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL)
             .define('B', Blocks.ENCHANTING_TABLE)
             .define('C', Items.DIAMOND)
-            .define('D', me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT)
+            .define('D', ModItems.BLESSED_GOLD_INGOT)
             .unlockedBy(AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL),
                 AnvilCraftDatagen.has(dev.dubhe.anvilcraft.init.block.ModBlocks.SPECTRAL_ANVIL))
             .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.ENCHANTING_TABLE), AnvilCraftDatagen.has(Blocks.ENCHANTING_TABLE))
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.DIAMOND), AnvilCraftDatagen.has(Items.DIAMOND))
-            .unlockedBy(AnvilCraftDatagen.hasItem(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT),
-                AnvilCraftDatagen.has(me.theabab2333.headtap.init.ModItems.BLESSED_GOLD_INGOT))
+            .unlockedBy(AnvilCraftDatagen.hasItem(ModItems.BLESSED_GOLD_INGOT),
+                AnvilCraftDatagen.has(ModItems.BLESSED_GOLD_INGOT))
             .save(provider))
         .register();
 

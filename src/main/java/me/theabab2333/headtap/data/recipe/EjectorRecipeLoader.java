@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.data.recipe;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.item.ModItems;
 import me.theabab2333.headtap.recipe.EjectorRecipe;
 import net.minecraft.world.item.Items;
 

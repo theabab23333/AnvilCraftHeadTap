@@ -2,9 +2,6 @@ dependencies {
     // Registrate
     api(libs.registrate)
 
-    // Cloth Config
-    implementation(libs.clothConfig)
-
     // AnvilCraft
     implementation(libs.anvilCraft) { transitive = false }
 

@@ -1,6 +1,7 @@
-package me.theabab2333.headtap.init;
+package me.theabab2333.headtap.init.item;
 
 import me.theabab2333.headtap.HeadTap;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
 import net.neoforged.bus.api.IEventBus;

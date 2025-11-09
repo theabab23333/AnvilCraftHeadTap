@@ -7,7 +7,7 @@ import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.client.init.ModModelLayers;
 import me.theabab2333.headtap.entity.model.ThrownBambooJavelinModel;
 import me.theabab2333.headtap.init.ModEntities;
-import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.item.ModItems;
 import me.theabab2333.headtap.item.BambooJavelinItem;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;

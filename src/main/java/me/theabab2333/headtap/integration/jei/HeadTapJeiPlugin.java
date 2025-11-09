@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.integration.jei;
 
 import me.theabab2333.headtap.HeadTap;
-import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import me.theabab2333.headtap.recipe.EjectorRecipe;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
 import mezz.jei.api.IModPlugin;

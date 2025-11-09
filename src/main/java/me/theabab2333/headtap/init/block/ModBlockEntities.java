@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.init;
+package me.theabab2333.headtap.init.block;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;

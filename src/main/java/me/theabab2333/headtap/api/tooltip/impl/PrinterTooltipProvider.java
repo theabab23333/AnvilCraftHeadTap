@@ -2,9 +2,9 @@ package me.theabab2333.headtap.api.tooltip.impl;
 
 import dev.dubhe.anvilcraft.api.tooltip.providers.ITooltipProvider;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import me.theabab2333.headtap.api.GetEnchantments;
+import me.theabab2333.headtap.util.EnchantmentUtil;
 import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
-import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.item.ModItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.Holder;
@@ -40,12 +40,12 @@ public class PrinterTooltipProvider extends ITooltipProvider.BlockEntityTooltipP
             }
 
             lines.add(Component.translatable("tooltip.headtap.printer.book").withStyle(ChatFormatting.YELLOW));
-            for (Object2IntMap.Entry<Holder<Enchantment>> entry : GetEnchantments.getItemEnchantments(itemStack).entrySet()) {
+            for (Object2IntMap.Entry<Holder<Enchantment>> entry : EnchantmentUtil.getItemEnchantments(itemStack).entrySet()) {
                 Holder<Enchantment> holder = entry.getKey();
                 int level = entry.getIntValue();
                 if (holder.is(EnchantmentTags.CURSE)) {
-                    lines.add(Component.translatable(GetEnchantments.getString(holder)).append(String.valueOf(level)).withStyle(ChatFormatting.RED));
-                } else lines.add(Component.translatable(GetEnchantments.getString(holder)).append(String.valueOf(level)).withStyle(ChatFormatting.LIGHT_PURPLE));
+                    lines.add(Component.translatable(EnchantmentUtil.getString(holder)).append(String.valueOf(level)).withStyle(ChatFormatting.RED));
+                } else lines.add(Component.translatable(EnchantmentUtil.getString(holder)).append(String.valueOf(level)).withStyle(ChatFormatting.LIGHT_PURPLE));
             }
 
             int needBCount = printer.getNeedB();

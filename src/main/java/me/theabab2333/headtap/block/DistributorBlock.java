@@ -6,7 +6,7 @@ import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.block.SimpleChuteBlock;
 import dev.dubhe.anvilcraft.block.better.BetterBaseEntityBlock;
 import me.theabab2333.headtap.block.entity.DistributorBlockEntity;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

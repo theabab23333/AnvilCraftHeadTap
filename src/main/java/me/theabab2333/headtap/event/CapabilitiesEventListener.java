@@ -13,7 +13,7 @@ import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
-import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;

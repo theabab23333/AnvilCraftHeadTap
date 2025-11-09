@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.init;
+package me.theabab2333.headtap.init.item;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.entry.ItemEntry;
@@ -6,6 +6,8 @@ import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.HeadTap;
+import me.theabab2333.headtap.init.block.ModBlocks;
+import me.theabab2333.headtap.init.fluid.ModFluids;
 import me.theabab2333.headtap.item.AmethystAnvilHammer;
 import me.theabab2333.headtap.item.BambooJavelinItem;
 import me.theabab2333.headtap.item.GolemCraftbow;

@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.api;
+package me.theabab2333.headtap.util;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
 import net.minecraft.core.Holder;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.enchantment.ItemEnchantments;
 
 import java.util.Iterator;
 
-public class GetEnchantments {
+public class EnchantmentUtil {
     public static DataComponentType<ItemEnchantments> getEnchantmentComponent(ItemStack itemStack) {
         return itemStack.is(Items.ENCHANTED_BOOK) ?
             DataComponents.STORED_ENCHANTMENTS : DataComponents.ENCHANTMENTS;

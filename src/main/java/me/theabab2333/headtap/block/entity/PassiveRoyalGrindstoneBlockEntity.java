@@ -4,8 +4,8 @@ import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import dev.dubhe.anvilcraft.init.item.ModItems;
-import me.theabab2333.headtap.api.GetEnchantments;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.util.EnchantmentUtil;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -85,13 +85,13 @@ public class PassiveRoyalGrindstoneBlockEntity extends BlockEntity implements II
         int repairCost = repairItem.getOrDefault(DataComponents.REPAIR_COST, 0);
         int goldUsed = 0;
         goldUsed += repairCost;
-        DataComponentType<ItemEnchantments> enchantmentComponent = GetEnchantments.getEnchantmentComponent(result);
-        ItemEnchantments enchantments = GetEnchantments.getItemEnchantments(result);
+        DataComponentType<ItemEnchantments> enchantmentComponent = EnchantmentUtil.getEnchantmentComponent(result);
+        ItemEnchantments enchantments = EnchantmentUtil.getItemEnchantments(result);
         this.totalCurseCount = 0;
         if (enchantments != null) {
-            this.totalCurseCount = GetEnchantments.getCurseCount(result);
-            ItemEnchantments.Mutable mutEnch = GetEnchantments.getMutableEnchantments(enchantments);
-            Iterator<Holder<Enchantment>> iterator = GetEnchantments.getIterator(mutEnch);
+            this.totalCurseCount = EnchantmentUtil.getCurseCount(result);
+            ItemEnchantments.Mutable mutEnch = EnchantmentUtil.getMutableEnchantments(enchantments);
+            Iterator<Holder<Enchantment>> iterator = EnchantmentUtil.getIterator(mutEnch);
             while (iterator.hasNext() && hasGold >= GOLD_PER_CURSE) {
                 Holder<Enchantment> curseEnchantment = iterator.next();
                 if (!curseEnchantment.is(EnchantmentTags.CURSE)) continue;

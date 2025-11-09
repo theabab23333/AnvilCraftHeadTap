@@ -1,7 +1,6 @@
 package me.theabab2333.headtap.data.recipe;
 
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import me.theabab2333.headtap.init.ModFluids;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;

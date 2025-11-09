@@ -1,7 +1,9 @@
-package me.theabab2333.headtap.init;
+package me.theabab2333.headtap.init.fluid;
 
 import dev.dubhe.anvilcraft.util.ModClientFluidTypeExtensionImpl;
 import me.theabab2333.headtap.HeadTap;
+import me.theabab2333.headtap.init.item.ModItems;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvents;

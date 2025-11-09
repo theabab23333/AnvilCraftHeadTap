@@ -3,7 +3,7 @@ package me.theabab2333.headtap.client;
 import me.theabab2333.headtap.client.event.GuiLayerRegistrationEventListener;
 import me.theabab2333.headtap.client.init.ModModelLayers;
 import me.theabab2333.headtap.HeadTap;
-import me.theabab2333.headtap.init.ModFluids;
+import me.theabab2333.headtap.init.fluid.ModFluids;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;

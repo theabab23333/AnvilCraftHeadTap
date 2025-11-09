@@ -3,9 +3,9 @@ package me.theabab2333.headtap.block.entity;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import lombok.Getter;
-import me.theabab2333.headtap.api.GetEnchantments;
-import me.theabab2333.headtap.init.ModBlockEntities;
-import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.util.EnchantmentUtil;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
+import me.theabab2333.headtap.init.item.ModItems;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -79,8 +79,8 @@ public class PrinterBlockEntity extends BlockEntity implements IFilterBlockEntit
     public void getPrintBook(ItemStack itemStack) {
         if (displayItemStack == itemStack) return;
         displayItemStack = itemStack;
-        bCount = GetEnchantments.calculateTheSumOfOther(displayItemStack) * 4;
-        cCount = GetEnchantments.calculateTheSumOfAllCruse(displayItemStack) * 4;
+        bCount = EnchantmentUtil.calculateTheSumOfOther(displayItemStack) * 4;
+        cCount = EnchantmentUtil.calculateTheSumOfAllCruse(displayItemStack) * 4;
     }
 
     public void toPrint() {

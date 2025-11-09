@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.init;
+package me.theabab2333.headtap.init.block;
 
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 

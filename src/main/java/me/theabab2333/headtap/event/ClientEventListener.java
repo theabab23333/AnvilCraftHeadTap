@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.event;
 
 import me.theabab2333.headtap.HeadTap;
-import me.theabab2333.headtap.init.ModFluids;
+import me.theabab2333.headtap.init.fluid.ModFluids;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.neoforged.bus.api.SubscribeEvent;

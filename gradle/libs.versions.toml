@@ -1,8 +1,7 @@
 [versions]
 neoForge = "21.1.186"
 registrate = "MC1.21-1.3.0+62"
-clothConfig = "15.0.140"
-anvilCraft = "1.5.0+pre-release.14"
+anvilCraft = "1.5.0+pre-release.18"
 anvillib = "1.4.0+build.160"
 curios = "9.0.15+1.21.1"
 jei = "19.21.0.247"
@@ -13,7 +12,6 @@ lombok = "8.7.1"
 
 [libraries]
 registrate = { group = "com.tterrag.registrate", name = "Registrate", version.ref = "registrate" }
-clothConfig = { group = "me.shedaniel.cloth", name = "cloth-config-neoforge", version.ref = "clothConfig" }
 anvilCraft = { group = "dev.dubhe", name = "anvilcraft-neoforge-1.21.1", version.ref = "anvilCraft" }
 anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-1.21.1", version.ref = "anvillib" }
 curios = { group = "top.theillusivec4.curios", name = "curios-neoforge", version.ref = "curios" }

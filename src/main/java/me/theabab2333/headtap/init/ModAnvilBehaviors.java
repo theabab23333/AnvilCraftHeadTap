@@ -9,6 +9,7 @@ import me.theabab2333.headtap.anvil.HitEntityEjectorBehavior;
 import me.theabab2333.headtap.anvil.HitPrinterBlockBehavior;
 import me.theabab2333.headtap.anvil.HitResinExtractorBehavior;
 import me.theabab2333.headtap.anvil.HitStoneGeneratorBehavior;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.neoforged.neoforge.common.Tags;
 
 public class ModAnvilBehaviors {
