@@ -2,7 +2,7 @@ package me.theabab2333.headtap.block.entity;
 
 import me.theabab2333.headtap.init.block.ModBlockEntities;
 import me.theabab2333.headtap.init.block.ModBlocks;
-import me.theabab2333.headtap.init.fluid.ModFluids;
+import me.theabab2333.headtap.init.block.ModFluids;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

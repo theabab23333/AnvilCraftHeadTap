@@ -6,7 +6,7 @@ import me.theabab2333.headtap.data.HeadTapDataGen;
 import me.theabab2333.headtap.init.block.ModBlockEntities;
 import me.theabab2333.headtap.init.block.ModBlocks;
 import me.theabab2333.headtap.init.ModEntities;
-import me.theabab2333.headtap.init.fluid.ModFluids;
+import me.theabab2333.headtap.init.block.ModFluids;
 import me.theabab2333.headtap.init.item.ModItemGroups;
 import me.theabab2333.headtap.init.item.ModItems;
 import me.theabab2333.headtap.init.ModMenuTypes;

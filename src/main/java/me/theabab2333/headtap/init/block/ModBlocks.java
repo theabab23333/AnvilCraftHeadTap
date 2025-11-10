@@ -26,7 +26,6 @@ import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
 import me.theabab2333.headtap.block.SuperMassGeneratorBlock;
 import me.theabab2333.headtap.block.VariableFluidTankBlock;
-import me.theabab2333.headtap.init.fluid.ModFluids;
 import me.theabab2333.headtap.init.item.ModItemGroups;
 import me.theabab2333.headtap.init.item.ModItems;
 import me.theabab2333.headtap.util.AddonDataGenUtil;
@@ -306,27 +305,31 @@ public class ModBlocks {
 
     public static final BlockEntry<ArtificialHighTemperatureDeviceBlock> ARTIFICIAL_HIGH_TEMPERATURE_DEVICE = REGISTRATE
         .block("artificial_high_temperature_device", ArtificialHighTemperatureDeviceBlock::new)
-        .blockstate(AddonDataGenUtil::simple)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
+        .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
 
     public static final BlockEntry<CreatureExtractorBlock> CREATURE_EXTRACTOR = REGISTRATE
         .block("creature_extractor", CreatureExtractorBlock::new)
-        .blockstate(AddonDataGenUtil::simple)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
+        .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
 
-    public static final BlockEntry<EnvironmentExtractorBlock> EXTRACTOR_BLOCK = REGISTRATE
+    public static final BlockEntry<EnvironmentExtractorBlock> ENVIRONMENT_EXTRACTOR = REGISTRATE
         .block("environment_extractor", EnvironmentExtractorBlock::new)
-        .blockstate(AddonDataGenUtil::simple)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
+        .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
 
     public static final BlockEntry<JadeFurnaceBlock> JADE_FURNACE = REGISTRATE
         .block("jade_furnace", JadeFurnaceBlock::new)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(AddonDataGenUtil::simple)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
@@ -334,13 +337,15 @@ public class ModBlocks {
 
     public static final BlockEntry<JadeWorldBlock> JADE_WORLD = REGISTRATE
         .block("jade_world", JadeWorldBlock::new)
-        .blockstate(AddonDataGenUtil::simple)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
+        .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
 
     public static final BlockEntry<LootGeneratorBlock> LOOT_GENERATOR = REGISTRATE
         .block("loot_generator", LootGeneratorBlock::new)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(AddonDataGenUtil::simple)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
@@ -348,7 +353,8 @@ public class ModBlocks {
 
     public static final BlockEntry<SuperMassGeneratorBlock> SUPER_MASS_GENERATOR = REGISTRATE
         .block("super_mass_generator", SuperMassGeneratorBlock::new)
-        .blockstate(AddonDataGenUtil::simple)
+        .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
+        .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();

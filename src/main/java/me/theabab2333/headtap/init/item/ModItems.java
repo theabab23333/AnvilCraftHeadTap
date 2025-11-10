@@ -7,7 +7,7 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.block.ModBlocks;
-import me.theabab2333.headtap.init.fluid.ModFluids;
+import me.theabab2333.headtap.init.block.ModFluids;
 import me.theabab2333.headtap.item.AmethystAnvilHammer;
 import me.theabab2333.headtap.item.BambooJavelinItem;
 import me.theabab2333.headtap.item.GolemCraftbow;

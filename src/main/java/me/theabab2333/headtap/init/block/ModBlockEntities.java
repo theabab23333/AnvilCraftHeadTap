@@ -1,14 +1,21 @@
 package me.theabab2333.headtap.init.block;
 
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import me.theabab2333.headtap.block.entity.ArtificialHighTemperatureDeviceBlockEntity;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
+import me.theabab2333.headtap.block.entity.CreatureExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.DistributorBlockEntity;
+import me.theabab2333.headtap.block.entity.EnvironmentExtractorBlockEntity;
+import me.theabab2333.headtap.block.entity.JadeFurnaceBlockEntity;
+import me.theabab2333.headtap.block.entity.JadeWorldBlockEntity;
+import me.theabab2333.headtap.block.entity.LootGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalAnvilBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalGrindstoneBlockEntity;
 import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
 import me.theabab2333.headtap.block.entity.PrinterBlockEntity;
 import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
 import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
+import me.theabab2333.headtap.block.entity.SuperMassGeneratorBlockEntity;
 import me.theabab2333.headtap.block.entity.VariableFluidTankBlockEntity;
 import me.theabab2333.headtap.client.renderer.blockentity.PrinterBlockRenderer;
 
@@ -62,6 +69,40 @@ public class ModBlockEntities {
         .validBlock(ModBlocks.DISTRIBUTER)
         .register();
 
+    public static final BlockEntityEntry<ArtificialHighTemperatureDeviceBlockEntity> ARTIFICIAL_HIGH_TEMPERATURE_DEVICE = REGISTRATE
+        .blockEntity("artificial_high_temperature_device", ArtificialHighTemperatureDeviceBlockEntity::new)
+        .validBlock(ModBlocks.ARTIFICIAL_HIGH_TEMPERATURE_DEVICE)
+        .register();
+
+    public static final BlockEntityEntry<CreatureExtractorBlockEntity> CREATURE_EXTRACTOR = REGISTRATE
+        .blockEntity("creature_extractor", CreatureExtractorBlockEntity::new)
+        .validBlock(ModBlocks.CREATURE_EXTRACTOR)
+        .register();
+
+    public static final BlockEntityEntry<EnvironmentExtractorBlockEntity> ENVIRONMENT_EXTRACTOR = REGISTRATE
+        .blockEntity("environment_extractor", EnvironmentExtractorBlockEntity::new)
+        .validBlock(ModBlocks.ENVIRONMENT_EXTRACTOR)
+        .register();
+
+    public static final BlockEntityEntry<JadeFurnaceBlockEntity> JADE_FURNACE = REGISTRATE
+        .blockEntity("jade_furnace", JadeFurnaceBlockEntity::new)
+        .validBlock(ModBlocks.JADE_FURNACE)
+        .register();
+
+    public static final BlockEntityEntry<JadeWorldBlockEntity> JADE_WORLD = REGISTRATE
+        .blockEntity("jade_world", JadeWorldBlockEntity::new)
+        .validBlock(ModBlocks.JADE_WORLD)
+        .register();
+
+    public static final BlockEntityEntry<LootGeneratorBlockEntity> LOOT_GENERATOR = REGISTRATE
+        .blockEntity("loot_generator", LootGeneratorBlockEntity::new)
+        .validBlock(ModBlocks.LOOT_GENERATOR)
+        .register();
+
+    public static final BlockEntityEntry<SuperMassGeneratorBlockEntity> SUPER_MASS_GENERATOR = REGISTRATE
+        .blockEntity("super_mass_generator", SuperMassGeneratorBlockEntity::new)
+        .validBlock(ModBlocks.SUPER_MASS_GENERATOR)
+        .register();
 
     public static void register() {}
 }
