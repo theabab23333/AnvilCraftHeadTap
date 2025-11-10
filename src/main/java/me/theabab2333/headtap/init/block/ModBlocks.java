@@ -7,8 +7,14 @@ import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
 import me.theabab2333.headtap.block.AmethystAnvilBlock;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
+import me.theabab2333.headtap.block.ArtificialHighTemperatureDeviceBlock;
 import me.theabab2333.headtap.block.BuilderBlock;
+import me.theabab2333.headtap.block.CreatureExtractorBlock;
 import me.theabab2333.headtap.block.DistributorBlock;
+import me.theabab2333.headtap.block.EnvironmentExtractorBlock;
+import me.theabab2333.headtap.block.JadeFurnaceBlock;
+import me.theabab2333.headtap.block.JadeWorldBlock;
+import me.theabab2333.headtap.block.LootGeneratorBlock;
 import me.theabab2333.headtap.block.PassiveRoyalAnvilBlock;
 import me.theabab2333.headtap.block.PassiveRoyalGrindstoneBlock;
 import me.theabab2333.headtap.block.PassiveRoyalSmithingTableBlock;
@@ -18,10 +24,12 @@ import me.theabab2333.headtap.block.PrinterBlock;
 import me.theabab2333.headtap.block.ResinExtractorBlock;
 import me.theabab2333.headtap.block.ResinFluidCauldronBlock;
 import me.theabab2333.headtap.block.StoneGeneratorBlock;
+import me.theabab2333.headtap.block.SuperMassGeneratorBlock;
 import me.theabab2333.headtap.block.VariableFluidTankBlock;
 import me.theabab2333.headtap.init.fluid.ModFluids;
 import me.theabab2333.headtap.init.item.ModItemGroups;
 import me.theabab2333.headtap.init.item.ModItems;
+import me.theabab2333.headtap.util.AddonDataGenUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
@@ -294,6 +302,55 @@ public class ModBlocks {
             .unlockedBy(AnvilCraftDatagen.hasItem(Items.QUARTZ),
                 AnvilCraftDatagen.has(Items.QUARTZ))
             .save(provider))
+        .register();
+
+    public static final BlockEntry<ArtificialHighTemperatureDeviceBlock> ARTIFICIAL_HIGH_TEMPERATURE_DEVICE = REGISTRATE
+        .block("artificial_high_temperature_device", ArtificialHighTemperatureDeviceBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
+        .register();
+
+    public static final BlockEntry<CreatureExtractorBlock> CREATURE_EXTRACTOR = REGISTRATE
+        .block("creature_extractor", CreatureExtractorBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
+        .register();
+
+    public static final BlockEntry<EnvironmentExtractorBlock> EXTRACTOR_BLOCK = REGISTRATE
+        .block("environment_extractor", EnvironmentExtractorBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
+        .register();
+
+    public static final BlockEntry<JadeFurnaceBlock> JADE_FURNACE = REGISTRATE
+        .block("jade_furnace", JadeFurnaceBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
+        .register();
+
+    public static final BlockEntry<JadeWorldBlock> JADE_WORLD = REGISTRATE
+        .block("jade_world", JadeWorldBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
+        .register();
+
+    public static final BlockEntry<LootGeneratorBlock> LOOT_GENERATOR = REGISTRATE
+        .block("loot_generator", LootGeneratorBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
+        .register();
+
+    public static final BlockEntry<SuperMassGeneratorBlock> SUPER_MASS_GENERATOR = REGISTRATE
+        .block("super_mass_generator", SuperMassGeneratorBlock::new)
+        .blockstate(AddonDataGenUtil::simple)
+        .simpleItem()
+        .initialProperties(() -> Blocks.DISPENSER)
         .register();
 
     public static final BlockEntry<ResinFluidCauldronBlock> RESIN_FLUID_CAULDRON = REGISTRATE

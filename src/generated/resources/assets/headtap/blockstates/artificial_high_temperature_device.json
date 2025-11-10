@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "headtap:block/artificial_high_temperature_device"
+    }
+  }
+}

@@ -1,5 +1,7 @@
 {
 	"format_version": "1.9.0",
+	"parent": "block/block",
+	"render_type": "minecraft:translucent",
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "headtap:block/artificial_high_temperature_device_core",
@@ -33,5 +35,36 @@
 				"down": {"uv": [0, 16, 16, 0], "texture": "#1"}
 			}
 		}
-	]
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -2, 0],
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -2, 0],
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"firstperson_righthand": {
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.1, 0.1, 0.1]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.225, 0.225, 0.225]
+		},
+		"head": {
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"fixed": {
+			"rotation": [90, 0, 0],
+			"scale": [0.3, 0.3, 0.3]
+		}
+	}
 }
