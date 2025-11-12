@@ -1,0 +1,84 @@
+package me.theabab2333.headtap.block.entity;
+
+import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
+import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
+import dev.dubhe.anvilcraft.api.itemhandler.ItemHandlerUtil;
+import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
+import me.theabab2333.headtap.init.item.ModItems;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.items.IItemHandler;
+
+import java.util.Objects;
+
+public abstract class AbstractBaseMachineBlockEntity extends BlockEntity implements IFilterBlockEntity, IItemHandlerHolder, MenuProvider {
+    public AbstractBaseMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
+        super(type, pos, blockState);
+    }
+
+    protected abstract int cooldown();
+    protected abstract int slotCount();
+    protected abstract Direction getOutputDirection();
+    protected abstract int shouldSkipSlot();
+    protected abstract boolean isEnabled();
+
+    public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(slotCount());
+
+    private int cd = cooldown();
+
+    @Override
+    public FilteredItemStackHandler getFilteredItemStackHandler() {
+        return itemHandler;
+    }
+
+    @Override
+    public abstract Component getDisplayName();
+
+    @Override
+    public abstract AbstractContainerMenu createMenu(int i, Inventory inventory, Player player);
+
+    @Override
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
+        tag.put("Inventory", itemHandler.serializeNBT(provider));
+    }
+
+    @Override
+    protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+        itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
+    }
+
+    /**
+     * 机器自动输出 tick
+     */
+    public void tick() {
+        if (level == null) return;
+        cd--;
+        if (cd <= 0) {
+            cd = 5;
+            if (isEnabled()) {
+                IItemHandler cap = Objects.requireNonNull(getLevel()).getCapability(
+                    Capabilities.ItemHandler.BLOCK,
+                    getBlockPos().relative(getOutputDirection()),
+                    getOutputDirection().getOpposite());
+                if (cap != null) {
+                    for (int i = shouldSkipSlot(); i < itemHandler.getSlots(); i++) {
+                        ItemHandlerUtil.insertItem(cap, itemHandler.getStackInSlot(i), false);
+                    }
+                }
+            }
+        }
+    }
+}

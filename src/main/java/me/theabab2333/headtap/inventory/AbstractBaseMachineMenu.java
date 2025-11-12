@@ -2,14 +2,11 @@ package me.theabab2333.headtap.inventory;
 
 import dev.dubhe.anvilcraft.api.itemhandler.SlotItemHandlerWithFilter;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
-import dev.dubhe.anvilcraft.inventory.BaseMachineMenu;
 import dev.dubhe.anvilcraft.inventory.IFilterMenu;
-import dev.dubhe.anvilcraft.inventory.component.ReadOnlySlot;
+import dev.dubhe.anvilcraft.item.FilterItem;
 import lombok.Getter;
-import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
-import me.theabab2333.headtap.init.block.ModBlocks;
+import me.theabab2333.headtap.block.entity.AbstractBaseMachineBlockEntity;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -19,52 +16,94 @@ import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
+// R.I.P
 @Getter
-public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, ContainerListener {
-    // 抄自本体的BatchCrafterMenu 注释均未修改 感谢每位开发者
-
-    public static ItemStack resultStack = ItemStack.EMPTY;
-
-    public final BuilderBlockEntity blockEntity;
-    private final Slot resultSlot;
+public abstract class AbstractBaseMachineMenu<T extends AbstractBaseMachineBlockEntity> extends AbstractContainerMenu implements IFilterMenu, ContainerListener {
+    public final T blockEntity;
     private final Level level;
 
-    public BuilderMenu(@Nullable MenuType<?> menuType, int containerId, Inventory inventory, @NotNull FriendlyByteBuf extraData) {
+    public abstract int inputSize();
+    public abstract int outputSize();
+    public abstract List<Integer> inputStarXandY();
+    public abstract List<Integer> outputStarXandY();
+
+    public AbstractBaseMachineMenu(@Nullable MenuType<?> menuType, int containerId, Inventory inventory, FriendlyByteBuf extraData) {
         this(menuType, containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
-    public BuilderMenu(MenuType<?> menuType, int containerId, Inventory inventory, BlockEntity blockEntity) {
-        super(menuType, containerId, blockEntity);
-
-        this.blockEntity = (BuilderBlockEntity) blockEntity;
+    protected AbstractBaseMachineMenu(MenuType<?> menuType, int containerId, Inventory inventory, BlockEntity blockEntity) {
+        super(menuType, containerId);
+        this.blockEntity = (T) blockEntity;
         this.level = inventory.player.level();
 
-        this.addPlayerInventory(inventory);
-        this.addPlayerHotbar(inventory);
+        addPlayerInventory(inventory);
+        addPlayerHotbar(inventory);
 
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                this.addSlot(
-                    new SlotItemHandlerWithFilter(
-                        this.blockEntity.getItemHandler(),
-                        i * 3 + j,
-                        107 + j * 18,
-                        17 + i * 18
-                    )
-                );
+        /*
+        * 20 23
+        * 10 14
+        * 1 14
+        * 1 5
+        */
+        if (inputSize() == 1) {
+            this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), inputSize(), inputStarXandY().getFirst(), inputStarXandY().getLast()));
+        } else if (inputSize() <= 4) {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), inputSize(), inputStarXandY().getFirst(), inputStarXandY().getLast()));
+                }
+            }
+        } else if (inputSize() <= 6) {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), inputSize(), inputStarXandY().getFirst(), inputStarXandY().getLast()));
+                }
+            }
+        } else if (inputSize() <= 9) {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), inputSize(), inputStarXandY().getFirst(), inputStarXandY().getLast()));
+                }
             }
         }
 
-        this.addSlot(resultSlot = new ReadOnlySlot(new SimpleContainer(1), 0, 21, 21));
-
-        this.onChanged();
-        this.addSlotListener(this);
+        /*
+         * 124 23
+         * 116 14
+         * 107 14
+         * 107 5
+         */
+        int outputs = this.blockEntity.itemHandler.getSlots() - inputSize();
+        if (outputSize() == 1) {
+            this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), outputs, outputStarXandY().getFirst(), outputStarXandY().getLast()));
+        } else if (outputSize() <= 4) {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), outputs, outputStarXandY().getFirst(), outputStarXandY().getLast()));
+                }
+            }
+        } else if (outputSize() <= 6) {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), outputs, outputStarXandY().getFirst(), outputStarXandY().getLast()));
+                }
+            }
+        } else if (outputSize() <= 9) {
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    this.addSlot(new SlotItemHandlerWithFilter(this.blockEntity.getItemHandler(), outputs, outputStarXandY().getFirst(), outputStarXandY().getLast()));
+                }
+            }
+        }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
@@ -73,19 +112,20 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
         }
     }
 
+    @SuppressWarnings("DuplicatedCode")
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
             this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
     }
 
-    // 功劳归于：: diesieben07 | https://github.com/diesieben07/SevenCommons
-    // 必须为 GUI 使用的每个插槽分配一个插槽编号.
-    // 对于这个容器，我们可以看到瓷砖库存的插槽以及玩家库存插槽和快捷栏.
+    // 致谢： diesieben07 |https://github.com/diesieben07/SevenCommons
+    // 必须为 GUI 使用的每个插槽分配一个插槽编号。
+    // 对于这个容器，我们可以看到瓷砖库存的插槽以及玩家库存插槽和快捷栏。
     // 每次我们向容器添加 Slot 时，它都会自动增加 slotIndex，这意味着
-    //  0 - 8 = 快捷栏插槽（将映射到 InventoryPlayer 插槽编号 0 - 8）
-    //  9 - 35 = 玩家物品栏（映射到 InventoryPlayer 插槽编号 9 - 35）
-    //  36 - 44 = TileInventory 插槽，映射到我们的 TileEntity 插槽编号 0 - 8）
+    // 0 - 8 = 快捷栏插槽（将映射到 InventoryPlayer 插槽编号 0 - 8）
+    // 9 - 35 = 玩家库存槽（映射到 InventoryPlayer 槽位编号 9 - 35）
+    // 36 - 44 = TileInventory 插槽，映射到我们的 TileEntity 插槽编号 0 - 8）
     private static final int HOTBAR_SLOT_COUNT = 9;
     private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
     private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
@@ -96,13 +136,14 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
     // THIS YOU HAVE TO DEFINE!
     private static final int TE_INVENTORY_SLOT_COUNT = 9; // must be the number of slots you have!
 
+    @SuppressWarnings("DuplicatedCode")
     @Override
-    public ItemStack quickMoveStack(@NotNull Player playerIn, int index) {
+    public ItemStack quickMoveStack(Player playerIn, int index) {
         Slot sourceSlot = slots.get(index);
         //noinspection ConstantValue
         if (sourceSlot == null || !sourceSlot.hasItem()) {
-            return ItemStack.EMPTY; // EMPTY_ITEM
-        }
+            return ItemStack.EMPTY;
+        } // EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         final ItemStack copyOfSourceStack = sourceStack.copy();
         // Check if the slot clicked is one of the vanilla container slots
@@ -111,7 +152,7 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
             if (moveItemToActiveSlot(sourceStack)) {
                 return ItemStack.EMPTY; // EMPTY_ITEM
             }
-        } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+        } else if (index < TE_INVENTORY_FIRST_SLOT_INDEX + this.inputSize() + this.outputSize()) {
             // This is a TE slot so merge the stack into the players inventory
             if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
                 return ItemStack.EMPTY;
@@ -133,7 +174,7 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
     // 移动物品到可用槽位
     private boolean moveItemToActiveSlot(ItemStack stack) {
         int count = stack.getCount();
-        for (int index = BuilderMenu.TE_INVENTORY_FIRST_SLOT_INDEX; index < 45; index++) {
+        for (int index = TE_INVENTORY_FIRST_SLOT_INDEX; index < 45; index++) {
             // 只有对应槽位可以放入物品时才向槽位里快速移动物品
             if (canPlace(stack, index)) {
                 moveItemStackTo(stack, index, index + 1, false);
@@ -154,52 +195,26 @@ public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, Contain
             }
             // 当前槽位没有禁用，并且要放入的物品就是当前槽位的过滤器要过滤的物品，返回true
             // 如果未设置保留物品过滤，即所有槽位都没有被禁用，此时过滤器不会过滤任何物品，所以当前过滤器要过滤的物品为空时也应该返回true
-            ItemStack filterItem = depositorySlot.getFilterItem(9 - (45 - index));
-            return filterItem.isEmpty() || filterItem.is(stack.getItem());
+            return FilterItem.filter(depositorySlot.getFilterItem(9 - (45 - index)), stack);
         }
         return true;
     }
 
     @Override
-    public boolean stillValid(@NotNull Player player) {
-        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, ModBlocks.BUILDER.get());
+    public boolean stillValid(Player player) {
+        return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()), player, getBlock());
     }
+
+    protected abstract Block getBlock();
 
     @Override
     public IFilterBlockEntity getFilterBlockEntity() {
-        return this.blockEntity;
+        return blockEntity;
     }
 
     @Override
-    public int getFilterSlotIndex(@NotNull Slot slot) {
+    public int getFilterSlotIndex(Slot slot) {
         return slot.index - 36;
     }
 
-    @Override
-    public void setItem(int slotId, int stateId, @NotNull ItemStack stack) {
-        super.setItem(slotId, stateId, stack);
-        this.onChanged();
-    }
-
-    public void onChanged() {
-        ItemStack itemStack = this.blockEntity.getDisplayItemStack().copy();
-        this.resultSlot.set(itemStack);
-        if (!itemStack.isEmpty()) {
-            resultStack = itemStack;
-        }
-    }
-
-    @Override
-    public void slotChanged(@NotNull AbstractContainerMenu containerToSend, int dataSlotIndex, @NotNull ItemStack stack) {
-        onChanged();
-    }
-
-    @Override
-    public void dataChanged(@NotNull AbstractContainerMenu containerMenu, int dataSlotIndex, int value) {
-    }
-
-    @Override
-    public void flush() {
-        this.onChanged();
-    }
 }

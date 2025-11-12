@@ -22,6 +22,7 @@
   "block.headtap.super_mass_generator": "Super Mass Generator",
   "block.headtap.variable_fluid_tank": "Variable Fluid Tank",
   "entity.headtap.thrown_bamboo_javelin": "Thrown Bamboo Javelin",
+  "gui.headtap.artificial_high_temperature_device.top": "Artificial High Temperature Device",
   "gui.headtap.builder.top": "Builder",
   "item.headtap.amethyst_hammer": "Amethyst Hammer",
   "item.headtap.amethyst_hammer.tooltip": "Fragile crystal, deals more damage.",
