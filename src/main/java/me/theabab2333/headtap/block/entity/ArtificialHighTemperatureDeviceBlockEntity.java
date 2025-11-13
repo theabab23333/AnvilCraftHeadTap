@@ -1,5 +1,6 @@
 package me.theabab2333.headtap.block.entity;
 
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -16,38 +17,49 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
     }
 
     @Override
-    protected int cooldown() {
+    public int cooldown() {
         return 5;
     }
 
     @Override
-    protected int slotCount() {
+    public int slotCount() {
         return 18;
     }
 
     @Override
-    protected Direction getOutputDirection() {
-        return Direction.UP;
-    }
-
-    @Override
-    protected int shouldSkipSlot() {
+    public int shouldSkipSlot() {
         return 9;
     }
 
     @Override
-    protected boolean isEnabled() {
+    public boolean isEnabled() {
         return true;
     }
 
     @Override
+    public void setDirection(Direction direction) {
+
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+
+    }
+
+    @Override
     public Component getDisplayName() {
-        return Component.translatable("gui.headtap.artificial_high_temperature_device.top");
+        return null;
     }
 
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         return null;
+    }
+
+    @Override
+    public void tick() {
+        itemHandler.setStackInSlot(9, ModBlocks.BUILDER.asStack());
+        autoOutput();
     }
 
     @Override
