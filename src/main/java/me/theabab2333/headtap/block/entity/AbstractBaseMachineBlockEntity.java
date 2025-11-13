@@ -4,7 +4,6 @@ import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.api.itemhandler.ItemHandlerUtil;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
-import me.theabab2333.headtap.init.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -61,9 +60,14 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
     }
 
     /**
+     * 机器 tick
+     */
+    public abstract void tick();
+
+    /**
      * 机器自动输出 tick
      */
-    public void tick() {
+    public void autoOutput() {
         if (level == null) return;
         cd--;
         if (cd <= 0) {

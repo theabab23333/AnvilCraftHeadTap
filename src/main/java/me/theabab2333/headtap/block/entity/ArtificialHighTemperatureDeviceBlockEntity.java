@@ -42,12 +42,17 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("gui.headtap.artificial_high_temperature_device.top");
+        return null;
     }
 
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
         return null;
+    }
+
+    @Override
+    public void tick() {
+        autoOutput();
     }
 
     @Override

@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.event;
 
 
-import dev.dubhe.anvilcraft.init.block.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.api.itemhandler.ResinCauldronWrapper;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
@@ -18,6 +18,8 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+
+import java.util.List;
 
 @EventBusSubscriber(modid = HeadTap.MOD_ID)
 public class CapabilitiesEventListener {
@@ -36,16 +38,19 @@ public class CapabilitiesEventListener {
         BuilderBlockEntity.registerCapabilities(event);
         DistributorBlockEntity.registerCapabilities(event);
 
+        List.of(
+            dev.dubhe.anvilcraft.init.block.ModBlockEntities.CRAB_TRAP.get(),
+            ModBlockEntities.ARTIFICIAL_HIGH_TEMPERATURE_DEVICE.get()
+        ).forEach(type -> event.registerBlockEntity(
+            Capabilities.ItemHandler.BLOCK,
+            type,
+            (be, side) -> be.getItemHandler())
+        );
+
         // Other
         event.registerBlock(
             Capabilities.ItemHandler.BLOCK,
             ((level, pos, state, blockEntity, side) -> new ResinCauldronWrapper(level, pos)),
             ModBlocks.RESIN_FLUID_CAULDRON.get());
-
-        event.registerBlockEntity(
-            Capabilities.ItemHandler.BLOCK,
-            ModBlockEntities.CRAB_TRAP.get(),
-            (be, side) -> be.getItemHandler()
-        );
     }
 }
