@@ -1,8 +1,8 @@
 package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
-import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.api.itemhandler.ItemHandlerUtil;
+import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import lombok.Getter;
 import net.minecraft.core.BlockPos;
@@ -10,22 +10,19 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.Objects;
 
 @Getter
-public abstract class AbstractBaseMachineBlockEntity extends BlockEntity implements IFilterBlockEntity, IItemHandlerHolder, MenuProvider {
+public abstract class AbstractBaseMachineBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity {
     public AbstractBaseMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
@@ -33,9 +30,11 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
     public abstract int cooldown();
     public abstract int slotCount();
     public abstract int shouldSkipSlot();
-    public abstract boolean isEnabled();
     public abstract void setDirection(Direction direction);
-    public abstract void setEnabled(boolean enabled);
+    public abstract void setOutputEnabled(boolean enabled);
+
+    private int cd = cooldown();
+    private boolean outputEnabled = false;
 
     public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(slotCount()) {
         @Override
@@ -43,9 +42,6 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
             return slot < shouldSkipSlot() ? super.extractItem(shouldSkipSlot(), amount, simulate) : ItemStack.EMPTY;
         }
     };
-
-    private int cd = cooldown();
-    private boolean outputEnabled = false;
 
     @Override
     public FilteredItemStackHandler getFilteredItemStackHandler() {
@@ -72,10 +68,6 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
         itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
-    public Direction getOutputDirection() {
-        return getBlockState().getValue(BlockStateProperties.FACING);
-    }
-
     /**
      * 机器 tick
      */
@@ -93,8 +85,8 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
                 if (this.isOutputEnabled()) {
                     IItemHandler cap = Objects.requireNonNull(getLevel()).getCapability(
                         Capabilities.ItemHandler.BLOCK,
-                        getBlockPos().relative(getOutputDirection()),
-                        getOutputDirection().getOpposite());
+                        getBlockPos().relative(getDirection()),
+                        getDirection().getOpposite());
                     if (cap != null) {
                         for (int i = shouldSkipSlot(); i < itemHandler.getSlots(); i++) {
                             ItemHandlerUtil.insertItem(cap, itemHandler.getStackInSlot(i), false);

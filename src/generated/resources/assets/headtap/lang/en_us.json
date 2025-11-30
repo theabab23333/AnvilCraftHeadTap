@@ -37,6 +37,7 @@
   "jei.headtap.category.stone_generator": "Stone Generator",
   "message.headtap.golem_craftbow.golem_fail": "Don't have enough materials to craft a golem.",
   "modmenu.nameTranslation.headtap": "AnvilCraft: HeadTap",
+  "screen.headtap.button.output": "Output ItemStacks: %s",
   "tooltip.headtap.item.entity_ejector": "significant weightlessness",
   "tooltip.headtap.printer.book": "Print:",
   "tooltip.headtap.printer.level": "Level: %d",

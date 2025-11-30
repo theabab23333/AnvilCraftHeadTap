@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Getter
-public class MachineOutputMenu extends BaseMachineMenu {
+public class MachineOutputMenu extends BaseMachineMenu implements IOutputMenu {
     private final AbstractBaseMachineBlockEntity blockEntity;
     private final Level level;
 
@@ -44,12 +44,6 @@ public class MachineOutputMenu extends BaseMachineMenu {
     public void setDirection(Direction direction) {
         if (blockEntity instanceof AbstractBaseMachineBlockEntity entity){
             entity.setDirection(direction);
-        }
-    }
-
-    public void setEnabled(boolean enabled) {
-        if (blockEntity instanceof AbstractBaseMachineBlockEntity entity){
-            entity.setEnabled(enabled);
         }
     }
 }

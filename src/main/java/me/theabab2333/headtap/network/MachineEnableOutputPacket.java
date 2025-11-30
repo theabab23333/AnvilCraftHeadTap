@@ -2,8 +2,8 @@ package me.theabab2333.headtap.network;
 
 import lombok.Getter;
 import me.theabab2333.headtap.HeadTap;
-import me.theabab2333.headtap.client.gui.screen.MachineOutputScreen;
-import me.theabab2333.headtap.inventory.MachineOutputMenu;
+import me.theabab2333.headtap.client.gui.screen.IOutputScreen;
+import me.theabab2333.headtap.inventory.IOutputMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -41,8 +41,9 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
         ServerPlayer player = (ServerPlayer) context.player();
         context.enqueueWork(() -> {
             if (!player.hasContainerOpen()) return;
-            if (!(player.containerMenu instanceof MachineOutputMenu menu)) return;
-            menu.setEnabled(data.isOutputEnabled());
+            if (!(player.containerMenu instanceof IOutputMenu menu)) return;
+            menu.setOutputEnable(data.isOutputEnabled());
+            menu.flush();
             PacketDistributor.sendToPlayer(player, data);
         });
     }
@@ -50,8 +51,9 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
     public static void clientHandler(MachineEnableOutputPacket data, IPayloadContext context) {
         Minecraft client = Minecraft.getInstance();
         context.enqueueWork(() -> {
-            if (client.screen instanceof MachineOutputScreen screen) {
-                screen.setOutputEnabled(data.isOutputEnabled());
+            if (client.screen instanceof IOutputScreen<?> screen) {
+                screen.setOutputEnable(data.isOutputEnabled());
+                screen.flush();
             }
         });
     }

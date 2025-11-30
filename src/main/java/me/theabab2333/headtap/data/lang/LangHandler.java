@@ -8,5 +8,6 @@ public class LangHandler {
         ItemTooltipLang.init(provider);
         OtherLang.init(provider);
         JadeLang.init(provider);
+        GuiLang.init(provider);
     }
 }

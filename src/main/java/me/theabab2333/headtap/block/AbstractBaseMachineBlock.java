@@ -74,7 +74,7 @@ public abstract class AbstractBaseMachineBlock extends BetterBaseEntityBlock imp
             if (player instanceof ServerPlayer serverPlayer) {
                 if (serverPlayer.gameMode.getGameModeForPlayer() == GameType.SPECTATOR) return InteractionResult.PASS;
                 ModMenuTypes.open(serverPlayer, entity, pos);
-                PacketDistributor.sendToPlayer(serverPlayer, new MachineOutputDirectionPacket(entity.getOutputDirection()));
+                PacketDistributor.sendToPlayer(serverPlayer, new MachineOutputDirectionPacket(entity.getDirection()));
                 PacketDistributor.sendToPlayer(serverPlayer, new MachineEnableOutputPacket(entity.isOutputEnabled()));
             }
         }

@@ -20,7 +20,7 @@ public class EnableOutputButton extends Button {
     private final Supplier<Boolean> outputEnabled;
     private static final ResourceLocation YES = AnvilCraft.of("textures/gui/container/machine/button_yes.png");
     private static final ResourceLocation NO = AnvilCraft.of("textures/gui/container/machine/button_no.png");
-    private static final MutableComponent defaultMessage = Component.translatable("screen.anvilcraft.button.record", Component.translatable("screen.anvilcraft.button.off"));
+    private static final MutableComponent defaultMessage = Component.translatable("screen.headtap.button.output", Component.translatable("screen.anvilcraft.button.off"));
 
     public EnableOutputButton(
         int x,
@@ -46,7 +46,7 @@ public class EnableOutputButton extends Button {
     }
 
     public void flush() {
-        this.setMessage(Component.translatable("screen.anvilcraft.button.record", Component.translatable("screen.anvilcraft.button." + (this.getOutputEnabled().get() ? "on" : "off"))));
+        this.setMessage(Component.translatable("screen.headtap.button.output", Component.translatable("screen.anvilcraft.button." + (this.getOutputEnabled().get() ? "on" : "off"))));
     }
 
     @Override

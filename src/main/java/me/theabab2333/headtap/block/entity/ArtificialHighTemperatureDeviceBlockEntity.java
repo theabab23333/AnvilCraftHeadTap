@@ -1,6 +1,7 @@
 package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
+import me.theabab2333.headtap.block.ArtificialHighTemperatureDeviceBlock;
 import me.theabab2333.headtap.init.ModMenuTypes;
 import me.theabab2333.headtap.init.block.ModBlocks;
 import me.theabab2333.headtap.inventory.MachineOutputMenu;
@@ -34,18 +35,24 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
     }
 
     @Override
-    public boolean isEnabled() {
-        return true;
+    public void setOutputEnabled(boolean enabled) {
+
+    }
+
+    @Override
+    public Direction getDirection() {
+        assert this.level != null;
+        BlockState state = this.level.getBlockState(this.getBlockPos());
+        if (state.is(ModBlocks.ARTIFICIAL_HIGH_TEMPERATURE_DEVICE.get())) return state.getValue(ArtificialHighTemperatureDeviceBlock.FACING);
+        return Direction.NORTH;
     }
 
     @Override
     public void setDirection(Direction direction) {
-
-    }
-
-    @Override
-    public void setEnabled(boolean enabled) {
-
+        assert getLevel() != null;
+        BlockState state = getLevel().getBlockState(getBlockPos());
+        assert state.is(ModBlocks.ARTIFICIAL_HIGH_TEMPERATURE_DEVICE.get());
+        getLevel().setBlockAndUpdate(getBlockPos(), state.setValue(ArtificialHighTemperatureDeviceBlock.FACING, direction));
     }
 
     @Override
