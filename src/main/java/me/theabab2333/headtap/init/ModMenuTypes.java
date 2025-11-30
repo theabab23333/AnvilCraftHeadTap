@@ -2,7 +2,9 @@ package me.theabab2333.headtap.init;
 
 import com.tterrag.registrate.util.entry.MenuEntry;
 import me.theabab2333.headtap.client.gui.screen.BuilderScreen;
+import me.theabab2333.headtap.client.gui.screen.MachineOutputScreen;
 import me.theabab2333.headtap.inventory.BuilderMenu;
+import me.theabab2333.headtap.inventory.MachineOutputMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
@@ -14,6 +16,11 @@ public class ModMenuTypes {
     @SuppressWarnings("DataFlowIssue")
     public static final MenuEntry<BuilderMenu> BUILDER = REGISTRATE
         .menu("builder", BuilderMenu::new, () -> BuilderScreen::new)
+        .register();
+
+    @SuppressWarnings("DataFlowIssue")
+    public static final MenuEntry<MachineOutputMenu> MACHINE_OUTPUT = REGISTRATE
+        .menu("machine_output", MachineOutputMenu::new, () -> MachineOutputScreen::new)
         .register();
 
 

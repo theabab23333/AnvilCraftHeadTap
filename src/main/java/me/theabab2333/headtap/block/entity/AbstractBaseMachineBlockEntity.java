@@ -4,7 +4,7 @@ import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.api.itemhandler.ItemHandlerUtil;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
-import me.theabab2333.headtap.init.block.ModBlockStateProperties;
+import lombok.Getter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -18,11 +18,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.items.IItemHandler;
 
 import java.util.Objects;
 
+@Getter
 public abstract class AbstractBaseMachineBlockEntity extends BlockEntity implements IFilterBlockEntity, IItemHandlerHolder, MenuProvider {
     public AbstractBaseMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
@@ -43,6 +45,7 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
     };
 
     private int cd = cooldown();
+    private boolean outputEnabled = false;
 
     @Override
     public FilteredItemStackHandler getFilteredItemStackHandler() {
@@ -58,17 +61,19 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.saveAdditional(tag, provider);
+        tag.putBoolean("OutputEnabled", outputEnabled);
         tag.put("Inventory", itemHandler.serializeNBT(provider));
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
         super.loadAdditional(tag, provider);
+        this.outputEnabled = tag.getBoolean("OutputEnabled");
         itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
     public Direction getOutputDirection() {
-        return getBlockState().getValue(ModBlockStateProperties.OUTPUT_DIRECTION);
+        return getBlockState().getValue(BlockStateProperties.FACING);
     }
 
     /**
@@ -81,11 +86,11 @@ public abstract class AbstractBaseMachineBlockEntity extends BlockEntity impleme
      */
     public void autoOutput() {
         if (level == null) return;
-        if (getBlockState().getValue(ModBlockStateProperties.OUTPUT_ENABLE)) {
+        if (this.isOutputEnabled()) {
             cd--;
             if (cd <= 0) {
                 cd = 5;
-                if (isEnabled()) {
+                if (this.isOutputEnabled()) {
                     IItemHandler cap = Objects.requireNonNull(getLevel()).getCapability(
                         Capabilities.ItemHandler.BLOCK,
                         getBlockPos().relative(getOutputDirection()),

@@ -2,7 +2,7 @@ package me.theabab2333.headtap.network;
 
 import lombok.Getter;
 import me.theabab2333.headtap.HeadTap;
-import me.theabab2333.headtap.client.gui.screen.OutputMachineScreen;
+import me.theabab2333.headtap.client.gui.screen.MachineOutputScreen;
 import me.theabab2333.headtap.inventory.MachineOutputMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -21,15 +21,15 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
     public static final Type<MachineEnableOutputPacket> TYPE = new Type<>(HeadTap.of("machine_output"));
     public static final StreamCodec<RegistryFriendlyByteBuf, MachineEnableOutputPacket> STREAM_CODEC =
         StreamCodec.composite(
-            ByteBufCodecs.BOOL, MachineEnableOutputPacket::isEnabled, MachineEnableOutputPacket::new
+            ByteBufCodecs.BOOL, MachineEnableOutputPacket::isOutputEnabled, MachineEnableOutputPacket::new
         );
     public static final IPayloadHandler<MachineEnableOutputPacket> HANDLER = new DirectionalPayloadHandler<>(
         MachineEnableOutputPacket::clientHandler, MachineEnableOutputPacket::serverHandler);
 
-    private final boolean enabled;
+    private final boolean outputEnabled;
 
     public MachineEnableOutputPacket(boolean isEnabled) {
-        this.enabled = isEnabled;
+        this.outputEnabled = isEnabled;
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
         context.enqueueWork(() -> {
             if (!player.hasContainerOpen()) return;
             if (!(player.containerMenu instanceof MachineOutputMenu menu)) return;
-            menu.setEnabled(data.isEnabled());
+            menu.setEnabled(data.isOutputEnabled());
             PacketDistributor.sendToPlayer(player, data);
         });
     }
@@ -50,8 +50,8 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
     public static void clientHandler(MachineEnableOutputPacket data, IPayloadContext context) {
         Minecraft client = Minecraft.getInstance();
         context.enqueueWork(() -> {
-            if (client.screen instanceof OutputMachineScreen screen) {
-                screen.setOutputEnabled(data.isEnabled());
+            if (client.screen instanceof MachineOutputScreen screen) {
+                screen.setOutputEnabled(data.isOutputEnabled());
             }
         });
     }

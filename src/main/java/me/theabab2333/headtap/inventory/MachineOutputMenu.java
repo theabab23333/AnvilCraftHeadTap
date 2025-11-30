@@ -4,6 +4,7 @@ import dev.dubhe.anvilcraft.inventory.BaseMachineMenu;
 import lombok.Getter;
 import me.theabab2333.headtap.block.entity.AbstractBaseMachineBlockEntity;
 import net.minecraft.core.Direction;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -19,10 +20,14 @@ public class MachineOutputMenu extends BaseMachineMenu {
     private final AbstractBaseMachineBlockEntity blockEntity;
     private final Level level;
 
-    protected MachineOutputMenu(@Nullable MenuType<?> menuType, int containerId, Inventory inventory, @NotNull BlockEntity blockEntity) {
+    public MachineOutputMenu(@Nullable MenuType<?> menuType, int containerId, Inventory inventory, @NotNull BlockEntity blockEntity) {
         super(menuType, containerId, blockEntity);
         this.blockEntity = (AbstractBaseMachineBlockEntity) blockEntity;
         this.level = inventory.player.level();
+    }
+
+    public MachineOutputMenu(@Nullable MenuType<?> menuType, int containerId, Inventory inventory, @NotNull FriendlyByteBuf extraData) {
+        this(menuType, containerId, inventory, inventory.player.level().getBlockEntity(extraData.readBlockPos()));
     }
 
     @Override

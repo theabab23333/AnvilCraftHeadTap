@@ -1,6 +1,9 @@
 package me.theabab2333.headtap.block.entity;
 
+import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
+import me.theabab2333.headtap.init.ModMenuTypes;
 import me.theabab2333.headtap.init.block.ModBlocks;
+import me.theabab2333.headtap.inventory.MachineOutputMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -9,7 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.items.IItemHandler;
 
 public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMachineBlockEntity {
     public ArtificialHighTemperatureDeviceBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
@@ -48,12 +50,13 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
 
     @Override
     public Component getDisplayName() {
-        return null;
+        return Component.translatable("gui.headtap.artificial_high_temperature_device.top");
     }
 
     @Override
     public AbstractContainerMenu createMenu(int i, Inventory inventory, Player player) {
-        return null;
+        if (player.isSpectator()) return null;
+        return new MachineOutputMenu(ModMenuTypes.MACHINE_OUTPUT.get(), i, inventory, this);
     }
 
     @Override
@@ -63,7 +66,7 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
     }
 
     @Override
-    public IItemHandler getItemHandler() {
+    public FilteredItemStackHandler getItemHandler() {
         return itemHandler;
     }
 }
