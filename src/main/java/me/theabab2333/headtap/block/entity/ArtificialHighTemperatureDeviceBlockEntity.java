@@ -35,8 +35,8 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
     }
 
     @Override
-    public void setOutputEnabled(boolean enabled) {
-
+    public AbstractBaseMachineBlockEntity getOutputEnabled() {
+        return this;
     }
 
     @Override

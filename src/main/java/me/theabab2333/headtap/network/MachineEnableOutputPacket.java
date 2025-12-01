@@ -21,10 +21,14 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
     public static final Type<MachineEnableOutputPacket> TYPE = new Type<>(HeadTap.of("machine_output"));
     public static final StreamCodec<RegistryFriendlyByteBuf, MachineEnableOutputPacket> STREAM_CODEC =
         StreamCodec.composite(
-            ByteBufCodecs.BOOL, MachineEnableOutputPacket::isOutputEnabled, MachineEnableOutputPacket::new
+            ByteBufCodecs.BOOL,
+            MachineEnableOutputPacket::isOutputEnabled,
+            MachineEnableOutputPacket::new
         );
     public static final IPayloadHandler<MachineEnableOutputPacket> HANDLER = new DirectionalPayloadHandler<>(
-        MachineEnableOutputPacket::clientHandler, MachineEnableOutputPacket::serverHandler);
+        MachineEnableOutputPacket::clientHandler,
+        MachineEnableOutputPacket::serverHandler
+    );
 
     private final boolean outputEnabled;
 

@@ -5,6 +5,7 @@ import dev.dubhe.anvilcraft.api.itemhandler.ItemHandlerUtil;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -22,7 +23,7 @@ import net.neoforged.neoforge.items.IItemHandler;
 import java.util.Objects;
 
 @Getter
-public abstract class AbstractBaseMachineBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity {
+public abstract class AbstractBaseMachineBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IOutputEntity {
     public AbstractBaseMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
@@ -31,10 +32,10 @@ public abstract class AbstractBaseMachineBlockEntity extends BaseMachineBlockEnt
     public abstract int slotCount();
     public abstract int shouldSkipSlot();
     public abstract void setDirection(Direction direction);
-    public abstract void setOutputEnabled(boolean enabled);
 
-    private int cd = cooldown();
+    @Setter
     private boolean outputEnabled = false;
+    private int cd = cooldown();
 
     public final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(slotCount()) {
         @Override
