@@ -36,7 +36,8 @@ public abstract class AbstractBaseMachineBlock extends BetterBaseEntityBlock imp
     protected AbstractBaseMachineBlock(Properties pProperties) {
         super(pProperties);
         registerDefaultState(
-            stateDefinition.any()
+            stateDefinition
+                .any()
                 .setValue(DIRECTION, Direction.UP)
         );
     }

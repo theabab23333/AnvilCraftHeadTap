@@ -68,7 +68,6 @@ public class ArtificialHighTemperatureDeviceBlockEntity extends AbstractBaseMach
 
     @Override
     public void tick() {
-        itemHandler.setStackInSlot(9, ModBlocks.BUILDER.asStack());
         autoOutput();
     }
 

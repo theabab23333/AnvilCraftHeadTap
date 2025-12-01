@@ -79,19 +79,18 @@ public abstract class AbstractBaseMachineBlockEntity extends BaseMachineBlockEnt
      */
     public void autoOutput() {
         if (level == null) return;
-        if (this.isOutputEnabled()) {
+        if (isOutputEnabled()) {
             cd--;
             if (cd <= 0) {
                 cd = 5;
-                if (this.isOutputEnabled()) {
-                    IItemHandler cap = Objects.requireNonNull(getLevel()).getCapability(
-                        Capabilities.ItemHandler.BLOCK,
-                        getBlockPos().relative(getDirection()),
-                        getDirection().getOpposite());
-                    if (cap != null) {
-                        for (int i = shouldSkipSlot(); i < itemHandler.getSlots(); i++) {
-                            ItemHandlerUtil.insertItem(cap, itemHandler.getStackInSlot(i), false);
-                        }
+                IItemHandler cap = Objects.requireNonNull(getLevel()).getCapability(
+                    Capabilities.ItemHandler.BLOCK,
+                    getBlockPos().relative(getDirection()),
+                    getDirection().getOpposite()
+                );
+                if (cap != null) {
+                    for (int i = shouldSkipSlot(); i < itemHandler.getSlots(); i++) {
+                        ItemHandlerUtil.insertItem(cap, itemHandler.getStackInSlot(i), false);
                     }
                 }
             }

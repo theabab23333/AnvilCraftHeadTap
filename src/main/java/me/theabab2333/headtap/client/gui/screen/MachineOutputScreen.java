@@ -1,8 +1,8 @@
 package me.theabab2333.headtap.client.gui.screen;
 
-import dev.dubhe.anvilcraft.AnvilCraft;
 import dev.dubhe.anvilcraft.client.gui.screen.BaseMachineScreen;
 import lombok.Getter;
+import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.client.gui.component.EnableOutputButton;
 import me.theabab2333.headtap.inventory.MachineOutputMenu;
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,7 +15,7 @@ import java.util.function.BiFunction;
 
 @Getter
 public class MachineOutputScreen extends BaseMachineScreen<MachineOutputMenu> implements IOutputScreen<MachineOutputMenu> {
-    private static final ResourceLocation CONTAINER_LOCATION = AnvilCraft.of("textures/gui/container/machine/background/auto_crafter.png");
+    private static final ResourceLocation CONTAINER_LOCATION = HeadTap.of("textures/gui/machine/output.png");
     BiFunction<Integer, Integer, EnableOutputButton> enableOutputButtonSupplier = this.getEnableOutputButtonSupplier(116, 18);
     private final MachineOutputMenu menu;
     private EnableOutputButton enableOutputButton = null;

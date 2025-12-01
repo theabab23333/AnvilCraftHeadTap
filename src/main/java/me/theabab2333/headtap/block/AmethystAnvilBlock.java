@@ -40,7 +40,7 @@ public class AmethystAnvilBlock extends BetterAnvilBlock implements IHammerRemov
         return Z_AXIS_AABB;
     }
 
-    protected void falling(FallingBlockEntity entity) {
+    public void falling(FallingBlockEntity entity) {
         entity.setHurtsEntities(4.0F, 40);
     }
 
