@@ -33,6 +33,7 @@ public class HeadTapDataGen {
 
     public static void init() {
         REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, TagsHandler::initItem);
+        REGISTRATE.addDataGenerator(ProviderType.BLOCK_TAGS, TagsHandler::initBlock);
 
         REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeHandler::init);
         REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);

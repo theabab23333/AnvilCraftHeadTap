@@ -1,4 +1,4 @@
-package me.theabab2333.headtap.anvil;
+package me.theabab2333.headtap.anvil.hit;
 
 import dev.dubhe.anvilcraft.api.anvil.IAnvilBehavior;
 import dev.dubhe.anvilcraft.api.event.AnvilEvent;

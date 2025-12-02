@@ -1,21 +1,19 @@
-package me.theabab2333.headtap.anvil;
+package me.theabab2333.headtap.anvil.hit;
 
 import dev.dubhe.anvilcraft.api.anvil.IAnvilBehavior;
 import dev.dubhe.anvilcraft.api.event.AnvilEvent;
-import me.theabab2333.headtap.block.entity.ResinExtractorBlockEntity;
+import me.theabab2333.headtap.block.entity.PassiveRoyalAnvilBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class HitResinExtractorBehavior implements IAnvilBehavior {
-
+public class HitPassiveRoyalAnvilBehavior implements IAnvilBehavior {
     @Override
     public boolean handle(Level level, BlockPos hitBlockPos, BlockState hitBlockState, float fallDistance, AnvilEvent.OnLand event) {
         if (!hitBlockState.hasBlockEntity()) return false;
-        ResinExtractorBlockEntity blockEntity = (ResinExtractorBlockEntity) level.getBlockEntity(hitBlockPos);
+        PassiveRoyalAnvilBlockEntity blockEntity = (PassiveRoyalAnvilBlockEntity) level.getBlockEntity(hitBlockPos);
         if (blockEntity == null) return false;
-        int count = (int) fallDistance + 1;
-        count = count <= 0 ? 1 : count;
-        return blockEntity.tryGenerateResin(count);
+        blockEntity.createResult();
+        return false;
     }
 }

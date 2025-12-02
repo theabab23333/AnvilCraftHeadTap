@@ -1,20 +1,21 @@
-package me.theabab2333.headtap.anvil;
+package me.theabab2333.headtap.anvil.hit;
 
 import dev.dubhe.anvilcraft.api.anvil.IAnvilBehavior;
 import dev.dubhe.anvilcraft.api.event.AnvilEvent;
-import me.theabab2333.headtap.block.entity.PassiveRoyalSmithingTableBlockEntity;
+import me.theabab2333.headtap.block.entity.StoneGeneratorBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class HitPassiveRoyalSmithingTableBehavior implements IAnvilBehavior {
+public class HitStoneGeneratorBehavior implements IAnvilBehavior {
 
     @Override
     public boolean handle(Level level, BlockPos hitBlockPos, BlockState hitBlockState, float fallDistance, AnvilEvent.OnLand event) {
         if (!hitBlockState.hasBlockEntity()) return false;
-        PassiveRoyalSmithingTableBlockEntity blockEntity = (PassiveRoyalSmithingTableBlockEntity) level.getBlockEntity(hitBlockPos);
+        StoneGeneratorBlockEntity blockEntity = (StoneGeneratorBlockEntity) level.getBlockEntity(hitBlockPos);
         if (blockEntity == null) return false;
-        blockEntity.createResult();
-        return false;
+        int count = (int) fallDistance + 1;
+        count = count <= 0 ? 1 : count;
+        return blockEntity.tryGenerateStone(count);
     }
 }
