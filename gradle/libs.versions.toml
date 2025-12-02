@@ -1,10 +1,10 @@
 [versions]
-neoForge = "21.1.186"
+neoForge = "21.1.199"
 registrate = "MC1.21-1.3.0+62"
 anvilCraft = "1.5.0+pre-release.20"
 anvillib = "1.4.0+build.168"
 curios = "9.0.15+1.21.1"
-jei = "19.21.0.247"
+jei = "19.25.1.332"
 jade = "15.3.4+neoforge"
 patchouli = "1.21-87-NEOFORGE"
 modDevGradle = "2.0.78"

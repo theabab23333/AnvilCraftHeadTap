@@ -34,7 +34,12 @@ public class HitCanRandomBlockBehavior implements IAnvilBehavior {
         return false;
     }
 
-    private void apply(ServerLevel level, BlockState blockState, BlockPos blockPos, RandomSource source) {
+    private void apply(
+        ServerLevel level,
+        BlockState blockState,
+        BlockPos blockPos,
+        RandomSource source
+    ) {
 
         for (int i = 0; i < 10; i++) {
             blockState.randomTick(level, blockPos, source);
