@@ -13,6 +13,7 @@ neoForge {
     runs {
         client {
             client()
+            setDevLogin(true)
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
@@ -37,6 +38,7 @@ neoForge {
                 jvmArgument "-XX:+AllowEnhancedClassRedefinition"
             }
             systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'terminal.jline', 'true'
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }

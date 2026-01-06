@@ -1,12 +1,11 @@
 [versions]
 neoForge = "21.1.199"
 registrate = "MC1.21-1.3.0+62"
-anvilCraft = "1.5.0+pre-release.20"
-anvillib = "1.4.0+build.168"
+anvilCraft = "1.5.0+hotfix.1572"
+anvillib = "1.4.0+build.172"
 curios = "9.0.15+1.21.1"
 jei = "19.25.1.332"
 jade = "15.3.4+neoforge"
-patchouli = "1.21-87-NEOFORGE"
 modDevGradle = "2.0.78"
 lombok = "8.7.1"
 
@@ -19,7 +18,6 @@ jeiCommonApi = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref
 jeiForgeApi = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }
 jeiForgeImpl = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
 jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
-patchouli = { group = "vazkii.patchouli", name = "Patchouli", version.ref = "patchouli" }
 
 [plugins]
 modDevGradle = { id = "net.neoforged.moddev", version.ref = "modDevGradle" }

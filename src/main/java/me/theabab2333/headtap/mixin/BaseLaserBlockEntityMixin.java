@@ -45,6 +45,8 @@ public abstract class BaseLaserBlockEntityMixin extends BlockEntity {
 
     @Shadow public abstract Direction getFacing();
 
+    @Shadow protected BlockPos irradiateBlockPos;
+
     public BaseLaserBlockEntityMixin(BlockEntityType<?> type, BlockPos pos, BlockState blockState) {
         super(type, pos, blockState);
     }
@@ -80,7 +82,6 @@ public abstract class BaseLaserBlockEntityMixin extends BlockEntity {
             tickCount = 0;
             if (irradiateBlock.is(Tags.Blocks.CLUSTERS)) {
                 List<ItemStack> drops = BreakBlockUtil.drop(serverLevel, getIrradiateBlockPos());
-                System.out.println(drops);
                 deliverItem(drops, direction, getIrradiateBlockPos());
             }
         }

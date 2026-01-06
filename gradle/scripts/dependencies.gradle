@@ -18,7 +18,4 @@ dependencies {
 
     // Jade
     implementation(libs.jade)
-
-    // Patchouli
-    implementation(libs.patchouli)
 }
