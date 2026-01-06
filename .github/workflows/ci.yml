@@ -66,3 +66,15 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USER }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASS }}
         continue-on-error: true
+
+      - name: gametest
+        uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
+        continue-on-error: false
+        with:
+          mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+          extra-mods: |
+            anvilcraft:1.21.1-1.5.0+hotfix.1570
+          maven-repos: |
+            https://server.cjsah.net:1002/maven
+          maven-mods: |
+            dev.anvilcraft.lib:anvillib-neoforge-1.21.1:1.4.0+build.172
