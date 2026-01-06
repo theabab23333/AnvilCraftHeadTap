@@ -57,3 +57,15 @@ jobs:
         with:
           name: "${{ steps.properties.outputs.mod_name }}-${{ steps.properties.outputs.mod_version }}${{ steps.version.outputs.version }}"
           path: build/libs/AnvilCraftHeadTap-${{ steps.properties.outputs.mod_version }}${{ steps.version.outputs.version }}.jar
+
+      - name: gametest
+        uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
+        continue-on-error: false
+        with:
+          mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+          extra-mods: |
+            anvilcraft:1.21.1-1.5.0+hotfix.1570
+          maven-repos: |
+            https://server.cjsah.net:1002/maven
+          maven-mods: |
+            dev.anvilcraft.lib:anvillib-neoforge-1.21.1:1.4.0+build.172
