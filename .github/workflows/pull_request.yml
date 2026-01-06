@@ -28,7 +28,7 @@ jobs:
         uses: christian-draeger/read-properties@1.1.1
         with:
           path: gradle.properties
-          properties: 'mod_id mod_name mod_version java_version'
+          properties: 'mod_id mod_name java_version'
 
       - name: Setup Java ${{ steps.properties.outputs.java_version }}
         uses: actions/setup-java@v3.6.0
@@ -49,11 +49,23 @@ jobs:
       - name: Get Version
         id: version
         run: |
-          MESSAGE=$(ls build/libs/* | grep sources.jar -v | grep shadow.jar -v | grep slim.jar -v | awk -F 'AnvilCraftHeadTap-${{ steps.properties.outputs.mod_version }}+|.jar' '{print $2}')
+          MESSAGE=$(ls build/libs/* | grep sources.jar -v | grep shadow.jar -v | grep slim.jar -v | awk -F '${{ steps.properties.outputs.mod_id }}-neoforge-|.jar' '{print $2}')
           echo "version=$MESSAGE" >> $GITHUB_OUTPUT
 
-      - name: Capture build artifacts
+      - name: capture build artifacts
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: "${{ steps.properties.outputs.mod_name }}-${{ steps.properties.outputs.mod_version }}${{ steps.version.outputs.version }}"
-          path: build/libs/AnvilCraftHeadTap-${{ steps.properties.outputs.mod_version }}${{ steps.version.outputs.version }}.jar
+          name: "${{ steps.properties.outputs.mod_name }} ${{ steps.version.outputs.version }}"
+          path: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+
+      - name: gametest
+        uses: Anvil-Dev/dedicated-server-launch-test@1.21.1-neoforge
+        continue-on-error: false
+        with:
+          mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
+          extra-mods: |
+            anvilcraft:1.21.1-1.5.0+hotfix.1570
+          maven-repos: |
+            https://server.cjsah.net:1002/maven
+          maven-mods: |
+            dev.anvilcraft.lib:anvillib-neoforge-1.21.1:1.4.0+build.172
