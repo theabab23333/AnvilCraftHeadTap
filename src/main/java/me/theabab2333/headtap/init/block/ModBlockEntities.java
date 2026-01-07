@@ -104,5 +104,6 @@ public class ModBlockEntities {
         .validBlock(ModBlocks.SUPER_MASS_GENERATOR)
         .register();
 
-    public static void register() {}
+    public static void register() {
+    }
 }

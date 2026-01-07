@@ -1,11 +1,11 @@
 package me.theabab2333.headtap.init;
 
 import dev.dubhe.anvilcraft.api.anvil.IAnvilBehavior;
+import me.theabab2333.headtap.anvil.hit.HitCanRandomBlockBehavior;
+import me.theabab2333.headtap.anvil.hit.HitEntityEjectorBehavior;
 import me.theabab2333.headtap.anvil.hit.HitPassiveRoyalAnvilBehavior;
 import me.theabab2333.headtap.anvil.hit.HitPassiveRoyalGrindstoneBehavior;
 import me.theabab2333.headtap.anvil.hit.HitPassiveRoyalSmithingTableBehavior;
-import me.theabab2333.headtap.anvil.hit.HitCanRandomBlockBehavior;
-import me.theabab2333.headtap.anvil.hit.HitEntityEjectorBehavior;
 import me.theabab2333.headtap.anvil.hit.HitPrinterBlockBehavior;
 import me.theabab2333.headtap.anvil.hit.HitResinExtractorBehavior;
 import me.theabab2333.headtap.anvil.hit.HitStoneGeneratorBehavior;

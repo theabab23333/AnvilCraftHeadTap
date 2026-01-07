@@ -36,11 +36,6 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
         this.outputEnabled = isEnabled;
     }
 
-    @Override
-    public @NotNull Type<? extends CustomPacketPayload> type() {
-        return TYPE;
-    }
-
     public static void serverHandler(MachineEnableOutputPacket data, IPayloadContext context) {
         ServerPlayer player = (ServerPlayer) context.player();
         context.enqueueWork(() -> {
@@ -60,5 +55,10 @@ public class MachineEnableOutputPacket implements CustomPacketPayload {
                 screen.flush();
             }
         });
+    }
+
+    @Override
+    public @NotNull Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 }

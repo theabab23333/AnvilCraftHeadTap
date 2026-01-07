@@ -2,18 +2,18 @@
   "variants": {
     "facing=east": {
       "model": "headtap:block/amethyst_anvil",
-      "y": 270
+      "y": 90
     },
     "facing=north": {
+      "model": "headtap:block/amethyst_anvil"
+    },
+    "facing=south": {
       "model": "headtap:block/amethyst_anvil",
       "y": 180
     },
-    "facing=south": {
-      "model": "headtap:block/amethyst_anvil"
-    },
     "facing=west": {
       "model": "headtap:block/amethyst_anvil",
-      "y": 90
+      "y": 270
     }
   }
 }

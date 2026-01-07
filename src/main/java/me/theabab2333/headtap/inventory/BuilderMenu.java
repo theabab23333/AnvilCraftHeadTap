@@ -25,7 +25,6 @@ import org.jetbrains.annotations.Nullable;
 
 @Getter
 public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, ContainerListener {
-    // 抄自本体的BatchCrafterMenu 注释均未修改 感谢每位开发者
 
     public static ItemStack resultStack = ItemStack.EMPTY;
 

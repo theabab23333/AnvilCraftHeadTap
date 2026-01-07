@@ -38,22 +38,8 @@ public class ModFluids {
             .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY_LAVA)
             .density(3000)
             .viscosity(8000)
-            .temperature(20)
-        ));
-    public static final DeferredHolder<Fluid, BaseFlowingFluid> RESIN_FLUID = FLUIDS.register(
-        "resin_fluid",
-        () -> new BaseFlowingFluid.Source(ModFluids.RESIN_FLUID_PROPERTIES)
+            .temperature(20))
     );
-    public static final DeferredHolder<Fluid, BaseFlowingFluid> FLOWING_RESIN_FLUID = FLUIDS.register(
-        "flowing_resin_fluid",
-        () -> new BaseFlowingFluid.Flowing(ModFluids.RESIN_FLUID_PROPERTIES)
-    );
-    public static final BaseFlowingFluid.Properties RESIN_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(RESIN_FLUID_TYPE, RESIN_FLUID, FLOWING_RESIN_FLUID)
-        .block(ModBlocks.RESIN_FLUID)
-        .bucket(ModItems.RESIN_FLUID_BUCKET)
-        .tickRate(32)
-        .levelDecreasePerBlock(2)
-        .explosionResistance(100);
 
     public static void register(IEventBus eventBus) {
         FLUID_TYPES.register(eventBus);
@@ -61,11 +47,34 @@ public class ModFluids {
     }
 
     public static void onRegisterFluidType(RegisterClientExtensionsEvent e) {
-        e.registerFluidType(new ModClientFluidTypeExtensionImpl(
-            HeadTap.of("block/resin_fluid"),
-            HeadTap.of("block/resin_fluid_flow"),
-            0xFFF8DE,
-            12.0f
-        ), RESIN_FLUID_TYPE);
+        e.registerFluidType(
+            new ModClientFluidTypeExtensionImpl(
+                HeadTap.of("block/resin_fluid"),
+                HeadTap.of("block/resin_fluid_flow"),
+                0xFFF8DE,
+                12.0f
+            ),
+            RESIN_FLUID_TYPE
+        );
     }
+
+    public static final DeferredHolder<Fluid, BaseFlowingFluid> RESIN_FLUID = FLUIDS.register(
+        "resin_fluid",
+        () -> new BaseFlowingFluid.Source(ModFluids.RESIN_FLUID_PROPERTIES)
+    );
+
+
+    public static final DeferredHolder<Fluid, BaseFlowingFluid> FLOWING_RESIN_FLUID = FLUIDS.register(
+        "flowing_resin_fluid",
+        () -> new BaseFlowingFluid.Flowing(ModFluids.RESIN_FLUID_PROPERTIES)
+    );
+    public static final BaseFlowingFluid.Properties RESIN_FLUID_PROPERTIES = new BaseFlowingFluid.Properties(
+        RESIN_FLUID_TYPE,
+        RESIN_FLUID,
+        FLOWING_RESIN_FLUID
+    ).block(ModBlocks.RESIN_FLUID)
+        .bucket(ModItems.RESIN_FLUID_BUCKET)
+        .tickRate(32)
+        .levelDecreasePerBlock(2)
+        .explosionResistance(100);
 }

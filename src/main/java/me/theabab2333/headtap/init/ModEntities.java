@@ -14,6 +14,7 @@ public class ModEntities {
             .updateInterval(20))
         .renderer(() -> ThrownBambooJavelinEntity.BambooJavelinRenderer::new)
         .register();
+
     public static void register() {
         // intentionally empty
     }

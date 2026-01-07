@@ -1,5 +1,6 @@
 package me.theabab2333.headtap;
 
+import com.mojang.logging.LogUtils;
 import com.tterrag.registrate.Registrate;
 import me.theabab2333.headtap.api.tooltip.ItemTooltipManager;
 import me.theabab2333.headtap.data.HeadTapDataGen;
@@ -22,11 +23,13 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 @Mod(HeadTap.MOD_ID)
 public class HeadTap {
     public static final String MOD_ID = "headtap";
     public static IEventBus MOD_BUS = null;
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
 
     public HeadTap(IEventBus modEventBus) {
