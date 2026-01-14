@@ -6,6 +6,7 @@ import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.data.lang.LangHandler;
 import me.theabab2333.headtap.data.recipe.RecipeHandler;
 import me.theabab2333.headtap.data.tags.TagsHandler;
+import me.theabab2333.headtap.init.level.ModRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -28,7 +29,7 @@ public class HeadTapDataGen {
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput packOutput = generator.getPackOutput();
 
-        //这里暂时还用不到，但是函数本身需要放在这里（不然之后改起来麻烦）
+        generator.addProvider(event.includeServer(), new ModRegistryProvider(packOutput, lookupProvider));
     }
 
     public static void init() {

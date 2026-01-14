@@ -5,14 +5,14 @@ import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.BaseMachineBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
-import dev.dubhe.anvilcraft.init.reicpe.ModRecipeTypes;
+import dev.dubhe.anvilcraft.init.recipe.ModRecipeTypes;
 import dev.dubhe.anvilcraft.recipe.multiblock.BlockPattern;
 import dev.dubhe.anvilcraft.recipe.multiblock.MultiblockRecipe;
 import lombok.Getter;
 import me.theabab2333.headtap.block.BuilderBlock;
+import me.theabab2333.headtap.init.ModMenuTypes;
 import me.theabab2333.headtap.init.block.ModBlockEntities;
 import me.theabab2333.headtap.init.block.ModBlocks;
-import me.theabab2333.headtap.init.ModMenuTypes;
 import me.theabab2333.headtap.inventory.BuilderMenu;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
@@ -46,6 +46,8 @@ import java.util.List;
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilterBlockEntity, IItemHandlerHolder, IHasDisplayItem {
+    private static final Comparator<ItemStack> BY_COUNT_DECREASING = Comparator.comparing(ItemStack::getCount)
+        .thenComparing(ItemStack::getDescriptionId).reversed();
     // 来自本体MultiBlockCraftingCategory和BatchCrafter
     // 妈的 屎一样 能跑就行(
     private final FilteredItemStackHandler itemHandler = new FilteredItemStackHandler(9) {
@@ -59,8 +61,18 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     private ItemStack displayItemStack = ItemStack.EMPTY;
     private boolean poweredBefore = false;
     private int cooldown = 40;
-    private static final Comparator<ItemStack> BY_COUNT_DECREASING = Comparator.comparing(ItemStack::getCount)
-        .thenComparing(ItemStack::getDescriptionId).reversed();
+
+    public BuilderBlockEntity(BlockEntityType<? extends BlockEntity> type, BlockPos pos, BlockState blockState) {
+        super(type, pos, blockState);
+    }
+
+    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(
+            Capabilities.ItemHandler.BLOCK,
+            ModBlockEntities.BUILDER.get(),
+            (be, context) -> be.itemHandler
+        );
+    }
 
     public List<RecipeHolder<MultiblockRecipe>> recipeHolderList() {
         assert level != null;
@@ -96,8 +108,9 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
                 displayItemStack = ItemStack.EMPTY;
                 return;
             }
-            if (displayItemStack.getItem() != itemStack.getItem())
+            if (displayItemStack.getItem() != itemStack.getItem()) {
                 checkDisplayItemStack(itemStack);
+            }
             BlockState state = level.getBlockState(getBlockPos());
             level.updateNeighbourForOutputSignal(getBlockPos(), state.getBlock());
             cooldown = Math.max(0, this.cooldown - 1);
@@ -148,7 +161,7 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
     }
 
     private void toBuild() {
-        assert level!=null;
+        assert level != null;
         if (checkFilter()) {
             for (RecipeHolder<MultiblockRecipe> recipe : recipeHolderList()) {
                 if (recipe.value().getResult().is(displayItemStack.getItem())) {
@@ -193,10 +206,6 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         }
     }
 
-    public BuilderBlockEntity(BlockEntityType<? extends BlockEntity> type, BlockPos pos, BlockState blockState) {
-        super(type, pos, blockState);
-    }
-
     @Override
     public Direction getDirection() {
         assert this.level != null;
@@ -213,12 +222,12 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
         getLevel().setBlockAndUpdate(getBlockPos(), state.setValue(BuilderBlock.FACING, direction));
     }
 
-    public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        event.registerBlockEntity(
-            Capabilities.ItemHandler.BLOCK,
-            ModBlockEntities.BUILDER.get(),
-            (be, context) -> be.itemHandler
-        );
+    @Override
+    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
+        CompoundTag ct = tag.getCompound("DisplayItemStack");
+        displayItemStack = ct.contains("id") ? ItemStack.parse(provider, ct).orElse(ItemStack.EMPTY) : ItemStack.EMPTY;
+        itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
     @Override
@@ -229,14 +238,6 @@ public class BuilderBlockEntity extends BaseMachineBlockEntity implements IFilte
             tag.put("DisplayItemStack", item);
         }
         tag.put("Inventory", itemHandler.serializeNBT(provider));
-    }
-
-    @Override
-    public void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider provider) {
-        super.loadAdditional(tag, provider);
-        CompoundTag ct = tag.getCompound("DisplayItemStack");
-        displayItemStack = ct.contains("id") ? ItemStack.parse(provider, ct).orElse(ItemStack.EMPTY) : ItemStack.EMPTY;
-        itemHandler.deserializeNBT(provider, tag.getCompound("Inventory"));
     }
 
     @Override

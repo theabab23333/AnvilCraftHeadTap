@@ -3,7 +3,7 @@ package me.theabab2333.headtap.recipe;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.anvilcraft.lib.util.CodecUtil;
+import dev.anvilcraft.lib.recipe.util.CodecUtil;
 import dev.dubhe.anvilcraft.recipe.anvil.builder.AbstractRecipeBuilder;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.init.ModRecipeTypes;

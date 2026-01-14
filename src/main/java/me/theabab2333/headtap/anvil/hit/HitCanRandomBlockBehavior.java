@@ -7,9 +7,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.BonemealableBlock;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class HitCanRandomBlockBehavior implements IAnvilBehavior {
     @Override
@@ -43,16 +42,6 @@ public class HitCanRandomBlockBehavior implements IAnvilBehavior {
 
         for (int i = 0; i < 10; i++) {
             blockState.randomTick(level, blockPos, source);
-        }
-
-        if (source.nextBoolean()) {
-            if (blockState.getBlock() instanceof BonemealableBlock bonemealableblock) {
-                if (bonemealableblock.isValidBonemealTarget(level, blockPos, blockState)) {
-                    if (bonemealableblock.isBonemealSuccess(level, source, blockPos, blockState)) {
-                        bonemealableblock.performBonemeal(level, source, blockPos, blockState);
-                    }
-                }
-            }
         }
     }
 }

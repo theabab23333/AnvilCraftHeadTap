@@ -1,9 +1,8 @@
 [versions]
 neoForge = "21.1.199"
 registrate = "MC1.21-1.3.0+62"
-anvilCraft = "1.5.0+hotfix.1572"
-anvillib = "1.4.0+build.172"
-curios = "9.0.15+1.21.1"
+anvilCraft = "1.6.0+snapshot.1594"
+anvillib = "2.0.0+build.186"
 jei = "19.25.1.332"
 jade = "15.3.4+neoforge"
 modDevGradle = "2.0.78"
@@ -12,12 +11,16 @@ lombok = "8.7.1"
 [libraries]
 registrate = { group = "com.tterrag.registrate", name = "Registrate", version.ref = "registrate" }
 anvilCraft = { group = "dev.dubhe", name = "anvilcraft-neoforge-1.21.1", version.ref = "anvilCraft" }
-anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-1.21.1", version.ref = "anvillib" }
-curios = { group = "top.theillusivec4.curios", name = "curios-neoforge", version.ref = "curios" }
 jeiCommonApi = { group = "mezz.jei", name = "jei-1.21.1-common-api", version.ref = "jei" }
 jeiForgeApi = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.ref = "jei" }
 jeiForgeImpl = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
 jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
+
+anvillibConfig = { group = "dev.anvilcraft.lib", name = "anvillib-config-neoforge-1.21.1", version.ref = "anvillib" }
+anvillibRecipe = { group = "dev.anvilcraft.lib", name = "anvillib-recipe-neoforge-1.21.1", version.ref = "anvillib" }
+anvillibMoveableEntityBlock = { group = "dev.anvilcraft.lib", name = "anvillib-moveable-entity-block-neoforge-1.21.1", version.ref = "anvillib" }
+anvillibIntegration = { group = "dev.anvilcraft.lib", name = "anvillib-integration-neoforge-1.21.1", version.ref = "anvillib" }
+anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-1.21.1", version.ref = "anvillib" }
 
 [plugins]
 modDevGradle = { id = "net.neoforged.moddev", version.ref = "modDevGradle" }

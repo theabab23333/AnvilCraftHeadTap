@@ -4,12 +4,16 @@ dependencies {
 
     // AnvilCraft
     implementation(libs.anvilCraft) { transitive = false }
+    interfaceInjectionData(libs.anvilCraft) { transitive = false }
 
     // AnvilLib
-    implementation(libs.anvillib)
-
-    // Curios API
-    implementation(libs.curios)
+    runtimeOnly(libs.anvillib)
+    compileOnly(libs.anvillibConfig)
+    compileOnly(libs.anvillibRecipe)
+    interfaceInjectionData(libs.anvillibRecipe)
+    compileOnly(libs.anvillibMoveableEntityBlock)
+    interfaceInjectionData(libs.anvillibMoveableEntityBlock)
+    compileOnly(libs.anvillibIntegration)
 
     // JEI
     compileOnlyApi(libs.jeiCommonApi) { transitive = false }
