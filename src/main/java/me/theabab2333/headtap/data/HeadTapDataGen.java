@@ -1,12 +1,10 @@
 package me.theabab2333.headtap.data;
 
 import com.tterrag.registrate.providers.ProviderType;
-
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.data.lang.LangHandler;
 import me.theabab2333.headtap.data.recipe.RecipeHandler;
 import me.theabab2333.headtap.data.tags.TagsHandler;
-import me.theabab2333.headtap.init.level.ModRegistryProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -28,8 +26,6 @@ public class HeadTapDataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput packOutput = generator.getPackOutput();
-
-        generator.addProvider(event.includeServer(), new ModRegistryProvider(packOutput, lookupProvider));
     }
 
     public static void init() {
