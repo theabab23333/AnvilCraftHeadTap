@@ -22,4 +22,7 @@ dependencies {
 
     // Jade
     implementation(libs.jade)
+
+    // Mixin Hotswap Agent(神秘mixin热重载)
+    additionalRuntimeClasspath(libs.mixinHotswap)
 }

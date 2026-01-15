@@ -37,6 +37,12 @@ neoForge {
             if (isJbr) {
                 jvmArgument "-XX:+AllowEnhancedClassRedefinition"
             }
+
+            def files = configurations.mixinAgent.files
+            if (!files.isEmpty()) {
+                jvmArgument '-javaagent:' + files.first().toPath()
+            }
+
             systemProperty 'forge.logging.markers', 'REGISTRIES'
             systemProperty 'terminal.jline', 'true'
             logLevel = org.slf4j.event.Level.DEBUG

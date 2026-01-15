@@ -16,6 +16,16 @@ else {
 version = "${mod_version}" + (buildNumber != null ? "+${buildType}.${buildNumber}" : "")
 group = mod_group_id
 
+configurations {
+    create("mixinAgent") {
+        canBeConsumed = false
+        canBeResolved = true
+        defaultDependencies {
+            add(dependencyFactory.create("dev.vfyjxf:mixin-hotswap-agent:1.1").setTransitive(false))
+        }
+    }
+}
+
 apply from: "$rootDir/gradle/scripts/moddevgradle.gradle"
 apply from: "$rootDir/gradle/scripts/repositories.gradle"
 apply from: "$rootDir/gradle/scripts/resources.gradle"
