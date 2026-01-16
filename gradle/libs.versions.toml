@@ -8,6 +8,8 @@ jade = "15.3.4+neoforge"
 modDevGradle = "2.0.78"
 lombok = "8.7.1"
 mixinHotswap = "1.1"
+guideme = "21.1.15"
+ae2 = "19.2.10"
 
 [libraries]
 registrate = { group = "com.tterrag.registrate", name = "Registrate", version.ref = "registrate" }
@@ -17,6 +19,8 @@ jeiForgeApi = { group = "mezz.jei", name = "jei-1.21.1-neoforge-api", version.re
 jeiForgeImpl = { group = "mezz.jei", name = "jei-1.21.1-neoforge", version.ref = "jei" }
 jade = { group = "maven.modrinth", name = "jade", version.ref = "jade" }
 mixinHotswap = { group = "dev.vfyjxf", name = "mixin-hotswap-agent", version.ref = "mixinHotswap" }
+guideme = { group = "org.appliedenergistics", name = "guideme", version.ref = "guideme" }
+ae2 = { group = "org.appliedenergistics", name = "appliedenergistics2", version.ref = "ae2" }
 
 anvillibConfig = { group = "dev.anvilcraft.lib", name = "anvillib-config-neoforge-1.21.1", version.ref = "anvillib" }
 anvillibRecipe = { group = "dev.anvilcraft.lib", name = "anvillib-recipe-neoforge-1.21.1", version.ref = "anvillib" }

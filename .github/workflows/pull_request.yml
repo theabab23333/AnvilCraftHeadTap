@@ -5,11 +5,11 @@ on:
     branches:
       - releases/**
     paths:
+      - gradle/scripts/**
+      - guidebook/**
       - src/**
-      - common/**
-      - fabric/**
-      - forge/**
       - build.gradle
+      - dependencies.gradle
       - gradle.properties
       - settings.gradle
 
@@ -65,3 +65,4 @@ jobs:
           mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
           extra-mods: |
             anvilcraft:1.21.1-1.6.0+snapshot.1594
+            guideme:21.1.15
