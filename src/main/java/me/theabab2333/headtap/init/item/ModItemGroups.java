@@ -16,11 +16,14 @@ public class ModItemGroups {
         DeferredRegister.create(Registries.CREATIVE_MODE_TAB, HeadTap.MOD_ID);
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> ANVILCRAFT_HEAD_TAP =
-        HT.register("block", () -> CreativeModeTab.builder()
-            .icon(ModBlocks.AMETHYST_ANVIL::asStack)
-            .title(REGISTRATE.addLang("itemGroup", HeadTap.of("block"), "AnvilCraft: HeadTap"))
-            .withTabsBefore(dev.dubhe.anvilcraft.init.item.ModItemGroups.ANVILCRAFT_BUILD_BLOCK.getId())
-            .build());
+        HT.register(
+            "block", () -> CreativeModeTab.builder()
+                .icon(ModBlocks.AMETHYST_ANVIL::asStack)
+                .title(REGISTRATE.addLang("itemGroup", HeadTap.of("block"), "AnvilCraft: HeadTap"))
+                .withTabsBefore(dev.dubhe.anvilcraft.init.item.ModItemGroups.ANVILCRAFT_BUILD_BLOCK.getId())
+                .build()
+        );
+
     public static void register(IEventBus modEventBus) {
         HT.register(modEventBus);
     }

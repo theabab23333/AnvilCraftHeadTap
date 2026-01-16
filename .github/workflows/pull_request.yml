@@ -6,7 +6,7 @@ on:
       - releases/**
     paths:
       - gradle/scripts/**
-      - guidebook/**
+      - ../../guide/**
       - src/**
       - build.gradle
       - dependencies.gradle
