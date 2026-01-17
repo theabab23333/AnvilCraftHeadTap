@@ -148,17 +148,18 @@ public class DistributorBlock extends BetterBaseEntityBlock implements HammerRot
     }
 
     @Override
-    public @Nullable Property<?> getChangeableProperty(BlockState blockState) {
+    public Property<?> getChangeableProperty(BlockState blockState) {
         return FACING;
     }
 
     @Override
-    public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
+    public BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
+    @SuppressWarnings("deprecation")
+    public BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 

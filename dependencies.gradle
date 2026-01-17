@@ -23,13 +23,13 @@ dependencies {
     // Jade
     implementation(libs.jade)
 
-    // Mixin Hotswap Agent(神秘mixin热重载)
-    additionalRuntimeClasspath(libs.mixinHotswap)
-
     // GuideME
     compileOnly("org.appliedenergistics:guideme:${libs.versions.guideme.get()}:api")
     implementation(libs.guideme)
 
     // AE2
     runtimeOnly(libs.ae2)
+
+    // Mixin Hotswap Agent(神秘mixin热重载)
+    additionalRuntimeClasspath(libs.mixinHotswap)
 }
