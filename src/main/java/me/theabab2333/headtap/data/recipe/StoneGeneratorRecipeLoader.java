@@ -1,14 +1,13 @@
 package me.theabab2333.headtap.data.recipe;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import me.theabab2333.headtap.init.ModFluids;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluids;
 
 public class StoneGeneratorRecipeLoader {
-    public static void init(RegistrateRecipeProvider provider) {
+    public static void init(RegistrumRecipeProvider provider) {
         StoneGeneratorRecipe.builder()
             .requires(Fluids.WATER)
             .requires(Fluids.LAVA)

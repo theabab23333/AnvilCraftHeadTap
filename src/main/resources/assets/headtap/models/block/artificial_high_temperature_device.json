@@ -1,0 +1,70 @@
+{
+	"format_version": "1.9.0",
+	"parent": "block/block",
+	"render_type": "minecraft:translucent",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "headtap:block/artificial_high_temperature_device_core",
+		"1": "headtap:block/artificial_high_temperature_device_ring",
+		"particle": "headtap:block/artificial_high_temperature_device_core"
+	},
+	"elements": [
+		{
+			"from": [3, 3, 3],
+			"to": [13, 13, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 2]},
+			"faces": {
+				"north": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"east": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"south": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"west": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#0"}
+			}
+		},
+		{
+			"from": [-16, 8, -16],
+			"to": [32, 8, 32],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, 8, 0]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"east": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"south": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"west": {"uv": [0, 0, 16, 0], "texture": "#missing"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"down": {"uv": [0, 16, 16, 0], "texture": "#1"}
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"translation": [0, -2, 0],
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"thirdperson_lefthand": {
+			"translation": [0, -2, 0],
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"firstperson_righthand": {
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"firstperson_lefthand": {
+			"scale": [0.1725, 0.1725, 0.1725]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.1, 0.1, 0.1]
+		},
+		"gui": {
+			"rotation": [30, 225, 0],
+			"scale": [0.225, 0.225, 0.225]
+		},
+		"head": {
+			"scale": [0.35, 0.35, 0.35]
+		},
+		"fixed": {
+			"rotation": [90, 0, 0],
+			"scale": [0.3, 0.3, 0.3]
+		}
+	}
+}

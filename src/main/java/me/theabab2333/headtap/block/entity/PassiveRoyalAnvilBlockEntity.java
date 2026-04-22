@@ -5,8 +5,8 @@ import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
-import me.theabab2333.headtap.api.GetEnchantments;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.util.EnchantmentUtil;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -74,8 +74,8 @@ public class PassiveRoyalAnvilBlockEntity extends BlockEntity implements IItemHa
     }
 
     private ItemStack getResult(ItemStack bookRight, ItemStack bookLeft) {
-        ItemEnchantments enchantments = GetEnchantments.getItemEnchantments(bookRight);
-        ItemEnchantments.Mutable inputEnchantments = GetEnchantments.getMutableEnchantments(bookLeft);
+        ItemEnchantments enchantments = EnchantmentUtil.getItemEnchantments(bookRight);
+        ItemEnchantments.Mutable inputEnchantments = EnchantmentUtil.getMutableEnchantments(bookLeft);
         if (enchantments != null) {
             for (Object2IntMap.Entry<Holder<Enchantment>> entry : enchantments.entrySet()) {
                 Holder<Enchantment> holder = entry.getKey();

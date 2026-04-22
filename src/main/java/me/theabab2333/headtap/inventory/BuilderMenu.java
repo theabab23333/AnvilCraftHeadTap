@@ -7,8 +7,7 @@ import dev.dubhe.anvilcraft.inventory.IFilterMenu;
 import dev.dubhe.anvilcraft.inventory.component.ReadOnlySlot;
 import lombok.Getter;
 import me.theabab2333.headtap.block.entity.BuilderBlockEntity;
-import me.theabab2333.headtap.init.ModBlocks;
-import net.minecraft.MethodsReturnNonnullByDefault;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,9 +24,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Getter
-@MethodsReturnNonnullByDefault
 public class BuilderMenu extends BaseMachineMenu implements IFilterMenu, ContainerListener {
-    // 抄自本体的BatchCrafterMenu 注释均未修改 感谢每位开发者
 
     public static ItemStack resultStack = ItemStack.EMPTY;
 

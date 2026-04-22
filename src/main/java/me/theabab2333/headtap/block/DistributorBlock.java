@@ -6,7 +6,7 @@ import dev.dubhe.anvilcraft.api.hammer.IHammerRemovable;
 import dev.dubhe.anvilcraft.block.SimpleChuteBlock;
 import dev.dubhe.anvilcraft.block.better.BetterBaseEntityBlock;
 import me.theabab2333.headtap.block.entity.DistributorBlockEntity;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -148,17 +148,18 @@ public class DistributorBlock extends BetterBaseEntityBlock implements HammerRot
     }
 
     @Override
-    public @Nullable Property<?> getChangeableProperty(BlockState blockState) {
+    public Property<?> getChangeableProperty(BlockState blockState) {
         return FACING;
     }
 
     @Override
-    public @NotNull BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
+    public BlockState rotate(@NotNull BlockState state, @NotNull Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @Override
-    public @NotNull BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
+    @SuppressWarnings("deprecation")
+    public BlockState mirror(@NotNull BlockState state, @NotNull Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 

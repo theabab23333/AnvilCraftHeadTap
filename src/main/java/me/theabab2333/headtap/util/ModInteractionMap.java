@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.util;
 
-import me.theabab2333.headtap.init.ModBlocks;
-import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.block.ModBlocks;
+import me.theabab2333.headtap.init.item.ModItems;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Items;

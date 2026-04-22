@@ -1,0 +1,24 @@
+dependencies {
+
+    // AnvilCraft
+    implementation(libs.anvilcraft) { transitive = false }
+    interfaceInjectionData(libs.anvilcraft) { transitive = false }
+
+    // AnvilLib
+    runtimeOnly(libs.anvillib)
+    compileOnly(libs.bundles.anvillib)
+
+    // JEI
+    compileOnlyApi(libs.jeiCommonApi) { transitive = false }
+    compileOnlyApi(libs.jeiForgeApi) { transitive = false }
+    implementation(libs.jeiForgeImpl) { transitive = false }
+
+    // Jade
+    implementation(libs.jade)
+
+    // Mixin Hotswap Agent
+    additionalRuntimeClasspath(libs.mixinHotswap)
+
+    // ldlib2
+    implementation(libs.ldlib)
+}

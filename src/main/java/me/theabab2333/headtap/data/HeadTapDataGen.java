@@ -1,7 +1,6 @@
 package me.theabab2333.headtap.data;
 
-import com.tterrag.registrate.providers.ProviderType;
-
+import dev.anvilcraft.lib.v2.registrum.providers.ProviderType;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.data.lang.LangHandler;
 import me.theabab2333.headtap.data.recipe.RecipeHandler;
@@ -16,7 +15,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-import static me.theabab2333.headtap.HeadTap.REGISTRATE;
+import static me.theabab2333.headtap.HeadTap.REGISTRUM;
 
 @EventBusSubscriber(modid = HeadTap.MOD_ID)
 public class HeadTapDataGen {
@@ -27,14 +26,13 @@ public class HeadTapDataGen {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         PackOutput packOutput = generator.getPackOutput();
-
-        //这里暂时还用不到，但是函数本身需要放在这里（不然之后改起来麻烦）
     }
 
     public static void init() {
-        REGISTRATE.addDataGenerator(ProviderType.ITEM_TAGS, TagsHandler::initItem);
+        REGISTRUM.addDataGenerator(ProviderType.ITEM_TAGS, TagsHandler::initItem);
+        REGISTRUM.addDataGenerator(ProviderType.BLOCK_TAGS, TagsHandler::initBlock);
 
-        REGISTRATE.addDataGenerator(ProviderType.RECIPE, RecipeHandler::init);
-        REGISTRATE.addDataGenerator(ProviderType.LANG, LangHandler::init);
+        REGISTRUM.addDataGenerator(ProviderType.RECIPE, RecipeHandler::init);
+        REGISTRUM.addDataGenerator(ProviderType.LANG, LangHandler::init);
     }
 }

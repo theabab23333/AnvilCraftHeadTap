@@ -7,7 +7,7 @@ import dev.dubhe.anvilcraft.block.entity.BaseChuteBlockEntity;
 import dev.dubhe.anvilcraft.block.entity.SimpleChuteBlockEntity;
 import lombok.Getter;
 import me.theabab2333.headtap.block.DistributorBlock;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

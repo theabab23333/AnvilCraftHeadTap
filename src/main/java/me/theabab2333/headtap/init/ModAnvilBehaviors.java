@@ -1,15 +1,16 @@
 package me.theabab2333.headtap.init;
 
 import dev.dubhe.anvilcraft.api.anvil.IAnvilBehavior;
-import me.theabab2333.headtap.anvil.HitPassiveRoyalAnvilBehavior;
-import me.theabab2333.headtap.anvil.HitPassiveRoyalGrindstoneBehavior;
-import me.theabab2333.headtap.anvil.HitPassiveRoyalSmithingTableBehavior;
-import me.theabab2333.headtap.anvil.HitBuddingBlockBehavior;
-import me.theabab2333.headtap.anvil.HitEntityEjectorBehavior;
-import me.theabab2333.headtap.anvil.HitPrinterBlockBehavior;
-import me.theabab2333.headtap.anvil.HitResinExtractorBehavior;
-import me.theabab2333.headtap.anvil.HitStoneGeneratorBehavior;
-import net.neoforged.neoforge.common.Tags;
+import me.theabab2333.headtap.anvil.hit.HitCanRandomBlockBehavior;
+import me.theabab2333.headtap.anvil.hit.HitEntityEjectorBehavior;
+import me.theabab2333.headtap.anvil.hit.HitPassiveRoyalAnvilBehavior;
+import me.theabab2333.headtap.anvil.hit.HitPassiveRoyalGrindstoneBehavior;
+import me.theabab2333.headtap.anvil.hit.HitPassiveRoyalSmithingTableBehavior;
+import me.theabab2333.headtap.anvil.hit.HitPrinterBlockBehavior;
+import me.theabab2333.headtap.anvil.hit.HitResinExtractorBehavior;
+import me.theabab2333.headtap.anvil.hit.HitStoneGeneratorBehavior;
+import me.theabab2333.headtap.init.block.ModBlockTags;
+import me.theabab2333.headtap.init.block.ModBlocks;
 
 public class ModAnvilBehaviors {
     public static void register() {
@@ -21,6 +22,6 @@ public class ModAnvilBehaviors {
         IAnvilBehavior.registerBehavior(ModBlocks.ENTITY_EJECTOR.get(), new HitEntityEjectorBehavior());
         IAnvilBehavior.registerBehavior(ModBlocks.PRINTER.get(), new HitPrinterBlockBehavior());
 
-        IAnvilBehavior.registerBehavior(state -> state.is(Tags.Blocks.BUDDING_BLOCKS), new HitBuddingBlockBehavior());
+        IAnvilBehavior.registerBehavior(state -> state.is(ModBlockTags.CAN_HIT_RANDOM), new HitCanRandomBlockBehavior());
     }
 }

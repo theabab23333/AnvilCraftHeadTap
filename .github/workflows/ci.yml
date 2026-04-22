@@ -5,11 +5,11 @@ on:
     branches:
       - releases/**
     paths:
+      - gradle/scripts/**
+      - ../../guide/**
       - src/**
-      - common/**
-      - fabric/**
-      - forge/**
       - build.gradle
+      - dependencies.gradle
       - gradle.properties
       - settings.gradle
 
@@ -19,6 +19,7 @@ jobs:
     env:
       CI_BUILD: true
       PR_BUILD: false
+      VERSION_TYPE: release
     steps:
       - name: checkout
         uses: actions/checkout@v4
@@ -73,8 +74,5 @@ jobs:
         with:
           mod: build/libs/${{ steps.properties.outputs.mod_id }}-neoforge-${{ steps.version.outputs.version }}.jar
           extra-mods: |
-            anvilcraft:1.21.1-1.5.0+hotfix.1570
-          maven-repos: |
-            https://server.cjsah.net:1002/maven
-          maven-mods: |
-            dev.anvilcraft.lib:anvillib-neoforge-1.21.1:1.4.0+build.172
+            anvilcraft:1.21.1-1.6.0+snapshot.1594
+            guideme:21.1.15

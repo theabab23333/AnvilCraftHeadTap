@@ -1,0 +1,25 @@
+{
+	"format_version": "1.9.0",
+	"parent": "block/block",
+	"render_type": "minecraft:translucent",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "headtap:block/artificial_high_temperature_device_core",
+		"particle": "headtap:block/artificial_high_temperature_device_core"
+	},
+	"elements": [
+		{
+			"from": [3, 3, 3],
+			"to": [13, 13, 13],
+			"rotation": {"angle": 0, "axis": "y", "origin": [2, 2, 2]},
+			"faces": {
+				"north": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"east": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"south": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"west": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"up": {"uv": [3, 3, 13, 13], "texture": "#0"},
+				"down": {"uv": [3, 3, 13, 13], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -33,5 +33,14 @@
   "gui.headtap.builder.top": "多方块放置器",
   "jei.headtap.category.ejector": "弹射",
   "jei.headtap.category.ejector.high": "需要高度: %s",
-  "block.headtap.distributor": "配布器"
+  "block.headtap.distributor": "配布器",
+  "block.headtap.artificial_high_temperature_device": "人造高温装置",
+  "block.headtap.creature_extractor": "生物提取器",
+  "block.headtap.environment_extractor": "环境提取器",
+  "block.headtap.jade_furnace": "翡翠锻炉",
+  "block.headtap.jade_world": "翡翠世界",
+  "block.headtap.loot_generator": "战利品制造机",
+  "block.headtap.super_mass_generator": "超质量发生器",
+  "gui.headtap.artificial_high_temperature_device.top": "人造高温装置",
+  "screen.headtap.button.output": "自动输出: %s"
 }

@@ -1,14 +1,15 @@
 package me.theabab2333.headtap;
 
-import com.tterrag.registrate.Registrate;
+import com.mojang.logging.LogUtils;
+import dev.anvilcraft.lib.v2.registrum.Registrum;
 import me.theabab2333.headtap.api.tooltip.ItemTooltipManager;
 import me.theabab2333.headtap.data.HeadTapDataGen;
-import me.theabab2333.headtap.init.ModBlockEntities;
-import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import me.theabab2333.headtap.init.ModEntities;
-import me.theabab2333.headtap.init.ModFluids;
-import me.theabab2333.headtap.init.ModItemGroups;
-import me.theabab2333.headtap.init.ModItems;
+import me.theabab2333.headtap.init.block.ModFluids;
+import me.theabab2333.headtap.init.item.ModItemGroups;
+import me.theabab2333.headtap.init.item.ModItems;
 import me.theabab2333.headtap.init.ModMenuTypes;
 import me.theabab2333.headtap.init.ModNetworks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
@@ -22,12 +23,14 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.jetbrains.annotations.NotNull;
+import org.slf4j.Logger;
 
 @Mod(HeadTap.MOD_ID)
 public class HeadTap {
     public static final String MOD_ID = "headtap";
     public static IEventBus MOD_BUS = null;
-    public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
+    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Registrum REGISTRUM = Registrum.create(MOD_ID);
 
     public HeadTap(IEventBus modEventBus) {
         MOD_BUS = modEventBus;

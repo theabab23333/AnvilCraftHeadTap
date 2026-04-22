@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.api.tooltip;
 
 import com.google.common.collect.Maps;
-import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;

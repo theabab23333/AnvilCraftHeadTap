@@ -1,0 +1,51 @@
+{
+	"format_version": "1.9.0",
+	"parent": "block/block",
+	"render_type": "minecraft:translucent",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "headtap:block/creature_extractor_core",
+		"particle": "headtap:block/creature_extractor_core"
+	},
+	"elements": [
+		{
+			"from": [12, 12, 12],
+			"to": [4, 4, 4],
+			"rotation": {"angle": 0, "axis": "y", "origin": [12, 15, 12]},
+			"faces": {
+				"north": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"east": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"south": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"west": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [4, 4, 4],
+			"to": [12, 12, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 7, 4]},
+			"faces": {
+				"north": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"east": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"south": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"west": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#0"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.5, 6.5, 6.5],
+			"to": [9.5, 9.5, 9.5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
+			"faces": {
+				"north": {"uv": [3, 3, 4, 4], "texture": "#0"},
+				"east": {"uv": [3, 3, 4, 4], "texture": "#0"},
+				"south": {"uv": [3, 3, 4, 4], "texture": "#0"},
+				"west": {"uv": [3, 3, 4, 4], "texture": "#0"},
+				"up": {"uv": [3, 3, 4, 4], "texture": "#0"},
+				"down": {"uv": [3, 3, 4, 4], "texture": "#0"}
+			}
+		}
+	]
+}

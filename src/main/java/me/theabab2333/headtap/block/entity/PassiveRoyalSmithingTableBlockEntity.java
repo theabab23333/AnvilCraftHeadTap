@@ -3,7 +3,7 @@ package me.theabab2333.headtap.block.entity;
 import dev.dubhe.anvilcraft.api.itemhandler.FilteredItemStackHandler;
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
 import dev.dubhe.anvilcraft.block.entity.IFilterBlockEntity;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

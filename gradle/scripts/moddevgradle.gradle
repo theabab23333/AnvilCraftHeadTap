@@ -13,6 +13,7 @@ neoForge {
     runs {
         client {
             client()
+            setDevLogin(true)
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
 
@@ -29,14 +30,29 @@ neoForge {
 
         data {
             data()
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments = [
+                    '--mod', project.mod_id,
+                    '--all',
+                    '--output', file('src/generated/resources/').absolutePath,
+                    '--existing', file('src/main/resources').absolutePath
+            ]
         }
 
         configureEach {
             if (isJbr) {
                 jvmArgument "-XX:+AllowEnhancedClassRedefinition"
             }
+
+            def files = configurations.mixinAgent.files
+            if (!files.isEmpty()) {
+                jvmArgument '-javaagent:' + files.first().toPath()
+            }
+
+            // guideme
+            file('guide')
+
             systemProperty 'forge.logging.markers', 'REGISTRIES'
+            systemProperty 'terminal.jline', 'true'
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }

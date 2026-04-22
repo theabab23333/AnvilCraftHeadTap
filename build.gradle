@@ -4,6 +4,7 @@ plugins {
     id 'idea'
     alias libs.plugins.modDevGradle
     alias libs.plugins.lombok
+    alias libs.plugins.machete
 }
 
 String buildNumber
@@ -13,13 +14,20 @@ else {
     if (System.getenv("PR_BUILD") != 'false') buildType = 'pr'
     buildNumber = System.getenv("GITHUB_RUN_NUMBER")
 }
-version = "${mod_version}" + (buildNumber != null ? "+${buildType}.${buildNumber}" : "")
-group = mod_group_id
+def envVersion = System.getenv("GITHUB_REF")
+if (envVersion != null && envVersion.startsWith("refs/tags/")) {
+    version = envVersion.substring(envVersion.lastIndexOf('/') + 1)
+} else {
+    version = "${mod_version}" + (buildNumber != null ? "+${buildType}.${buildNumber}" : "")
+}
+group = maven_group
 
+apply from: "$rootDir/gradle/scripts/configurations.gradle"
 apply from: "$rootDir/gradle/scripts/moddevgradle.gradle"
 apply from: "$rootDir/gradle/scripts/repositories.gradle"
-apply from: "$rootDir/gradle/scripts/dependencies.gradle"
+apply from: "$rootDir/gradle/scripts/jars.gradle"
 apply from: "$rootDir/gradle/scripts/resources.gradle"
+apply from: "$rootDir/dependencies.gradle"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
@@ -30,6 +38,11 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+machete {
+    // disable machete locally for faster builds
+    enabled = false
 }
 
 lombok {

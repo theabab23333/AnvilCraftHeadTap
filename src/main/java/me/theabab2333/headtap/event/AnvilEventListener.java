@@ -5,7 +5,7 @@ import dev.dubhe.anvilcraft.block.PiezoelectricCrystalBlock;
 import me.theabab2333.headtap.HeadTap;
 import me.theabab2333.headtap.block.AnvilObserverBlock;
 import me.theabab2333.headtap.init.ModAnvilBehaviors;
-import me.theabab2333.headtap.init.ModBlocks;
+import me.theabab2333.headtap.init.block.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;

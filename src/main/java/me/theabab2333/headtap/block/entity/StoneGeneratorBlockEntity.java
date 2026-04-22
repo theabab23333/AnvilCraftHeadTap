@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.block.entity;
 
 import dev.dubhe.anvilcraft.api.itemhandler.IItemHandlerHolder;
-import me.theabab2333.headtap.init.ModBlockEntities;
+import me.theabab2333.headtap.init.block.ModBlockEntities;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
 import net.minecraft.MethodsReturnNonnullByDefault;
