@@ -1,6 +1,6 @@
 package me.theabab2333.headtap.init;
 
-import com.tterrag.registrate.util.entry.MenuEntry;
+import dev.anvilcraft.lib.v2.registrum.util.entry.MenuEntry;
 import me.theabab2333.headtap.client.gui.screen.BuilderScreen;
 import me.theabab2333.headtap.client.gui.screen.MachineOutputScreen;
 import me.theabab2333.headtap.inventory.BuilderMenu;
@@ -9,17 +9,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
 
-import static me.theabab2333.headtap.HeadTap.REGISTRATE;
+import static me.theabab2333.headtap.HeadTap.REGISTRUM;
 
 public class ModMenuTypes {
 
     @SuppressWarnings("DataFlowIssue")
-    public static final MenuEntry<BuilderMenu> BUILDER = REGISTRATE
+    public static final MenuEntry<BuilderMenu> BUILDER = REGISTRUM
         .menu("builder", BuilderMenu::new, () -> BuilderScreen::new)
         .register();
 
     @SuppressWarnings("DataFlowIssue")
-    public static final MenuEntry<MachineOutputMenu> MACHINE_OUTPUT = REGISTRATE
+    public static final MenuEntry<MachineOutputMenu> MACHINE_OUTPUT = REGISTRUM
         .menu("machine_output", MachineOutputMenu::new, () -> MachineOutputScreen::new)
         .register();
 

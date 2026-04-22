@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.init.item;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.entry.ItemEntry;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
+import dev.anvilcraft.lib.v2.registrum.util.entry.ItemEntry;
 import dev.dubhe.anvilcraft.init.item.ModItemTags;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
@@ -19,16 +19,16 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.common.Tags;
 
-import static me.theabab2333.headtap.HeadTap.REGISTRATE;
+import static me.theabab2333.headtap.HeadTap.REGISTRUM;
 
 @SuppressWarnings("unused")
 public class ModItems {
 
     static {
-        REGISTRATE.defaultCreativeTab(ModItemGroups.ANVILCRAFT_HEAD_TAP.getKey());
+        REGISTRUM.defaultCreativeTab(ModItemGroups.ANVILCRAFT_HEAD_TAP.getKey());
     }
 
-    public static final ItemEntry<AmethystAnvilHammer> AMETHYST_HAMMER = REGISTRATE
+    public static final ItemEntry<AmethystAnvilHammer> AMETHYST_HAMMER = REGISTRUM
         .item("amethyst_hammer", AmethystAnvilHammer::new)
         .tag(ItemTags.MACE_ENCHANTABLE)
         .properties(properties -> properties.durability(30))
@@ -41,12 +41,12 @@ public class ModItems {
             .define('A', ModBlocks.AMETHYST_ANVIL)
             .define('B', Items.IRON_INGOT)
             .define('C', Items.AMETHYST_BLOCK)
-            .unlockedBy("has_amethyst_anvil", RegistrateRecipeProvider.has(ModBlocks.AMETHYST_ANVIL))
-            .unlockedBy("has_iron_ingot", RegistrateRecipeProvider.has(Items.IRON_INGOT))
-            .unlockedBy("has_amethyst_block", RegistrateRecipeProvider.has(Items.AMETHYST_BLOCK))
+            .unlockedBy("has_amethyst_anvil", RegistrumRecipeProvider.has(ModBlocks.AMETHYST_ANVIL))
+            .unlockedBy("has_iron_ingot", RegistrumRecipeProvider.has(Items.IRON_INGOT))
+            .unlockedBy("has_amethyst_block", RegistrumRecipeProvider.has(Items.AMETHYST_BLOCK))
             .save(provider))
         .register();
-    public static final ItemEntry<GolemCraftbow> GOLEM_CRAFTBOW = REGISTRATE
+    public static final ItemEntry<GolemCraftbow> GOLEM_CRAFTBOW = REGISTRUM
         .item("golem_craftbow", GolemCraftbow::new)
         .tag(ItemTags.DURABILITY_ENCHANTABLE)
         .properties(properties -> properties.durability(529))
@@ -62,20 +62,20 @@ public class ModItems {
             .define('D', Items.DISPENSER)
             .define('C', Items.CROSSBOW)
             .define('X', Items.SHEARS)
-            .unlockedBy("has_block_placer", RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER))
-            .unlockedBy("has_carved_pumpkin", RegistrateRecipeProvider.has(Items.CARVED_PUMPKIN))
-            .unlockedBy("has_crossbow", RegistrateRecipeProvider.has(Items.CROSSBOW))
+            .unlockedBy("has_block_placer", RegistrumRecipeProvider.has(dev.dubhe.anvilcraft.init.block.ModBlocks.BLOCK_PLACER))
+            .unlockedBy("has_carved_pumpkin", RegistrumRecipeProvider.has(Items.CARVED_PUMPKIN))
+            .unlockedBy("has_crossbow", RegistrumRecipeProvider.has(Items.CROSSBOW))
             .save(provider))
         .register();
 
-    public static ItemEntry<BucketItem> RESIN_FLUID_BUCKET = HeadTap.REGISTRATE
+    public static ItemEntry<BucketItem> RESIN_FLUID_BUCKET = HeadTap.REGISTRUM
         .item("resin_fluid_bucket", p -> new BucketItem(ModFluids.RESIN_FLUID.get(), p))
         .tag(Tags.Items.BUCKETS)
         .properties(p -> p.stacksTo(1).craftRemainder(Items.BUCKET))
         .model(ModelProviderUtil::bucket)
         .register();
 
-    public static ItemEntry<BambooJavelinItem> BAMBOO_JAVELIN = REGISTRATE
+    public static ItemEntry<BambooJavelinItem> BAMBOO_JAVELIN = REGISTRUM
         .item("bamboo_javelin", BambooJavelinItem::new)
         .tag(ItemTags.TRIDENT_ENCHANTABLE)
         .tag(ItemTags.DURABILITY_ENCHANTABLE)
@@ -90,11 +90,11 @@ public class ModItems {
             .pattern("A ")
             .define('A', Items.BAMBOO)
             .define('B', Items.WOODEN_SWORD)
-            .unlockedBy("has_bamboo", RegistrateRecipeProvider.has(Items.BAMBOO))
+            .unlockedBy("has_bamboo", RegistrumRecipeProvider.has(Items.BAMBOO))
             .save(provider))
         .register();
 
-    public static final ItemEntry<Item> BLESSED_GOLD_INGOT = REGISTRATE
+    public static final ItemEntry<Item> BLESSED_GOLD_INGOT = REGISTRUM
         .item("blessed_gold_ingot", Item::new)
         .tag(ModItemTags.VOID_RESISTANT)
         .register();

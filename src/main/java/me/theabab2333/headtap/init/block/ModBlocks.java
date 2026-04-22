@@ -1,7 +1,7 @@
 package me.theabab2333.headtap.init.block;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
-import com.tterrag.registrate.util.entry.BlockEntry;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
+import dev.anvilcraft.lib.v2.registrum.util.entry.BlockEntry;
 import dev.dubhe.anvilcraft.data.AnvilCraftDatagen;
 import dev.dubhe.anvilcraft.util.DataGenUtil;
 import dev.dubhe.anvilcraft.util.registrater.ModelProviderUtil;
@@ -46,16 +46,12 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
-import static me.theabab2333.headtap.HeadTap.REGISTRATE;
+import static me.theabab2333.headtap.HeadTap.REGISTRUM;
 
 @SuppressWarnings("unused")
 public class ModBlocks {
 
-    static {
-        REGISTRATE.defaultCreativeTab(ModItemGroups.ANVILCRAFT_HEAD_TAP.getKey());
-    }
-
-    public static final BlockEntry<? extends Block> AMETHYST_ANVIL = REGISTRATE
+    public static final BlockEntry<? extends Block> AMETHYST_ANVIL = REGISTRUM
         .block("amethyst_anvil", AmethystAnvilBlock::new)
         .recipe((c, p) ->
             ShapedRecipeBuilder.shaped(RecipeCategory.MISC, c.get())
@@ -64,8 +60,8 @@ public class ModBlocks {
                 .pattern("BBB")
                 .define('A', Items.AMETHYST_BLOCK)
                 .define('B', Items.AMETHYST_SHARD)
-                .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_SHARD), RegistrateRecipeProvider.has(Items.AMETHYST_SHARD))
-                .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_BLOCK), RegistrateRecipeProvider.has(Items.AMETHYST_BLOCK))
+                .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_SHARD), RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
+                .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_BLOCK), RegistrumRecipeProvider.has(Items.AMETHYST_BLOCK))
                 .save(p)
         )
         .tag(
@@ -82,7 +78,7 @@ public class ModBlocks {
         .build()
         .blockstate(DataGenUtil::horizontalFacingBlock)
         .register();
-    public static final BlockEntry<StoneGeneratorBlock> STONE_GENERATOR = REGISTRATE
+    public static final BlockEntry<StoneGeneratorBlock> STONE_GENERATOR = REGISTRUM
         .block("stone_generator", StoneGeneratorBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .initialProperties(() -> Blocks.IRON_BLOCK)
@@ -98,21 +94,20 @@ public class ModBlocks {
             .define('C', dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT)
             .define('D', Items.AMETHYST_SHARD)
             .define('E', Items.STONECUTTER)
-            .unlockedBy(AnvilCraftDatagen.hasItem(Items.IRON_INGOT), RegistrateRecipeProvider.has(Items.IRON_INGOT))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Items.IRON_INGOT), RegistrumRecipeProvider.has(Items.IRON_INGOT))
             .unlockedBy(
                 AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE),
-                RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE)
+                RegistrumRecipeProvider.has(dev.dubhe.anvilcraft.init.block.ModBlocks.CRUSHING_TABLE)
             )
             .unlockedBy(
                 AnvilCraftDatagen.hasItem(dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT),
-                RegistrateRecipeProvider.has(dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT)
+                RegistrumRecipeProvider.has(dev.dubhe.anvilcraft.init.item.ModItems.MAGNET_INGOT)
             )
-            .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_SHARD), RegistrateRecipeProvider.has(Items.AMETHYST_SHARD))
-            .unlockedBy(AnvilCraftDatagen.hasItem(Items.STONECUTTER), RegistrateRecipeProvider.has(Items.STONECUTTER))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Items.AMETHYST_SHARD), RegistrumRecipeProvider.has(Items.AMETHYST_SHARD))
+            .unlockedBy(AnvilCraftDatagen.hasItem(Items.STONECUTTER), RegistrumRecipeProvider.has(Items.STONECUTTER))
             .save(provider))
         .register();
-
-    public static final BlockEntry<ResinExtractorBlock> RESIN_EXTRACTOR = REGISTRATE
+    public static final BlockEntry<ResinExtractorBlock> RESIN_EXTRACTOR = REGISTRUM
         .block("resin_extractor", ResinExtractorBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .initialProperties(() -> Blocks.IRON_BLOCK)
@@ -137,8 +132,7 @@ public class ModBlocks {
             )
             .save(provider))
         .register();
-
-    public static final BlockEntry<VariableFluidTankBlock> VARIABLE_FLUID_TANK = REGISTRATE
+    public static final BlockEntry<VariableFluidTankBlock> VARIABLE_FLUID_TANK = REGISTRUM
         .block("variable_fluid_tank", VariableFluidTankBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -162,8 +156,7 @@ public class ModBlocks {
             )
             .save(provider))
         .register();
-
-    public static final BlockEntry<PassiveRoyalGrindstoneBlock> PASSIVE_ROYAL_GRINDSTONE = REGISTRATE
+    public static final BlockEntry<PassiveRoyalGrindstoneBlock> PASSIVE_ROYAL_GRINDSTONE = REGISTRUM
         .block("passive_royal_grindstone", PassiveRoyalGrindstoneBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -171,8 +164,7 @@ public class ModBlocks {
         .initialProperties(() -> Blocks.GRINDSTONE)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
-
-    public static final BlockEntry<PassiveRoyalAnvilBlock> PASSIVE_ROYAL_ANVIL = REGISTRATE
+    public static final BlockEntry<PassiveRoyalAnvilBlock> PASSIVE_ROYAL_ANVIL = REGISTRUM
         .block("passive_royal_anvil", PassiveRoyalAnvilBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -180,8 +172,7 @@ public class ModBlocks {
         .initialProperties(() -> Blocks.ANVIL)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
-
-    public static final BlockEntry<PassiveRoyalSmithingTableBlock> PASSIVE_ROYAL_TABLE = REGISTRATE
+    public static final BlockEntry<PassiveRoyalSmithingTableBlock> PASSIVE_ROYAL_TABLE = REGISTRUM
         .block("passive_royal_smithing_table", PassiveRoyalSmithingTableBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -189,8 +180,7 @@ public class ModBlocks {
         .initialProperties(() -> Blocks.SMITHING_TABLE)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
-
-    public static final BlockEntry<AnvilObserverBlock> ANVIL_OBSERVER = REGISTRATE
+    public static final BlockEntry<AnvilObserverBlock> ANVIL_OBSERVER = REGISTRUM
         .block("anvil_observer", AnvilObserverBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -210,8 +200,7 @@ public class ModBlocks {
             .unlockedBy(AnvilCraftDatagen.hasItem(Blocks.OBSERVER), AnvilCraftDatagen.has(Blocks.OBSERVER))
             .save(provider))
         .register();
-
-    public static final BlockEntry<EntityEjectorBlock> ENTITY_EJECTOR = REGISTRATE
+    public static final BlockEntry<EntityEjectorBlock> ENTITY_EJECTOR = REGISTRUM
         .block("entity_ejector", EntityEjectorBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -236,8 +225,7 @@ public class ModBlocks {
             .unlockedBy(AnvilCraftDatagen.hasItem(ModBlocks.ANVIL_OBSERVER), AnvilCraftDatagen.has(ModBlocks.ANVIL_OBSERVER))
             .save(provider))
         .register();
-
-    public static final BlockEntry<PrinterBlock> PRINTER = REGISTRATE
+    public static final BlockEntry<PrinterBlock> PRINTER = REGISTRUM
         .block("printer", PrinterBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -264,8 +252,7 @@ public class ModBlocks {
             )
             .save(provider))
         .register();
-
-    public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRATE
+    public static final BlockEntry<DensityCoreBlock> DENSITY_CORE = REGISTRUM
         .block("density_core", DensityCoreBlock::new)
         .initialProperties(() -> Blocks.COPPER_BLOCK)
         .properties(p -> p.lightLevel(p_152632_ -> 5))
@@ -275,8 +262,7 @@ public class ModBlocks {
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
         .properties(p -> p.sound(SoundType.COPPER))
         .register();
-
-    public static final BlockEntry<BuilderBlock> BUILDER = REGISTRATE
+    public static final BlockEntry<BuilderBlock> BUILDER = REGISTRUM
         .block("builder", BuilderBlock::new)
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
@@ -310,8 +296,7 @@ public class ModBlocks {
             )
             .save(provider))
         .register();
-
-    public static final BlockEntry<DistributorBlock> DISTRIBUTER = REGISTRATE
+    public static final BlockEntry<DistributorBlock> DISTRIBUTER = REGISTRUM
         .block("distributor", DistributorBlock::new)
         .initialProperties(() -> Blocks.DISPENSER)
         .tag(BlockTags.MINEABLE_WITH_PICKAXE)
@@ -339,64 +324,56 @@ public class ModBlocks {
             )
             .save(provider))
         .register();
-
-    public static final BlockEntry<ArtificialHighTemperatureDeviceBlock> ARTIFICIAL_HIGH_TEMPERATURE_DEVICE = REGISTRATE
+    public static final BlockEntry<ArtificialHighTemperatureDeviceBlock> ARTIFICIAL_HIGH_TEMPERATURE_DEVICE = REGISTRUM
         .block("artificial_high_temperature_device", ArtificialHighTemperatureDeviceBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<CreatureExtractorBlock> CREATURE_EXTRACTOR = REGISTRATE
+    public static final BlockEntry<CreatureExtractorBlock> CREATURE_EXTRACTOR = REGISTRUM
         .block("creature_extractor", CreatureExtractorBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<EnvironmentExtractorBlock> ENVIRONMENT_EXTRACTOR = REGISTRATE
+    public static final BlockEntry<EnvironmentExtractorBlock> ENVIRONMENT_EXTRACTOR = REGISTRUM
         .block("environment_extractor", EnvironmentExtractorBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<JadeFurnaceBlock> JADE_FURNACE = REGISTRATE
+    public static final BlockEntry<JadeFurnaceBlock> JADE_FURNACE = REGISTRUM
         .block("jade_furnace", JadeFurnaceBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(AddonDataGenUtil::simple)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<JadeWorldBlock> JADE_WORLD = REGISTRATE
+    public static final BlockEntry<JadeWorldBlock> JADE_WORLD = REGISTRUM
         .block("jade_world", JadeWorldBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<LootGeneratorBlock> LOOT_GENERATOR = REGISTRATE
+    public static final BlockEntry<LootGeneratorBlock> LOOT_GENERATOR = REGISTRUM
         .block("loot_generator", LootGeneratorBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(AddonDataGenUtil::simple)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<SuperMassGeneratorBlock> SUPER_MASS_GENERATOR = REGISTRATE
+    public static final BlockEntry<SuperMassGeneratorBlock> SUPER_MASS_GENERATOR = REGISTRUM
         .block("super_mass_generator", SuperMassGeneratorBlock::new)
         .properties(p -> p.noOcclusion().isValidSpawn(Blocks::never))
         .blockstate(DataGenUtil::noExtraModelOrState)
         .simpleItem()
         .initialProperties(() -> Blocks.DISPENSER)
         .register();
-
-    public static final BlockEntry<ResinFluidCauldronBlock> RESIN_FLUID_CAULDRON = REGISTRATE
+    public static final BlockEntry<ResinFluidCauldronBlock> RESIN_FLUID_CAULDRON = REGISTRUM
         .block("resin_fluid_cauldron", ResinFluidCauldronBlock::new)
         .initialProperties(() -> Blocks.CAULDRON)
         .blockstate(DataGenUtil::noExtraModelOrState)
@@ -407,8 +384,7 @@ public class ModBlocks {
         )
         .onRegister(block -> Item.BY_BLOCK.put(block, Items.CAULDRON))
         .register();
-
-    public static BlockEntry<LiquidBlock> RESIN_FLUID = REGISTRATE
+    public static BlockEntry<LiquidBlock> RESIN_FLUID = REGISTRUM
         .block("resin_fluid", p -> new LiquidBlock(ModFluids.RESIN_FLUID.get(), p))
         .properties(it -> it
             .mapColor(MapColor.EMERALD)
@@ -422,6 +398,10 @@ public class ModBlocks {
         )
         .blockstate(ModelProviderUtil::liquid)
         .register();
+
+    static {
+        REGISTRUM.defaultCreativeTab(ModItemGroups.ANVILCRAFT_HEAD_TAP.getKey());
+    }
 
     public static void register() {
     }

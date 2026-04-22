@@ -1,9 +1,9 @@
 package me.theabab2333.headtap.data.recipe;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 
 public class RecipeHandler {
-    public static void init(RegistrateRecipeProvider provider) {
+    public static void init(RegistrumRecipeProvider provider) {
         StoneGeneratorRecipeLoader.init(provider);
         GolemCraftRecipeLoader.init(provider);
         EjectorRecipeLoader.init(provider);

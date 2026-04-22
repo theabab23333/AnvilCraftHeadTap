@@ -1,11 +1,11 @@
 package me.theabab2333.headtap.data.recipe;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import dev.dubhe.anvilcraft.recipe.anvil.wrap.BlockCompressRecipe;
 import me.theabab2333.headtap.init.block.ModBlocks;
 
 public class AnvilCraftRecipeLoader {
-    public static void init(RegistrateRecipeProvider provider) {
+    public static void init(RegistrumRecipeProvider provider) {
         BlockCompressRecipe.builder()
             .input(dev.dubhe.anvilcraft.init.block.ModBlocks.HEAVY_IRON_BLOCK.get())
             .input(dev.dubhe.anvilcraft.init.block.ModBlocks.MAGNETO_ELECTRIC_CORE_BLOCK.get())

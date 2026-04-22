@@ -1,7 +1,7 @@
 package me.theabab2333.headtap;
 
 import com.mojang.logging.LogUtils;
-import com.tterrag.registrate.Registrate;
+import dev.anvilcraft.lib.v2.registrum.Registrum;
 import me.theabab2333.headtap.api.tooltip.ItemTooltipManager;
 import me.theabab2333.headtap.data.HeadTapDataGen;
 import me.theabab2333.headtap.init.block.ModBlockEntities;
@@ -30,7 +30,7 @@ public class HeadTap {
     public static final String MOD_ID = "headtap";
     public static IEventBus MOD_BUS = null;
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final Registrate REGISTRATE = Registrate.create(MOD_ID);
+    public static final Registrum REGISTRUM = Registrum.create(MOD_ID);
 
     public HeadTap(IEventBus modEventBus) {
         MOD_BUS = modEventBus;

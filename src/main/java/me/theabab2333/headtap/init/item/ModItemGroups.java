@@ -8,7 +8,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import static me.theabab2333.headtap.HeadTap.REGISTRATE;
+import static me.theabab2333.headtap.HeadTap.REGISTRUM;
 
 @SuppressWarnings("unused")
 public class ModItemGroups {
@@ -19,7 +19,7 @@ public class ModItemGroups {
         HT.register(
             "block", () -> CreativeModeTab.builder()
                 .icon(ModBlocks.AMETHYST_ANVIL::asStack)
-                .title(REGISTRATE.addLang("itemGroup", HeadTap.of("block"), "AnvilCraft: HeadTap"))
+                .title(REGISTRUM.addLang("itemGroup", HeadTap.of("block"), "AnvilCraft: HeadTap"))
                 .withTabsBefore(dev.dubhe.anvilcraft.init.item.ModItemGroups.ANVILCRAFT_BUILD_BLOCK.getId())
                 .build()
         );

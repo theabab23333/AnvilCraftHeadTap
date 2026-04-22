@@ -3,7 +3,6 @@ package me.theabab2333.headtap.integration.jei;
 import dev.dubhe.anvilcraft.client.support.RenderSupport;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRecipeUtil;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRenderHelper;
-import dev.dubhe.anvilcraft.integration.jei.util.TextureConstants;
 import me.theabab2333.headtap.init.block.ModBlocks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.StoneGeneratorRecipe;
@@ -49,9 +48,7 @@ public class StoneGeneratorCategory implements IRecipeCategory<RecipeHolder<Ston
 
 
     public StoneGeneratorCategory(IGuiHelper helper) {
-        this.progress = helper.drawableBuilder(TextureConstants.PROGRESS, 0, 0, 24, 16)
-            .setTextureSize(24, 16)
-            .build();
+        progress = JeiRenderHelper.getArrowInput(helper);
         slot = helper.getSlotDrawable();
         icon = helper.createDrawableItemStack(new ItemStack(ModBlocks.STONE_GENERATOR));
         title = Component.translatable("jei.headtap.category.stone_generator");

@@ -4,6 +4,7 @@ plugins {
     id 'idea'
     alias libs.plugins.modDevGradle
     alias libs.plugins.lombok
+    alias libs.plugins.machete
 }
 
 String buildNumber
@@ -37,6 +38,11 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+machete {
+    // disable machete locally for faster builds
+    enabled = false
 }
 
 lombok {

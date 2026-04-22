@@ -1,6 +1,6 @@
 package me.theabab2333.headtap.data.tags;
 
-import com.tterrag.registrate.providers.RegistrateTagsProvider;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumTagsProvider;
 import me.theabab2333.headtap.init.block.ModBlockTags;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -16,7 +16,7 @@ public class BlockTagLoader {
     }
 
     @SuppressWarnings("unchecked")
-    public static void init(RegistrateTagsProvider<Block> provider) {
+    public static void init(RegistrumTagsProvider<Block> provider) {
         provider.addTag(ModBlockTags.CAN_HIT_RANDOM)
             .addTags(Tags.Blocks.BUDDING_BLOCKS)
             .addTags(BlockTags.SAPLINGS)

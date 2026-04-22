@@ -1,6 +1,6 @@
 package me.theabab2333.headtap.data.recipe;
 
-import com.tterrag.registrate.providers.RegistrateRecipeProvider;
+import dev.anvilcraft.lib.v2.registrum.providers.RegistrumRecipeProvider;
 import dev.dubhe.anvilcraft.recipe.transform.TagModification;
 import me.theabab2333.headtap.recipe.GolemCraftRecipe;
 import net.minecraft.nbt.CompoundTag;
@@ -8,7 +8,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Items;
 
 public class GolemCraftRecipeLoader {
-    public static void init(RegistrateRecipeProvider provider) {
+    public static void init(RegistrumRecipeProvider provider) {
         GolemCraftRecipe.builder()
             .requires(Items.IRON_BLOCK, 4)
             .result(EntityType.IRON_GOLEM)

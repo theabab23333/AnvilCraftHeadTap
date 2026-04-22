@@ -5,7 +5,6 @@ import dev.dubhe.anvilcraft.client.support.RenderSupport;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRecipeUtil;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiRenderHelper;
 import dev.dubhe.anvilcraft.integration.jei.util.JeiSlotUtil;
-import dev.dubhe.anvilcraft.integration.jei.util.TextureConstants;
 import me.theabab2333.headtap.init.block.ModBlocks;
 import me.theabab2333.headtap.init.ModRecipeTypes;
 import me.theabab2333.headtap.recipe.EjectorRecipe;
@@ -56,8 +55,8 @@ public class EjectorCategory implements IRecipeCategory<RecipeHolder<EjectorReci
         timer = guiHelper.createTickTimer(30, 60, true);
         title = Component.translatable("jei.headtap.category.ejector");
 
-        arrowIn = guiHelper.createDrawable(TextureConstants.ANVIL_CRAFT_SPRITES, 0, 31, 16, 8);
-        arrowOut = guiHelper.createDrawable(TextureConstants.ANVIL_CRAFT_SPRITES, 0, 40, 16, 10);
+        this.arrowIn = JeiRenderHelper.getArrowInput(guiHelper);
+        this.arrowOut = JeiRenderHelper.getArrowOutput(guiHelper);
     }
 
     @Override

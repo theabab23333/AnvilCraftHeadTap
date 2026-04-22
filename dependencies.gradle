@@ -1,19 +1,12 @@
 dependencies {
-    // Registrate
-    api(libs.registrate)
 
     // AnvilCraft
-    implementation(libs.anvilCraft) { transitive = false }
-    interfaceInjectionData(libs.anvilCraft) { transitive = false }
+    implementation(libs.anvilcraft) { transitive = false }
+    interfaceInjectionData(libs.anvilcraft) { transitive = false }
 
     // AnvilLib
     runtimeOnly(libs.anvillib)
-    compileOnly(libs.anvillibConfig)
-    compileOnly(libs.anvillibRecipe)
-    interfaceInjectionData(libs.anvillibRecipe)
-    compileOnly(libs.anvillibMoveableEntityBlock)
-    interfaceInjectionData(libs.anvillibMoveableEntityBlock)
-    compileOnly(libs.anvillibIntegration)
+    compileOnly(libs.bundles.anvillib)
 
     // JEI
     compileOnlyApi(libs.jeiCommonApi) { transitive = false }
@@ -23,13 +16,9 @@ dependencies {
     // Jade
     implementation(libs.jade)
 
-    // GuideME
-    compileOnly("org.appliedenergistics:guideme:${libs.versions.guideme.get()}:api")
-    implementation(libs.guideme)
-
-    // AE2
-    runtimeOnly(libs.ae2)
-
-    // Mixin Hotswap Agent(神秘mixin热重载)
+    // Mixin Hotswap Agent
     additionalRuntimeClasspath(libs.mixinHotswap)
+
+    // ldlib2
+    implementation(libs.ldlib)
 }
